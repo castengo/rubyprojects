@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @shade.name %>
+</p>
+
+<p>
+  <strong>Finish:</strong>
+  <%= @shade.finish %>
+</p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @shade.product %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @shade.color %>
+</p>
+
+<%= link_to 'Edit', edit_shade_path(@shade) %> |
+<%= link_to 'Back', shades_path %>

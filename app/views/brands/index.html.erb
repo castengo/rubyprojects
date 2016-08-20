@@ -1,0 +1,10 @@
+
+<h1>Listing Brands</h1>
+
+<% @brands.each do |brand| %>
+  <div class="brand-index">
+    <%= link_to image_tag(brand.logo_url, height: "50"), brand %>
+  </div>
+<% end %>
+
+

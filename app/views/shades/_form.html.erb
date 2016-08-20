@@ -1,0 +1,29 @@
+<%= form_for([@product, @shade]) do |f| %>
+  <% if @shade.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@shade.errors.count, "error") %> prohibited this shade from being saved:</h2>
+
+      <ul>
+      <% @shade.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :hex_color %><br>
+    <%= f.text_field :hex_color %>
+  </div>
+  <div class="field">
+    <%= f.label :finish %><br>
+    <%= f.text_field :finish %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

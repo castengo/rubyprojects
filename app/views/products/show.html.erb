@@ -1,0 +1,66 @@
+
+<%= link_to image_tag(@brand.logo_url), @brand %>
+
+<p>
+	<%= link_to 'Back to All Products', products_path %> |
+	<%= link_to "Back to #{@brand.name} Products", brand_path(@brand) %>
+	<% if logged_in? %>
+		| <%= link_to "EDIT", edit_product_path(@product) %> | 
+		<%= link_to "DELETE", @product, method: :delete %>
+	<% end %>
+</p> 
+
+<h2><%= @product.name %></h2>
+  
+<p><%= @product.description %></p>
+<p><strong>Type:</strong> <%= @product.product_type %></p>
+<p><strong>Application:</strong> <%= @product.application %></p>
+
+<%= image_tag(@product.photo_url, height: "400") %>
+
+<p>
+  <strong>Price:</strong>
+  <%= format_price @product.price %>
+</p>
+<p><%= link_to "Buy Me", @product.direct_link, target: "_blank" %></p>
+
+<% if @product.shades.count > 0 %>
+	<h2><%= @product.name %> Shades</h2>
+	<% @shades.each do |shade| %>
+		<div style="display: inline-block;">
+			<%= link_to content_tag(:div, "", style: "height: 100px; width: 100px; background-color: ##{shade.hex_color};"), color_path(shade.color) %>
+			<p><%= shade.name %></p>
+			<p><%= shade.finish %></p>
+			<% if logged_in? %>
+				<%= link_to "Delete", [@product, shade], method: :delete %>
+			<% end %>
+		</div>
+	<% end %>
+<% end %>
+
+<br>
+
+<% if logged_in? %>
+	<table>
+		<thead>
+			<th>Name</th>
+			<th>Hex Color</th>
+			<th>Finish</th>
+		</thead>
+		<%= form_for([@product, @product.shades.new]) do |f| %>
+			<tbody>
+				<td><%= f.text_field :name %></td>
+				<td><%= f.text_field :hex_color %></td>
+				<td><%= f.text_field :finish %></td>
+				<td><%= f.submit %></td>
+			</tbody>
+		<% end %>
+	</table>
+<% end %>
+
+<h2> Palettes with similar colors </h2>
+
+<%= render @matching_products %>
+
+<h2> Singles with similar colors </h2>
+

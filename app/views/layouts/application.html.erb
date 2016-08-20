@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Catalinas Colors</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<header>
+	<%= image_tag "logo.png", height: "50px"%>
+	<%= image_tag "catalinas_colors_logo.png", height: "75px"%>
+	<nav>
+		<ul>
+			<% if logged_in? %>
+				<li>Logged in as Catalina Queen of the World</li>
+				<li><%= link_to "Dashboard", dashboard_path %> | </li>
+				<li><%= link_to "Logout", logout_path, method: :delete %> | </li>
+			<% end %>
+			<li><%= link_to 'Brands', brands_path %></li>
+			<li><%= link_to 'Products', products_path %></li>
+			<li><%= link_to 'Colors', colors_path %></li>
+		</ul>
+	</nav>
+</header>
+<body>
+
+	<% flash.each do |key, value| %>
+		<p id='<%= key %>'><%= value %></p>
+	<% end %>
+
+	<content>
+		<%= yield %>
+	</content>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+<h1>Colors</h1>
+
+<% @colors.each do |color| %>
+	<div style="display: inline-block;">
+		<%= link_to content_tag(:div, "", style: "height: 100px; width: 100px; background-color: ##{color.hex};"), color_path(color) %>
+	</div>
+<% end %>
+
+</p>
+
+
+
+	

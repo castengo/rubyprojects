@@ -1,0 +1,17 @@
+<div style="display: inline-block;">
+	<%= link_to image_tag(shade.product.photo_url, width: "100"), product_path(shade.product) %>
+	<%= content_tag :div, "", style: "height: 20px; width: 100px; background-color: ##{shade.hex_color};" %>
+	<p><%= shade.product.name %></p>
+	<p>
+		<%= shade.name %>
+		<% if shade.hex_color == @color.hex %>
+			<span style="color: red;">Perfect Match!</span>
+		<% else %>
+			<span style="color:red;">Close Match!</span>
+		<% end %>
+	</p>
+	<p><%= shade.finish %></p>
+</div>
+
+
+
