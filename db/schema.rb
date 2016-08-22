@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160818162051) do
+ActiveRecord::Schema.define(version: 20160821211928) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "name"
@@ -23,9 +23,9 @@ ActiveRecord::Schema.define(version: 20160818162051) do
 
   create_table "colors", force: :cascade do |t|
     t.string   "hex"
-    t.integer  "r"
-    t.integer  "b"
-    t.integer  "g"
+    t.integer  "h"
+    t.integer  "l"
+    t.integer  "s"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -24,31 +24,6 @@
 <h2>Or... Try a different shade!</h2>
 
 <p style="color:blue;">*fix algorithm so its a different factor for a lighter color than it is for a darker color -- lighter color it should get darker slower, darker color it should get lighter slower</p>
-<% $i = 0 %>
-<% $r = @color.r; %>
-<% $g = @color.g; %>
-<% $b = @color.b;%>
-<% hash = [] %>
-<% while $i < 7 do %>
-	<% hash << {r: $r, g: $g, b: $b} %>
-	<% $r = $r+((255-$r)*3/30); %>
-	<% $g = $g+((255-$g)*3/30); %>
-	<% $b = $b+((255-$b)*3/30); %>
-	<% $i += 1 %>
-<% end %>
-<% hash.reverse! %>
-<% $r = @color.r; $g = @color.g; $b = @color.b;%>
-<% while $i < 13 do %>
-	<% $r = $r*29/30; %>
-	<% $g = $g*29/30; %>
-	<% $b = $b*29/30; $i += 1 %>
-	<% hash << {r: $r, g: $g, b: $b} %>
-<% end %>
-<% hash.each do |rgb| %>
-	<div style="display: inline-block;">
-	  <%= content_tag :div, "", style: "height: 80px; width: 80px; background-color: rgb(#{rgb[:r]}, #{rgb[:g]}, #{rgb[:b]});" %>
-	</div>
-	<% rgb[:r] %>
-<% end %>
+
 
 

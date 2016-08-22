@@ -1,13 +1,150 @@
 <h1>Colors</h1>
 
-<% @colors.each do |color| %>
+<% if @red_yellow_colors.count > 0 %>
+	<h2>Red-Orange Colors</h2>
+	<% @red_yellow_colors.each do |color| %>
+		<div style="display: inline-block;">
+			<%= link_to content_tag(:div, "", style: "height: 100px; width: 100px; background-color: ##{color.hex};"), color_path(color) %>
+			<p><%= color.h %></p>
+			<p><%= color.s %></p>
+			<p><%= color.l %></p>
+		</div>
+	<% end %>
+<% end %>
+
+<% if @green_colors.count > 0 %>
+	<h2>Green Colors</h2>
+	<% @green_colors.each do |color| %>
+		<div style="display: inline-block;">
+			<%= link_to content_tag(:div, "", style: "height: 100px; width: 100px; background-color: ##{color.hex};"), color_path(color) %>
+		</div>
+	<% end %>
+<% end %>
+
+<% if @blue_colors.count > 0 %>
+	<h2>Blue Colors</h2>
+	<% @blue_colors.each do |color| %>
+		<div style="display: inline-block;">
+			<%= link_to content_tag(:div, "", style: "height: 100px; width: 100px; background-color: ##{color.hex};"), color_path(color) %>
+		</div>
+	<% end %>
+<% end %>
+
+<% if @purple_pink_colors.count > 0 %>
+	<h2>Purple-Pink Colors</h2>
+	<% @purple_pink_colors.each do |color| %>
+		<div style="display: inline-block;">
+			<%= link_to content_tag(:div, "", style: "height: 100px; width: 100px; background-color: ##{color.hex};"), color_path(color) %>
+		</div>
+	<% end %>
+<% end %>
+
+<% if @pink_red_colors.count > 0 %>
+	<h2>Pink-Red Colors</h2>
+	<% @pink_red_colors.each do |color| %>
+		<div style="display: inline-block;">
+			<%= link_to content_tag(:div, "", style: "height: 100px; width: 100px; background-color: ##{color.hex};"), color_path(color) %>
+			<p><%= color.h %></p>
+			<p><%= color.s %></p>
+			<p><%= color.l %></p>
+		</div>
+	<% end %>
+<% end %>
+
+
+
+
+
+
+<h2>Hue</h2>
+<% $i = 0 %>
+<% $h = 0; $s = 100; $l = 50;%>
+<% hash = [] %>
+<% while $i < 61 do %>
+	<% hash << {h: $h, s: $s, l: $l} %>
+	<% $h = $h+6; %>
+	<% $i += 1 %>
+<% end %>
+<% hash.each do |hsl| %>
 	<div style="display: inline-block;">
-		<%= link_to content_tag(:div, "", style: "height: 100px; width: 100px; background-color: ##{color.hex};"), color_path(color) %>
+	  <%= content_tag :div, "", style: "height: 80px; width: 80px; background-color: hsl(#{hsl[:h]}, #{hsl[:s]}%, #{hsl[:l]}%);" %>
+	  <p><%= hsl[:h] %></p>
 	</div>
+	<% hsl[:h] %>
+<% end %>
+</p>
+
+<h2>Saturation</h2>
+<% $i = 0 %>
+<% $h = 336; $s = 75; $l = 37;%>
+<% hash = [] %>
+<% while $i < 7 do %>
+	<% hash << {h: $h, s: $s, l: $l} %>
+	<% $s = $s+10; %>
+	<% $i += 1 %>
+<% end %>
+<% hash.reverse! %>
+<% $h = 336; $s = 75; $l = 37;%>
+<% while $i < 13 do %>
+	<% $s = $s - 10 %>
+	<% $i += 1 %>
+	<% hash << {h: $h, s: $s, l: $l} %>
+<% end %>
+<% hash.each do |hsl| %>
+	<div style="display: inline-block;">
+	  <%= content_tag :div, "", style: "height: 80px; width: 80px; background-color: hsl(#{hsl[:h]}, #{hsl[:s]}%, #{hsl[:l]}%);" %>
+	  <p><%= hsl[:h] %></p>
+	  <p><%= hsl[:s] %></p>
+	  <p><%= hsl[:l] %></p>
+	</div>
+	<% hsl[:h] %>
+<% end %>
+
+<h2>Luminance</h2>
+<% $i = 0 %>
+<% $h = 336; $s = 75; $l = 37;%>
+<% hash = [] %>
+<% while $i < 7 do %>
+	<% hash << {h: $h, s: $s, l: $l} %>
+	<% $l = $l+3; %>
+	<% $i += 1 %>
+<% end %>
+<% hash.reverse! %>
+<% $h = 336; $s = 75; $l = 37;%>
+<% while $i < 13 do %>
+	<% $l = $l - 3 %>
+	<% $i += 1 %>
+	<% hash << {h: $h, s: $s, l: $l} %>
+<% end %>
+<% hash.each do |hsl| %>
+	<div style="display: inline-block;">
+	  <%= content_tag :div, "", style: "height: 80px; width: 80px; background-color: hsl(#{hsl[:h]}, #{hsl[:s]}%, #{hsl[:l]}%);" %>
+	  <p><%= hsl[:h] %></p>
+	  <p><%= hsl[:s] %></p>
+	  <p><%= hsl[:l] %></p>
+	</div>
+	<% hsl[:h] %>
 <% end %>
 
 </p>
+<p>Pick randoms</p>
+<% $i = 0 %>
+<% $h = (333..339).to_a; $s = (73..77).to_a; $l = (35..39).to_a;%>
+<% $h = (20..26).to_a; $s = (49..51).to_a; $l = (49..51).to_a;%>
+<% hash = [] %>
+<% while $i < 13 do %>
+	<% hash << {h: $h.sample, s: $s.sample, l: $l.sample} %>
+	<% $i += 1 %>
+<% end %>
+<% hash.each do |hsl| %>
+	<div style="display: inline-block;">
+	  <%= content_tag :div, "", style: "height: 80px; width: 80px; background-color: hsl(#{hsl[:h]}, #{hsl[:s]}%, #{hsl[:l]}%);" %>
+	  <p><%= hsl[:h] %></p>
+	  <p><%= hsl[:s] %></p>
+	  <p><%= hsl[:l] %></p>
 
+	</div>
+<% end %>
 
 
 	

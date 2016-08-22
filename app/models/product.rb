@@ -11,7 +11,7 @@ class Product < ActiveRecord::Base
   def find_matching_palettes
   	matching_colors = [] #id of colors that match the product
   	colors.each do |color|
-  		matching_colors.push(Color.close_colors(color,10).pluck(:id))
+  		matching_colors.push(Color.close_colors(color,10,5,2).pluck(:id))
   	end
   	Product.joins(:shades).where.not(:id => id).where(:product_type => "Eye Shadow Palette", :shades => {:color_id => matching_colors}).uniq
   end
