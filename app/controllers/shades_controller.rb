@@ -11,6 +11,9 @@ class ShadesController < ApplicationController
   # GET /shades/1
   # GET /shades/1.json
   def show
+    spot_on_colors = Color.close_colors(@shade.color,10,5,2).pluck(:id)
+    @spot_on_shades = Shade.where.not(:product_id => @shade.product).where(:color_id => spot_on_colors)
+    @close_call_colors = Color.close_colors(@shade.color,30,20,10).where.not(:id => spot_on_colors)
   end
 
   # GET /shades/new

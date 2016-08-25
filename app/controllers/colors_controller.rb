@@ -11,10 +11,8 @@ class ColorsController < ApplicationController
 	end
 
 	def show
-		@shade_names = @color.shades.pluck(:name).first
 		@spot_on_colors = Color.close_colors(@color,10,5,2)
-		# @close_call_shades = Color.product_match(@color,20)
-		@close_call_colors = Color.close_colors(@color,30,15,15).where.not(id: @spot_on_colors.map { |color| color.id })
+		@close_call_colors = Color.close_colors(@color,30,20,10).where.not(id: @spot_on_colors.pluck(:id))
 	end
 
 	private 

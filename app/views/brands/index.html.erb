@@ -1,10 +1,14 @@
 
-<h1>Listing Brands</h1>
+<h1>Brands</h1>
 
-<% @brands.each do |brand| %>
-  <div class="brand-index">
-    <%= link_to image_tag(brand.logo_url, height: "50"), brand %>
-  </div>
+<%= form_tag({controller: "brands", action: "index"}, method: "get", remote: true) do %>
+  <%= label_tag(:q, "Search brand by name:") %>
+  <%= text_field_tag(:name) %>
+  <%= submit_tag("Search") %>
 <% end %>
+
+<div id="brands-list">
+  <%= render @brands %>
+</div>
 
 

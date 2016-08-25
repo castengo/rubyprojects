@@ -28,7 +28,7 @@
 	<h2><%= @product.name %> Shades</h2>
 	<% @shades.each do |shade| %>
 		<div style="display: inline-block;">
-			<%= link_to content_tag(:div, "", style: "height: 100px; width: 100px; background-color: ##{shade.hex_color};"), color_path(shade.color) %>
+			<%= link_to content_tag(:div, "", style: "height: 100px; width: 100px; background-color: ##{shade.hex_color};"), product_shade_path(@product,shade) %>
 			<p><%= shade.name %></p>
 			<p><%= shade.finish %></p>
 			<% if logged_in? %>
@@ -58,9 +58,14 @@
 	</table>
 <% end %>
 
-<h2> Palettes with similar colors </h2>
+<h2><%= @product.product_type %>s With Similar Colors</h2>
+<% if @matching_products.count > 0 %>
+	<%= render @matching_products %>
+<% else %>
+	<p>The product you chose is unique! We couldn't find any other products like it.</p>
+<% end %>
 
-<%= render @matching_products %>
+<h2> Singles With Similar Products</h2>
 
-<h2> Singles with similar colors </h2>
+<p>Coming soon... </p>
 

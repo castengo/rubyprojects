@@ -11,20 +11,6 @@ class Color < ActiveRecord::Base
 		close_colors.order("ABS(#{color.h}-h)") 
 	end
 
-	#makes hash with product and occurrences
-	def self.product_match(color,range)
-		product_match = {}
-		self.close_colors(color,range).each do |shade|
-			if product_match.empty?
-				product_match[shade.product] = 1
-			elsif product_match[shade.product]
-				product_match[shade.product] += 1
-			else
-				product_match[shade.product] = 1
-			end
-		end
-		return product_match.sort_by{ |k,v| v }.reverse
-	end
 
 	def self.get_h_range(value,range)
 		max_value = value + range > 360 ? 360 : value + range

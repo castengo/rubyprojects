@@ -1,11 +1,9 @@
 
 <h1> Shades in this Color </h1>
-<p style="text-align:center;">Common name: <%= @shade_names %></p>
 
 <%= content_tag :div, "", style: "height: 100px; width: 100px; background-color: ##{@color.hex}; margin-left: auto; margin-right: auto;" %>
 
-
-<h2> Spot On Shades </h2>
+<h2> Products that match this color </h2>
 
 <% @spot_on_colors.each do |color| %>
 	<%= render color.shades %>
@@ -19,11 +17,6 @@
 		<%= color.shades.first.name %>
 	</div>
 <% end %> 
-
-
-<h2>Or... Try a different shade!</h2>
-
-<p style="color:blue;">*fix algorithm so its a different factor for a lighter color than it is for a darker color -- lighter color it should get darker slower, darker color it should get lighter slower</p>
 
 
 

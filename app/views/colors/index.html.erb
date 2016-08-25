@@ -5,9 +5,9 @@
 	<% @red_yellow_colors.each do |color| %>
 		<div style="display: inline-block;">
 			<%= link_to content_tag(:div, "", style: "height: 100px; width: 100px; background-color: ##{color.hex};"), color_path(color) %>
-			<p><%= color.h %></p>
-			<p><%= color.s %></p>
-			<p><%= color.l %></p>
+			<p><% color.h %></p>
+			<p><% color.s %></p>
+			<p><% color.l %></p>
 		</div>
 	<% end %>
 <% end %>
@@ -44,25 +44,21 @@
 	<% @pink_red_colors.each do |color| %>
 		<div style="display: inline-block;">
 			<%= link_to content_tag(:div, "", style: "height: 100px; width: 100px; background-color: ##{color.hex};"), color_path(color) %>
-			<p><%= color.h %></p>
-			<p><%= color.s %></p>
-			<p><%= color.l %></p>
+			<p><% color.h %></p>
+			<p><% color.s %></p>
+			<p><% color.l %></p>
 		</div>
 	<% end %>
 <% end %>
-
-
-
-
 
 
 <h2>Hue</h2>
 <% $i = 0 %>
 <% $h = 0; $s = 100; $l = 50;%>
 <% hash = [] %>
-<% while $i < 61 do %>
+<% while $i < 11 do %>
 	<% hash << {h: $h, s: $s, l: $l} %>
-	<% $h = $h+6; %>
+	<% $h = $h+36; %>
 	<% $i += 1 %>
 <% end %>
 <% hash.each do |hsl| %>
@@ -130,7 +126,7 @@
 <p>Pick randoms</p>
 <% $i = 0 %>
 <% $h = (333..339).to_a; $s = (73..77).to_a; $l = (35..39).to_a;%>
-<% $h = (20..26).to_a; $s = (49..51).to_a; $l = (49..51).to_a;%>
+<% $h = (20..30).to_a; $s = (49..54).to_a; $l = (49..51).to_a;%>
 <% hash = [] %>
 <% while $i < 13 do %>
 	<% hash << {h: $h.sample, s: $s.sample, l: $l.sample} %>

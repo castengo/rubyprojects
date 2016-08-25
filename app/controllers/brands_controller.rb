@@ -5,8 +5,18 @@ class BrandsController < ApplicationController
   # GET /brands
   # GET /brands.json
   def index
-    @brands = Brand.all.order(:name)
+    if params[:name]
+      @brands = Brand.search(params[:name])
+    else 
+      @brands = Brand.all.order(:name)
+    end
+
+    respond_to do |format|
+      format.html 
+      format.js
+    end
   end
+
 
   # GET /brands/1
   # GET /brands/1.json
@@ -63,6 +73,7 @@ class BrandsController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_brand
       @brand = Brand.find(params[:id])

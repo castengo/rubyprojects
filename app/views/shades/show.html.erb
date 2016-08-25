@@ -1,24 +1,25 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @shade.name %>
-</p>
+<h1> Shades in this Color </h1>
+<p style="text-align:center;"><%= @shade.product.brand.name %>: <%= @shade.name %></p>
 
-<p>
-  <strong>Finish:</strong>
-  <%= @shade.finish %>
-</p>
+<%= content_tag :div, "", style: "height: 100px; width: 100px; background-color: ##{@shade.hex_color}; margin-left: auto; margin-right: auto;" %>
 
-<p>
-  <strong>Product:</strong>
-  <%= @shade.product %>
-</p>
 
-<p>
-  <strong>Color:</strong>
-  <%= @shade.color %>
-</p>
+<h2>Products With Matching Shades</h2>
 
-<%= link_to 'Edit', edit_shade_path(@shade) %> |
-<%= link_to 'Back', shades_path %>
+<% if @spot_on_shades.count > 0 %>
+	<%= render @spot_on_shades %>
+<% else %>
+	<p>The shade you chose is unique! It can't be found in any other product!</p>
+<% end %>
+
+<h2> Search products in similar colors </h2>
+
+<% @close_call_colors.each do |color| %>
+	<div style="display: inline-block;">
+		<%= link_to content_tag(:div, "", style: "height: 100px; width: 100px; background-color: ##{color.hex};"), color_path(color) %>
+		<%= color.shades.first.name %>
+	</div>
+<% end %> 
+
+

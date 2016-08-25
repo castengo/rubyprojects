@@ -4,10 +4,12 @@
 	<p><%= shade.product.name %></p>
 	<p>
 		<%= shade.name %>
-		<% if shade.hex_color == @color.hex %>
-			<span style="color: red;">Perfect Match!</span>
-		<% else %>
-			<span style="color:red;">Close Match!</span>
+		<% if @color %>
+			<% if shade.hex_color == @color.hex %>
+				<span style="color: red;">Perfect Match!</span>
+			<% else %>
+				<span style="color:red;">Close Match!</span>
+			<% end %>
 		<% end %>
 	</p>
 	<p><%= shade.finish %></p>
