@@ -1,14 +1,17 @@
 
-<h1><%= link_to image_tag(@brand.logo_url, :class=>"brand-show"), @brand.website_url, target: "_blank" %></h1>
+<div class="page-header">
+	<h1><%= image_tag(@brand.logo_url) %></h1>
+	<div class="line"></div>
+</div>
 
-<p>
-	<%= link_to 'Back to Brands', brands_path %>
+<ol class="breadcrumb">
+	<li><%= link_to 'Back to Brands', brands_path %></li>
 	<% if logged_in? %>
-		| <%= link_to "EDIT BRAND", edit_brand_path(@brand) %> | 
-		<%= link_to "DELETE BRAND", @brand, method: :delete %> |
-		<%= link_to "ADD PRODUCT", new_brand_product_path(@brand) %>
+		<li><%= link_to "EDIT BRAND", edit_brand_path(@brand) %></li>
+		<li><%= link_to "DELETE BRAND", @brand, method: :delete %></li>
+		<li><%= link_to "ADD PRODUCT", new_brand_product_path(@brand) %></li>
 	<% end %>
-</p>
+</ol>
 
 <div class="products-partial">
 	<%= render @brand.products %>

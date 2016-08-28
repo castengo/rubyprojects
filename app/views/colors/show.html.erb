@@ -1,7 +1,11 @@
 
-<h1> Shades in this Color </h1>
 
-<%= content_tag :div, "", style: "height: 100px; width: 100px; background-color: ##{@color.hex}; margin-left: auto; margin-right: auto;" %>
+
+
+
+<div class="container-fluid shade-header" style="background-color: #<%= @color.hex %>;"">
+	<h1>Shades in this Color</h1>
+</div>
 
 <h2> Products that match this color </h2>
 

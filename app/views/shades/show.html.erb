@@ -1,8 +1,14 @@
 
-<h1> Shades in this Color </h1>
-<p style="text-align:center;"><%= @shade.product.brand.name %>: <%= @shade.name %></p>
-
-<%= content_tag :div, "", style: "height: 100px; width: 100px; background-color: ##{@shade.hex_color}; margin-left: auto; margin-right: auto;" %>
+<div class="container-fluid shade-header" style="background-color: #<%= @shade.hex_color %>;"">
+	<div class="row">
+		<div class="col-sm-6 text-center">
+			<h1>Shades in this Color :</h1>
+		</div>
+		<div class="col-sm-6" style="color: <%= @shade.color.l < 50 ? "white" : "black" %>;">
+			<p><%= @shade.product.brand.name %>: <%= @shade.name %></p>
+		</div>
+	</div>
+</div>
 
 
 <h2>Products With Matching Shades</h2>
