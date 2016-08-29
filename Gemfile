@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-ruby '2.2.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use sqlite3 as the database for Active Record
@@ -27,8 +26,6 @@ gem 'bcrypt', '~> 3.1.2'
 
 gem 'bootstrap-sass', '~> 3.3.6'
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -53,5 +50,6 @@ end
 group :production do
 	gem 'pg', '0.17.1'
 	gem 'rails_12factor', '0.0.2'
+	gem 'puma'
 end 
 
