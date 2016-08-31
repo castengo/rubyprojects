@@ -41,7 +41,6 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = @brand.products.new(product_params)
-    @product[:views] = 0;
     if @product.save
       redirect_to @brand, notice: 'Product was successfully created.'
     else
