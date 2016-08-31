@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160821211928) do
+ActiveRecord::Schema.define(version: 20160831182637) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "name"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20160821211928) do
     t.string   "logo_url"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "views"
   end
 
   create_table "colors", force: :cascade do |t|
@@ -28,6 +29,7 @@ ActiveRecord::Schema.define(version: 20160821211928) do
     t.integer  "s"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "views"
   end
 
   create_table "products", force: :cascade do |t|
@@ -42,6 +44,7 @@ ActiveRecord::Schema.define(version: 20160821211928) do
     t.string   "application"
     t.integer  "no_of_shades"
     t.string   "product_type"
+    t.integer  "views"
   end
 
   add_index "products", ["brand_id"], name: "index_products_on_brand_id"
@@ -54,6 +57,7 @@ ActiveRecord::Schema.define(version: 20160821211928) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "hex_color"
+    t.integer  "views"
   end
 
   add_index "shades", ["color_id"], name: "index_shades_on_color_id"

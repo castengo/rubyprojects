@@ -3,10 +3,8 @@ class Product < ActiveRecord::Base
 
   has_many :shades, dependent: :destroy
   has_many :colors, through: :shades
-
-  validates :name, presence: true
   
-  accepts_nested_attributes_for :shades
+  # accepts_nested_attributes_for :shades
 
   scope :by_price, -> { order(:price) }
   
@@ -20,7 +18,9 @@ class Product < ActiveRecord::Base
         end
       end
   	end
-  	Product.joins(:shades).where.not(:id => id).where(:product_type => "Eye Shadow Palette", :shades => {:color_id => matching_colors}).uniq
+  	Product.where.not(:id => id).joins(:shades).where(:product_type => "Eye Shadow Palette", :shades => {:color_id => matching_colors}).group(:product_id).order('count_product_id DESC').count('product_id')
+    # .uniq
+    # .group(:product_id).count
   end
 
   def self.search(name)

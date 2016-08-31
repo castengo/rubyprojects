@@ -1,26 +1,26 @@
 
 
-
-
-
 <div class="container-fluid shade-header" style="background-color: #<%= @color.hex %>;"">
 	<h1>Shades in this Color</h1>
 </div>
 
 <h2> Products that match this color </h2>
 
-<% @spot_on_colors.each do |color| %>
-	<%= render color.shades %>
-<% end %>
+<div class="mobile-center">
+	<% @spot_on_colors.each do |color| %>
+		<%= render color.shades %>
+	<% end %>
+</div>
 
 <h2> Search products in similar colors </h2>
 
-<% @close_call_colors.each do |color| %>
-	<div style="display: inline-block;">
-		<%= link_to content_tag(:div, "", style: "height: 100px; width: 100px; background-color: ##{color.hex};"), color_path(color) %>
-		<%= color.shades.first.name %>
-	</div>
-<% end %> 
-
+<div class="mobile-center">
+	<% @close_call_colors.each do |color| %>
+		<div style="display: inline-block;">
+			<%= link_to content_tag(:div, "", style: "height: 100px; width: 100px; background-color: ##{color.hex};"), color_path(color) %>
+			<%= color.shades.first.name %>
+		</div>
+	<% end %> 
+</div>
 
 

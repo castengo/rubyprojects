@@ -3,56 +3,62 @@
 	<div class="line"></div>
 </div>
 
-<% if @red_yellow_colors.count > 0 %>
-	<h2>Red-Orange Colors</h2>
-	<% @red_yellow_colors.each do |color| %>
-		<div style="display: inline-block;">
-			<%= link_to content_tag(:div, "", style: "height: 100px; width: 100px; background-color: ##{color.hex};"), color_path(color) %>
-			<p><% color.h %></p>
-			<p><% color.s %></p>
-			<p><% color.l %></p>
-		</div>
+<div class="mobile-center">
+	<% if @red_yellow_colors.count > 0 %>
+		<h2>Red-Orange Colors</h2>
+		<% @red_yellow_colors.each do |color| %>
+			<div style="display: inline-block;">
+				<%= link_to content_tag(:div, "", style: "height: 100px; width: 100px; background-color: ##{color.hex};"), color_path(color) %>
+				<p><% color.h %></p>
+				<p><% color.s %></p>
+				<p><% color.l %></p>
+			</div>
+		<% end %>
 	<% end %>
-<% end %>
 
-<% if @green_colors.count > 0 %>
-	<h2>Green Colors</h2>
-	<% @green_colors.each do |color| %>
-		<div style="display: inline-block;">
-			<%= link_to content_tag(:div, "", style: "height: 100px; width: 100px; background-color: ##{color.hex};"), color_path(color) %>
-		</div>
-	<% end %>
-<% end %>
 
-<% if @blue_colors.count > 0 %>
-	<h2>Blue Colors</h2>
-	<% @blue_colors.each do |color| %>
-		<div style="display: inline-block;">
-			<%= link_to content_tag(:div, "", style: "height: 100px; width: 100px; background-color: ##{color.hex};"), color_path(color) %>
-		</div>
-	<% end %>
-<% end %>
 
-<% if @purple_pink_colors.count > 0 %>
-	<h2>Purple-Pink Colors</h2>
-	<% @purple_pink_colors.each do |color| %>
-		<div style="display: inline-block;">
-			<%= link_to content_tag(:div, "", style: "height: 100px; width: 100px; background-color: ##{color.hex};"), color_path(color) %>
-		</div>
+	<% if @green_colors.count > 0 %>
+		<h2>Green Colors</h2>
+		<% @green_colors.each do |color| %>
+			<div style="display: inline-block;">
+				<%= link_to content_tag(:div, "", style: "height: 100px; width: 100px; background-color: ##{color.hex};"), color_path(color) %>
+			</div>
+		<% end %>
 	<% end %>
-<% end %>
 
-<% if @pink_red_colors.count > 0 %>
-	<h2>Pink-Red Colors</h2>
-	<% @pink_red_colors.each do |color| %>
-		<div style="display: inline-block;">
-			<%= link_to content_tag(:div, "", style: "height: 100px; width: 100px; background-color: ##{color.hex};"), color_path(color) %>
-			<p><% color.h %></p>
-			<p><% color.s %></p>
-			<p><% color.l %></p>
-		</div>
+
+	<% if @blue_colors.count > 0 %>
+		<h2>Blue Colors</h2>
+		<% @blue_colors.each do |color| %>
+			<div style="display: inline-block;">
+				<%= link_to content_tag(:div, "", style: "height: 100px; width: 100px; background-color: ##{color.hex};"), color_path(color) %>
+			</div>
+		<% end %>
 	<% end %>
-<% end %>
+
+
+	<% if @purple_pink_colors.count > 0 %>
+		<h2>Purple-Pink Colors</h2>
+		<% @purple_pink_colors.each do |color| %>
+			<div style="display: inline-block;">
+				<%= link_to content_tag(:div, "", style: "height: 100px; width: 100px; background-color: ##{color.hex};"), color_path(color) %>
+			</div>
+		<% end %>
+	<% end %>
+
+	<% if @pink_red_colors.count > 0 %>
+		<h2>Pink-Red Colors</h2>
+		<% @pink_red_colors.each do |color| %>
+			<div style="display: inline-block;">
+				<%= link_to content_tag(:div, "", style: "height: 100px; width: 100px; background-color: ##{color.hex};"), color_path(color) %>
+				<p><% color.h %></p>
+				<p><% color.s %></p>
+				<p><% color.l %></p>
+			</div>
+		<% end %>
+	<% end %>
+</div>
 
 
 

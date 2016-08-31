@@ -1,6 +1,7 @@
-<div style="display: inline-block;">
-	<%= link_to image_tag(shade.product.photo_url, width: "100"), product_path(shade.product) %>
-	<%= content_tag :div, "", style: "height: 20px; width: 100px; background-color: ##{shade.hex_color};" %>
+
+<div class="product-box">
+	<%= link_to image_tag(shade.product.photo_url, class: "product-in-shade"), product_path(shade.product) %>
+	<%= content_tag :div, "", style: "background-color: ##{shade.hex_color};", class: "product-shade" %>
 	<p><%= shade.product.name %></p>
 	<p>
 		<%= shade.name %>
@@ -12,7 +13,7 @@
 			<% end %>
 		<% end %>
 	</p>
-	<p><%= shade.finish %></p>
+	<p class="finish"><%= shade.finish %></p>
 </div>
 
 

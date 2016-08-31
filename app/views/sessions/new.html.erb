@@ -2,19 +2,19 @@
 
 <%= form_for(:user, url: sessions_path) do |f| %>
 	
-	<div class="field">
+	<div class="form-group">
 		<%= f.label :name %><br/>
-		<%= f.text_field :name %>
+		<%= f.text_field :name%>
 	</div>
 
 	<p/>
 
-	<div class="field">
+	<div class="form-group">
 		<%= f.label :password %><br/>
-		<%= f.password_field :password %>
+		<%= f.password_field :password%>
 	</div>
 
 	<div class="actions">
-		<%= f.submit "Login" %>
+		<%= f.submit "Login", class: "btn btn-default" %>
 	</div>
 <% end %>

@@ -38,10 +38,12 @@
 </nav>
 
 <body>
-	<%= image_tag "catalinas_colors_logo.png", height: "75px", class: "center-block"%>
+	<%= image_tag "catalinas_colors_logo.png", class: "center-block", id: "brand-logo"%>
 
 	<% flash.each do |key, value| %>
-		<p class="bg-success" id='<%= key %>'><%= value %></p>
+    <div class="container">
+  		<p class="bg-success" id='<%= key %>'><%= value %></p>
+    </div>
 	<% end %>
 
 	<div class="container-fluid">

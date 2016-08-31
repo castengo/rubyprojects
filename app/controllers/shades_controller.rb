@@ -18,7 +18,6 @@ class ShadesController < ApplicationController
 
   # GET /shades/new
   def new
-    @shade = Shade.new
   end
 
   # GET /shades/1/edit

@@ -9,18 +9,19 @@
 		<% if logged_in? %>
 			<li><%= link_to "EDIT", edit_product_path(@product) %></li>
 			<li><%= link_to "DELETE", @product, method: :delete %></li>
+			<li>PRODUCT VIEWS: <%= @product.views %></li>
 		<% end %>
 </ol>
 
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-sm-8">
+		<div class="col-md-8">
 			<h2><%= @product.name %></h2>
 			  
 			<p><%= @product.description %></p>
 			<p><strong>Application:</strong> <%= @product.application %></p>
 
-			<%= image_tag(@product.photo_url, height: "400") %>
+			<%= image_tag(@product.photo_url, class: "product-photo") %>
 
 			<p>
 			  <strong>Price:</strong>
@@ -29,7 +30,7 @@
 			<p><%= link_to "Buy Me", @product.direct_link, target: "_blank" %></p>
 		</div>
 
-		<div class="col-sm-4">
+		<div class="mobile-center col-md-4">
 			<% if @product.shades.count > 0 %>
 				<h3>Shades</h3>
 				<% @shades.each do |shade| %>
@@ -67,16 +68,22 @@
 	</table>
 <% end %>
 
+
 <h2><%= @product.product_type %>s With Similar Colors</h2>
-<% if @matching_products.count > 0 %>
-	<%= render @matching_products %>
-<% else %>
-	<p>The product you chose is unique! We couldn't find any other products like it.</p>
-<% end %>
+<p class="finish">*Ordered by closest match</p>
+<div class="mobile-center">
+	<% if @matching_products.count > 0 %>
+		<% @matching_products.keys.each do |product| %>
+			<% found_product = Product.find(product) %>
+			<%= render found_product %>
+		<% end %>
+	<% else %>
+		<p>The product you chose is unique! We couldn't find any other products like it.</p>
+	<% end %>
+</div>
 
 <h2> Singles With Similar Products</h2>
 
 <p>Coming soon... </p>
-
 
 

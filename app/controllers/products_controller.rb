@@ -23,8 +23,9 @@ class ProductsController < ApplicationController
   def show
     @brand = Brand.find(@product.brand)
     @shades = @product.shades
-    @matching_products = @product.find_matching_palettes
-    # @product.no_of_shades.times { @product.shades.new }
+    @matching_products = @product.find_matching_palettes 
+    @product.views = @product.views.nil? ? 1 : @product.views + 1
+    @product.save
   end
 
   # GET /products/new
@@ -40,6 +41,7 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = @brand.products.new(product_params)
+    @product[:views] = 0;
     if @product.save
       redirect_to @brand, notice: 'Product was successfully created.'
     else
