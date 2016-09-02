@@ -12,7 +12,10 @@
 		<li><%= link_to "ADD PRODUCT", new_brand_product_path(@brand) %></li>
 	<% end %>
 </ol>
-
-<div class="products-partial mobile-center">
+<div class="mobile-center">
 	<%= render @brand.products %>
+</div>
+
+<div class="text-center">
+	<button class="btn btn-default btn-lg"><%= link_to "GO TO BRAND WEBSITE", @brand.website_url, target: "_blank" %></button>
 </div>

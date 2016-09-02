@@ -6,9 +6,11 @@
 <%= form_tag({controller: "products", action: "index"}, method: "get", remote: true, class: "form-inline") do %>
   <div class="form-group">
 	  <%= text_field_tag(:name,"", class: "form-control", placeholder: "Enter product name") %>
-	  <%= submit_tag("Search",class: "btn btn-default") %>
+	  <%= submit_tag("Search", class: "btn btn-default") %>
   </div>
 <% end %>
+
+<p class="finish order">*Ordered by most viewed</p>
 
 <div class="text-center" id="products-list">
 	<%= render @products %>

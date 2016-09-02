@@ -103,6 +103,23 @@ ol.breadcrumb {
 }
 
 
+.btn-lg {
+	margin-top: 20px;
+
+	a {
+		color: white;
+		text-decoration: none;
+	}
+
+	&:hover {
+
+		a {
+			color: black;
+		}
+	}
+}
+
+
 /* Product */
 
 .product-box {
@@ -129,8 +146,14 @@ ol.breadcrumb {
 	}
 }
 
+.product-description {
+	height: 100px;
+	overflow-y: auto;
+	margin-bottom: 15px;
+}
+
 .product-photo {
-	height: 400px;
+	height: 360px;
 }
 
 .shade-square {
@@ -139,7 +162,6 @@ ol.breadcrumb {
 	box-shadow: inset 1px 1px 1px black;
 	border-radius: 5px;
 }
-
 
 .shades-index {
 	display: inline-block;
@@ -153,6 +175,10 @@ ol.breadcrumb {
 
 p.finish {
 	font-style: italic;
+}
+
+.order {
+	text-align: right;
 }
 
 /* Colors */

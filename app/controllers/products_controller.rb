@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
     if params[:name]
       @products = Product.search(params[:name])
     else 
-      @products = Product.all.order(:name)
+      @products = Product.all.order(:views)
     end
 
     respond_to do |format|
@@ -22,10 +22,12 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
     @brand = Brand.find(@product.brand)
-    @shades = @product.shades
+    @shades = @product.shades.order(:position)
     @matching_products = @product.find_matching_palettes 
-    @product.views = @product.views.nil? ? 1 : @product.views + 1
-    @product.save
+    if !logged_in?
+      @product.views = @product.views.nil? ? 1 : @product.views + 1
+      @product.save
+    end
   end
 
   # GET /products/new
@@ -83,6 +85,6 @@ class ProductsController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :description, :photo_url, :price, :brand_id, :direct_link, :application, :no_of_shades, :product_type)
+      params.require(:product).permit(:name, :description, :photo_url, :price, :brand_id, :direct_link, :application, :no_of_shades, :product_type, :shades_group, shades_attributes: [:id, :name, :finish, :product_id, :color_id, :hex_color, :position, :_destroy])
     end
 end

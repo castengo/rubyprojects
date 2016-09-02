@@ -17,9 +17,10 @@
 	<div class="row">
 		<div class="col-md-8">
 			<h2><%= @product.name %></h2>
-			  
-			<p><%= @product.description %></p>
-			<p><strong>Application:</strong> <%= @product.application %></p>
+			<div class="product-description">  
+				<p><%= @product.description %></p>
+				<p><strong>Application:</strong> <%= @product.application %></p>
+			</div>
 
 			<%= image_tag(@product.photo_url, class: "product-photo") %>
 
@@ -27,7 +28,7 @@
 			  <strong>Price:</strong>
 			  <%= format_price @product.price %>
 			</p>
-			<p><%= link_to "Buy Me", @product.direct_link, target: "_blank" %></p>
+			<button class="btn btn-default btn-lg"><%= link_to "Buy Me", @product.direct_link, target: "_blank" %></button>
 		</div>
 
 		<div class="mobile-center col-md-4">
@@ -48,25 +49,31 @@
 	</div>
 </div>
 
-<br>
 
 <% if logged_in? %>
+	<h2>Add Shades</h2>
 	<table>
-		<thead>
-			<th>Name</th>
-			<th>Hex Color</th>
-			<th>Finish</th>
-		</thead>
-		<%= form_for([@product, @product.shades.new]) do |f| %>
-			<tbody>
-				<td><%= f.text_field :name %></td>
-				<td><%= f.text_field :hex_color %></td>
-				<td><%= f.text_field :finish %></td>
-				<td><%= f.submit %></td>
-			</tbody>
+    <thead>
+      <th>Position</th>
+      <th>Name</th>
+      <th>Hex Color</th>
+      <th>Finish</th>
+      <th></th>
+    </thead>
+    <tbody>
+    	<%= form_for([@product, @product.shades.new]) do |f| %>
+    	<tr>
+			<td><%= f.text_field :position %></td>
+			<td><%= f.text_field :name %></td>
+			<td><%= f.text_field :hex_color %></td>
+			<td><%= f.text_field :finish %></td>
+			<td><%= f.submit %></td>
+		</tr>
 		<% end %>
+	</tbody>
 	</table>
-<% end %>
+ <% end %>
+<br>
 
 
 <h2><%= @product.product_type %>s With Similar Colors</h2>

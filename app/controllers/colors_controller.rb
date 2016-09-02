@@ -12,7 +12,7 @@ class ColorsController < ApplicationController
 
 	def show
 		@spot_on_colors = Color.close_colors(@color,10,5,2)
-		@close_call_colors = Color.close_colors(@color,30,20,10).where.not(id: @spot_on_colors.pluck(:id))
+		@close_call_colors = Color.close_colors(@color,30,20,10).where.not(id: @spot_on_colors.pluck(:id)).limit(9)
 	end
 
 	private 

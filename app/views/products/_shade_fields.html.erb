@@ -1,0 +1,12 @@
+<tr>
+	<td><%= f.text_field :position %></td>
+	<td><%= f.text_field :name %></td>
+	<td><%= f.text_field :hex_color %></td>
+	<td><%= f.text_field :finish %></td>
+	<% if f.object.persisted? %>
+		<td><%= f.check_box :_destroy %><%= f.label :_destroy, "Destroy" %></td>
+	<% end %>
+</tr>
+
+
+

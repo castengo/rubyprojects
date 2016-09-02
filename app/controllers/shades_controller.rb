@@ -13,7 +13,7 @@ class ShadesController < ApplicationController
   def show
     spot_on_colors = Color.close_colors(@shade.color,10,5,2).pluck(:id)
     @spot_on_shades = Shade.where.not(:product_id => @shade.product).where(:color_id => spot_on_colors)
-    @close_call_colors = Color.close_colors(@shade.color,30,20,10).where.not(:id => spot_on_colors)
+    @close_call_colors = Color.close_colors(@shade.color,30,20,10).where.not(:id => spot_on_colors).limit(12)
   end
 
   # GET /shades/new
@@ -44,7 +44,6 @@ class ShadesController < ApplicationController
   # PATCH/PUT /shades/1
   # PATCH/PUT /shades/1.json
   def update
-    #cannot update shades
   end
 
   # DELETE /shades/1
@@ -70,6 +69,6 @@ class ShadesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def shade_params
-      params.require(:shade).permit(:name, :finish, :product_id, :color_id, :hex_color)
+      params.require(:shade).permit(:name, :finish, :product_id, :color_id, :hex_color, :position)
     end
 end
