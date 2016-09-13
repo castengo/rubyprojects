@@ -14,12 +14,14 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "static_pages";
 
 /* Navbar  */
 
 .navbar {
 	background-color: black;
 	border-radius: 0px;
+	margin-bottom: 0px;
 }
 
 .navbar-nav > li > a {
@@ -88,6 +90,7 @@ ol.breadcrumb {
 }
 
 #brand-logo {
+	margin-top: 30px;
  	height: 75px;
 }
 
@@ -142,7 +145,7 @@ ol.breadcrumb {
 	}
 
 	.product-shade {
-		height: 20px; 
+		height: 20px;
 		width: 100px;
 		margin: 0 auto 5px auto;
 	}
@@ -159,8 +162,8 @@ ol.breadcrumb {
 }
 
 .shade-square {
-	height: 100px; 
-	width: 80px; 
+	height: 100px;
+	width: 80px;
 	box-shadow: inset 1px 1px 1px black;
 	border-radius: 5px;
 }
@@ -196,8 +199,8 @@ p.finish {
 .color-show {
 	display: inline-block;
 	margin: 3px;
-	height: 100px; 
-	width: 100px; 
+	height: 100px;
+	width: 100px;
 }
 
 
@@ -217,6 +220,14 @@ p.finish {
 		font-style: italic;
 		padding-top: 30px;
 	}
+}
+
+/* Footer */
+
+footer {
+	background-color: black;
+	color: white;
+	margin-top: 20px;
 }
 
 /* MEDIA QUERIES */
@@ -279,6 +290,3 @@ p.finish {
 	}
 
 }
-
-
-

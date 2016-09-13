@@ -23,9 +23,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><%= link_to 'Brands', brands_path %></li>
+        <li><%= link_to 'Brands', brands_path %></li>
         <li><%= link_to 'Products', products_path %></li>
-        <li><%= link_to 'Colors', colors_path %></li>
+        <li><%= link_to 'Shades', colors_path %></li>
       </ul>
       <% if logged_in? %>
        <ul class="nav navbar-nav navbar-right">
@@ -38,7 +38,11 @@
 </nav>
 
 <body>
-	<%= image_tag "catalinas_colors_logo.png", class: "center-block", id: "brand-logo"%>
+  <% unless @page %>
+    <%= link_to root_path do %>
+    	<%= image_tag "catalinas_colors_logo.png", class: "center-block", id: "brand-logo"%>
+    <% end %>
+  <% end %>
 
 	<% flash.each do |key, value| %>
     <div class="container">
@@ -46,9 +50,38 @@
     </div>
 	<% end %>
 
-	<div class="container-fluid">
+  <% unless @page %>
+	 <div class="container-fluid">
+     <%= yield %>
+   </div>
+  <% else %>
 		<%= yield %>
-	</div>
+  <% end %>
+
+  <footer>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4">
+          <h3>Other pages</h3>
+          <p>Home</p>
+          <p>About</p>
+          <p>Help</p>
+        </div>
+        <div class="col-md-4">
+          <h3>IDK YET</h3>
+          <p>Home</p>
+          <p>About</p>
+          <p>Help</p>
+        </div>
+        <div class="col-md-4">
+          <h3>IDK yet</h3>
+          <p>Home</p>
+          <p>About</p>
+          <p>Help</p>
+        </div>
+      </div>
+    </div>
+  </footer>
 
 </body>
 </html>
