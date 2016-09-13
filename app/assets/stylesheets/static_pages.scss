@@ -1,0 +1,54 @@
+// Place all the styles related to the StaticPages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+// Jumbotron Styling
+
+.jumbotron {
+  background: url("jumbotron.jpg") no-repeat fixed center;
+  height: 600px;
+  text-align: center;
+  padding-top: 178px;
+  box-shadow: inset 1px 1px 3px black;
+
+  .container {
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+    padding: 30px 0;
+  }
+
+  h1 {
+    background-color: transparent;
+    color: white;
+    letter-spacing: 5px;
+  }
+
+  p {
+    color: white;
+  }
+}
+
+// Content Styling
+
+.home-content {
+  h2 {
+    text-align: center;
+    font-style: italic;
+  }
+
+  p {
+    font-size: 18px;
+    padding: 10px 30px;
+  }
+}
+
+// Media Queries
+
+@media (max-width: 767px) {
+  .jumbotron {
+    h1 {
+      font-size: 15vw;
+    }
+  }
+}
