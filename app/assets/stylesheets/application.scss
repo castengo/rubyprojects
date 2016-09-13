@@ -91,7 +91,7 @@ ol.breadcrumb {
 
 #brand-logo {
 	margin-top: 30px;
- 	height: 75px;
+ 	height: 85px;
 }
 
 /* Brand */
@@ -225,9 +225,15 @@ p.finish {
 /* Footer */
 
 footer {
-	background-color: black;
-	color: white;
-	margin-top: 20px;
+	position: relative;
+
+	.footer {
+		background-color: black;
+		color: white;
+		margin-top: 20px;
+		// position: absolute;
+		// bottom: 0px;
+	}
 }
 
 /* MEDIA QUERIES */
