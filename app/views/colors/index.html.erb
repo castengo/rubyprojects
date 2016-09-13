@@ -3,61 +3,57 @@
 	<div class="line"></div>
 </div>
 
-<div class="mobile-center">
-	<% if @red_yellow_colors.count > 0 %>
-		<h2>Red-Orange Colors</h2>
-		<% @red_yellow_colors.each do |color| %>
-			<div style="display: inline-block;">
-				<%= link_to content_tag(:div, "", style: "height: 100px; width: 100px; background-color: ##{color.hex};"), color_path(color) %>
-				<p><% color.h %></p>
-				<p><% color.s %></p>
-				<p><% color.l %></p>
-			</div>
+<div class="btn-group btn-group-justified" role="group" aria-label="...">
+  <div class="btn-group" role="group">
+	  <button class="btn btn-default">
+		  <%= link_to "Eyes", colors_path(:product_type => "Eyes"), remote: true %>
+	  </button>
+  </div>
+
+  <div class="btn-group" role="group">
+	  <button class="btn btn-default">
+	    <%= link_to "Lips", colors_path(:product_type => "Lips"), remote: true %>
+	  </button>
+  </div>
+
+  <div class="btn-group" role="group">
+	  <button class="btn btn-default">
+	    <%= link_to "Face", colors_path(:product_type => "Face"), remote: true %>
+	  </button>
+  </div>
+</div>
+
+<div id="colors-list">
+
+	<div class="mobile-center">
+
+		<% if @red_yellow_colors.any? %>
+			<h2>Red-Orange Colors</h2>
+				<%= render @red_yellow_colors %>
 		<% end %>
-	<% end %>
 
-
-
-	<% if @green_colors.count > 0 %>
-		<h2>Green Colors</h2>
-		<% @green_colors.each do |color| %>
-			<div style="display: inline-block;">
-				<%= link_to content_tag(:div, "", style: "height: 100px; width: 100px; background-color: ##{color.hex};"), color_path(color) %>
-			</div>
+		<% if @green_colors.any? %>
+			<h2>Green Colors</h2>
+			<%= render @green_colors %>
 		<% end %>
-	<% end %>
 
 
-	<% if @blue_colors.count > 0 %>
-		<h2>Blue Colors</h2>
-		<% @blue_colors.each do |color| %>
-			<div style="display: inline-block;">
-				<%= link_to content_tag(:div, "", style: "height: 100px; width: 100px; background-color: ##{color.hex};"), color_path(color) %>
-			</div>
+		<% if @blue_colors.any?%>
+			<h2>Blue Colors</h2>
+			<% render @blue_colors %>
 		<% end %>
-	<% end %>
 
 
-	<% if @purple_pink_colors.count > 0 %>
-		<h2>Purple-Pink Colors</h2>
-		<% @purple_pink_colors.each do |color| %>
-			<div style="display: inline-block;">
-				<%= link_to content_tag(:div, "", style: "height: 100px; width: 100px; background-color: ##{color.hex};"), color_path(color) %>
-			</div>
+		<% if @purple_pink_colors.any? %>
+			<h2>Purple-Pink Colors</h2>
+			<%= render @purple_pink_colors %>
 		<% end %>
-	<% end %>
 
-	<% if @pink_red_colors.count > 0 %>
-		<h2>Pink-Red Colors</h2>
-		<% @pink_red_colors.each do |color| %>
-			<div style="display: inline-block;">
-				<%= link_to content_tag(:div, "", style: "height: 100px; width: 100px; background-color: ##{color.hex};"), color_path(color) %>
-				<p><% color.h %></p>
-				<p><% color.s %></p>
-				<p><% color.l %></p>
-			</div>
+		<% if @pink_red_colors.any? %>
+			<h2>Pink-Red Colors</h2>
+			<%= render @pink_red_colors %>
 		<% end %>
-	<% end %>
+	</div>
 </div>
 
 

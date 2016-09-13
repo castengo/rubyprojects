@@ -33,6 +33,7 @@ class ShadesController < ApplicationController
     if @color.nil?
       @color = Color.new(:hex => shade_params[:hex_color])
     end
+    # could use find_or_create_by(:hex => shade_params[:hex_color])
     @color.shades << @shade
     if @color.save && @shade.save
       redirect_to @product, notice: 'Shade was successfully created.' 

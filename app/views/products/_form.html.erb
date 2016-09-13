@@ -21,13 +21,12 @@
     <%= f.text_field :shades_group %>
   </div>
   <div class="field">
-    <% product_type_array = [["Eye Shadow Palette","Eye Shadow Palette"],["Eye Shadow Single","Eye Shadow Single"]] %>
-    <%= f.label :product_type %><br>
-    <%= f.select(:product_type, options_for_select(product_type_array)) %>
+  <%= f.label :product_type %><br>
+    <%= f.text_field :product_type %>
   </div>
   <div class="field">
     <%= f.label :description %><br>
-    <%= f.text_field :description%>
+    <%= f.text_area :description, rows: 10, class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :no_of_shades %><br>

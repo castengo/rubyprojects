@@ -94,21 +94,23 @@ ol.breadcrumb {
 /* Brand */
 
 .brand-index {
-	display: inline-block;
-	margin: 10px;
+	text-align: center;
 
 	img {
-		height: 40px;
+		max-height: 80px;
+		margin-bottom: 50px;
 	}
 }
 
 
-.btn-lg {
-	margin-top: 20px;
+
+.btn-default {
 
 	a {
 		color: white;
 		text-decoration: none;
+		text-transform: uppercase;
+		display: block;
 	}
 
 	&:hover {
@@ -181,8 +183,22 @@ p.finish {
 	text-align: right;
 }
 
+.products-list {
+	margin-bottom: 20px;
+}
+
 /* Colors */
 
+#colors-list {
+	margin-top: 20px;
+}
+
+.color-show {
+	display: inline-block;
+	margin: 3px;
+	height: 100px; 
+	width: 100px; 
+}
 
 
 /* Shades */
@@ -239,12 +255,10 @@ p.finish {
 	}
 
 	.brand-index {
-		display: block;
-		text-align: center;
 		img {
+			max-height: none;
 			height: auto;
 			width: 300px;
-			padding-bottom: 10px;
 		}
 	}
 

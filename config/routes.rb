@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     resources :shades, only: [:new, :create, :show, :destroy]
   end
 
+  resources :shades, only: [:index]
+
   resources :sessions, only: [:new, :create, :destroy]
 
 
