@@ -1,2 +1,6 @@
-
-<%= link_to content_tag(:div, "", style: "background-color: ##{color.hex};", class: "color-show"), color_path(color) %>
+<div style="display: inline-block;">
+  <%= link_to content_tag(:div, "", style: "background-color: ##{color.hex};", class: "color-show"), color_path(color) %>
+  <p><%= color.h %></p>
+  <p><%= color.s %></p>
+  <p><%= color.l %></p>
+</div>
