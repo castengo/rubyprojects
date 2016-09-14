@@ -23,7 +23,7 @@ gem 'bcrypt', '~> 3.1.2'
 #boostrap styling for app
 gem 'bootstrap-sass', '~> 3.3.6'
 
-
+gem 'pg', '~> 0.18.4'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -33,7 +33,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem 'sqlite3'
+  # gem 'sqlite3'
   gem 'web-console', '~> 2.0'
   gem 'spring'
 end
@@ -45,7 +45,7 @@ group :test do
 end
 
 group :production do
-	gem 'pg', '0.17.1'
+	# gem 'pg', '0.17.1'
 	gem 'rails_12factor', '0.0.2'
 	gem 'puma', '3.1.0'
 end

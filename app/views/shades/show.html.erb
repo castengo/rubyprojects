@@ -10,24 +10,24 @@
 	</div>
 </div>
 
-
-<h2>Products With Matching Shades</h2>
-
-<% if @spot_on_shades.count > 0 %>
-	<%= render @spot_on_shades %>
-<% else %>
-	<p>The shade you chose is unique! It can't be found in any other product!</p>
-<% end %>
-
-<h2> Search products in similar colors </h2>
-
-<div class="mobile-center">
-	<% @close_call_colors.each do |color| %>
-		<div style="display: inline-block;">
-			<%= link_to content_tag(:div, "", style: "height: 100px; width: 100px; background-color: ##{color.hex};"), color_path(color) %>
-			<%= color.shades.first.name %>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-8 mobile-center">
+			<h2>Matching Products</h2>
+			<% if @spot_on_shades.count > 0 %>
+				<%= render @spot_on_shades %>
+			<% else %>
+				<p>The shade you chose is unique! It can't be found in any other product!</p>
+			<% end %>
 		</div>
-	<% end %> 
+		<div class="col-md-4 mobile-center">
+			<h2>Similar Shades</h2>
+			<% @close_call_colors.each do |color| %>
+				<div style="display: inline-block;">
+					<%= link_to content_tag(:div, "", style: "height: 100px; width: 100px; background-color: ##{color.hex};"), color_path(color) %>
+					<%= color.shades.first.name %>
+				</div>
+			<% end %>
+		</div>
+	</div>
 </div>
-
-

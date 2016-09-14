@@ -7,12 +7,12 @@ class BrandsController < ApplicationController
   def index
     if params[:name]
       @brands = Brand.search(params[:name])
-    else 
+    else
       @brands = Brand.all.order(:name)
     end
 
     respond_to do |format|
-      format.html 
+      format.html
       format.js
     end
   end

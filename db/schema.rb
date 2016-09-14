@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160901163435) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "brands", force: :cascade do |t|
     t.string   "name"
     t.string   "website_url"
@@ -48,7 +51,7 @@ ActiveRecord::Schema.define(version: 20160901163435) do
     t.string   "shades_group"
   end
 
-  add_index "products", ["brand_id"], name: "index_products_on_brand_id"
+  add_index "products", ["brand_id"], name: "index_products_on_brand_id", using: :btree
 
   create_table "shades", force: :cascade do |t|
     t.string   "name"
@@ -62,8 +65,8 @@ ActiveRecord::Schema.define(version: 20160901163435) do
     t.integer  "position"
   end
 
-  add_index "shades", ["color_id"], name: "index_shades_on_color_id"
-  add_index "shades", ["product_id"], name: "index_shades_on_product_id"
+  add_index "shades", ["color_id"], name: "index_shades_on_color_id", using: :btree
+  add_index "shades", ["product_id"], name: "index_shades_on_product_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -72,4 +75,7 @@ ActiveRecord::Schema.define(version: 20160901163435) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "products", "brands"
+  add_foreign_key "shades", "colors"
+  add_foreign_key "shades", "products"
 end

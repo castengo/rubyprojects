@@ -3,11 +3,11 @@ class Product < ActiveRecord::Base
 
   has_many :shades, dependent: :destroy
   has_many :colors, through: :shades
-  
+
   accepts_nested_attributes_for :shades, :reject_if => lambda { |a| a[:hex_color].blank? }, :allow_destroy => true
 
   scope :by_price, -> { order(:price) }
-  
+
   def find_matching_palettes
   	matching_colors = [] #id of colors that match the product
   	colors.each do |color|
@@ -24,8 +24,8 @@ class Product < ActiveRecord::Base
   end
 
   def self.search(name)
-      search_name = "%" + name + "%"
-      @products = Product.where("name LIKE ?", search_name)
+      search_name = "%" + name.downcase + "%"
+      @products = Product.where("lower(name) LIKE ?", search_name)
   end
 
 end
