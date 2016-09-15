@@ -53,6 +53,10 @@
 		<% end %>
 
 		<h2>------ Colors Testing ------</h2>
+		<% if @cool_browns.any? %>
+			<h2>Cool Brown Colors</h2>
+			<%= render @cool_browns %>
+		<% end %>
 		<% if @browns.any? %>
 			<h2>Brown Colors</h2>
 			<%= render @browns %>

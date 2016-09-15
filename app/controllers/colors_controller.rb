@@ -20,11 +20,11 @@ class ColorsController < ApplicationController
 				@pink_red_colors = Color.where(h: [325..360] + [1..7]).order(:l, :s, :h)
 
 				#testing browns
-				# @light_colors = Color.where(l: 80..100).order(:l, :s, :h)
-				@browns = Color.where(h: 3..25, s: 1..55).order(:l, :s, :h)
-				# @browns = Color.where("colors.h BETWEEN 3 AND 23 AND (colors.s BETWEEN 1 AND 50 OR (colors.l BETWEEN 1 AND 45)").order(:l, :s, :h)
-				@oranges = Color.where(h: 3..25, s: 56..100).order(:l, :s, :h)
-				@not_browns = Color.where.not(:id => @browns.pluck(:id) + @oranges.pluck(:id)).order(:l, :s, :h)
+				@first = Color.where(h: 3..25)
+				@cool_browns = @first.where(s: 1..30).order(:l, :s, :h)
+				@browns = @first.where(s: 31..55).order(:l, :s, :h)
+				@oranges = @first.where(s: 56..100).order(:l, :s, :h)
+				@not_browns = Color.where.not(:id => @first).order(:l, :s, :h)
 	    end
 
 	    respond_to do |format|
