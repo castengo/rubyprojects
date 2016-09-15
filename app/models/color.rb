@@ -2,13 +2,13 @@ class Color < ActiveRecord::Base
 	before_save :to_hsl
 
 	has_many :shades
-	has_many :products, through: :shades 
+	has_many :products, through: :shades
 
 
 	#find matching colors to specified precision
 	def self.close_colors(color, hrange, srange, lrange)
 		close_colors = Color.where(h: get_h_range(color.h,hrange), s: get_sl_range(color.s,srange), l: get_sl_range(color.l,lrange))
-		close_colors.order("ABS(#{color.h}-h)") 
+		close_colors.order("ABS(colors.h-h)")
 	end
 
 
@@ -28,16 +28,17 @@ class Color < ActiveRecord::Base
 
 	def to_hsl
 		if !hex.nil?
-			lum = sat = hue = 0
-			match = hex.match /(..)(..)(..)/
 			rgb = {}
+			match = hex.match /(..)(..)(..)/
 			rgb[:r] = match[1].hex/255.0
 			rgb[:g] = match[2].hex/255.0
 			rgb[:b] = match[3].hex/255.0
+
+			lum = sat = hue = 0
 			rgb_max = rgb.values.max
 			rgb_min = rgb.values.min
 			#determine luminance
-			lum = (rgb_min + rgb_max)/2.0 
+			lum = (rgb_min + rgb_max)/2.0
 			if rgb_min != rgb_max
 				# determine saturation
 				d = rgb_max - rgb_min
@@ -49,7 +50,7 @@ class Color < ActiveRecord::Base
 				# determine hue
 				case rgb.key(rgb_max)
 				when :r
-					hue = (rgb[:g] - rgb[:b])/d 
+					hue = (rgb[:g] - rgb[:b])/d
 					# (rgb[:g] < rgb[:b] ? 6 : 0)
 				when :g
 					hue = (rgb[:b] - rgb[:r])/d + 2.0
@@ -64,9 +65,9 @@ class Color < ActiveRecord::Base
 			self[:h] = hue.round
 			self[:s] = (sat*100).round
 			self[:l] = (lum*100).round
-		else 
+		else
 			"hex is nil"
 		end
 	end
-	
+
 end

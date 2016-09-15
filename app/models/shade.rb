@@ -2,13 +2,25 @@ class Shade < ActiveRecord::Base
   belongs_to :product
   belongs_to :color
 
-  # in progress
-  def close_shades(hrange, srange, lrange)
-    close_shades_ids = Color.joins(:shades).close_colors(color,hrange,srange,lrange).where.not(:shades => {:id => id}).pluck(:'shades.id').
-    c
-    hash = {}
-    close_shades_ids
-  	# Shade.where.not(:id => id).where(:color_id => close_colors_ids).group(:product_id)
-  end
+  before_save :normalize_color
+
+  private
+
+    def normalize_color
+      if hex_color.split(',').count == 3
+        hex_string = "";
+        rgb_array = hex_color.split(',').map { |e| e.to_i }
+        hex_string = "";
+        rgb_array.each do |n|
+          component = n.to_s(16)
+          if n < 10
+            hex_string << "0#{component}"
+          else
+            hex_string << component
+          end
+        end
+        self[:hex_color] = hex_string
+      end
+    end
 
 end

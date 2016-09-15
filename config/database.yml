@@ -9,6 +9,8 @@ default: &default
   pool: 5
   enconding: unicode
   username: castengo
+  password:
+
 
 # development:
 #   <<: *default

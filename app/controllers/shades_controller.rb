@@ -11,7 +11,7 @@ class ShadesController < ApplicationController
   # GET /shades/1
   # GET /shades/1.json
   def show
-    spot_on_colors = Color.close_colors(@shade.color,10,5,2).pluck(:id)
+    spot_on_colors = Color.close_colors(@shade.color,10,5,2)
     @spot_on_shades = Shade.where.not(:product_id => @shade.product).where(:color_id => spot_on_colors)
     @close_call_colors = Color.close_colors(@shade.color,30,20,10).where.not(:id => spot_on_colors).limit(12)
   end
@@ -29,14 +29,16 @@ class ShadesController < ApplicationController
   # POST /shades.json
   def create
     @shade = @product.shades.new(shade_params)
-    @color = Color.find_by(:hex => shade_params[:hex_color])
-    if @color.nil?
-      @color = Color.new(:hex => shade_params[:hex_color])
-    end
+    # @shade.normalize_color
+    # @color = Color.find_by(:hex => @shade.hex_color)
+    # if @color.nil?
+    #   @color = Color.new(:hex => @shade.hex_color)
+    # end
     # could use find_or_create_by(:hex => shade_params[:hex_color])
-    @color.shades << @shade
-    if @color.save && @shade.save
-      redirect_to @product, notice: 'Shade was successfully created.' 
+    # @color.shades << @shade
+    if @shade.save
+      @color = Color.find_or_create_by(:hex => @shade.hex_color)
+      redirect_to @product, notice: 'Shade was successfully created.'
     else
       redirect_to @product, alert: "Shade couldn't be created."
     end
@@ -72,4 +74,5 @@ class ShadesController < ApplicationController
     def shade_params
       params.require(:shade).permit(:name, :finish, :product_id, :color_id, :hex_color, :position)
     end
+
 end
