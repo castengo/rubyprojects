@@ -9,7 +9,6 @@ default: &default
   pool: 5
   enconding: unicode
   username: castengo
-  password: L4crimo$a7*
 
 # development:
 #   <<: *default
@@ -29,4 +28,3 @@ test:
 
 production:
   <<: *default
-  database: db/myapp_prod

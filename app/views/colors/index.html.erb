@@ -51,5 +51,19 @@
 			<h2>Pink-Red Colors</h2>
 			<%= render @pink_red_colors %>
 		<% end %>
+
+		<h2>------ Colors Testing ------</h2>
+		<% if @browns.any? %>
+			<h2>Brown Colors</h2>
+			<%= render @browns %>
+		<% end %>
+		<% if @oranges.any? %>
+			<h2>Orange Colors</h2>
+			<%= render @oranges %>
+		<% end %>
+		<% if @not_browns.any? %>
+			<h2>Other Colors</h2>
+			<%= render @not_browns %>
+		<% end %>
 	</div>
 </div>
