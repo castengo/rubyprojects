@@ -23,7 +23,7 @@ class ProductsController < ApplicationController
   def show
     @brand = Brand.find(@product.brand)
     @shades = @product.shades.order(:position)
-    @matching_products = @product.find_matching_palettes
+    @matching_products = @product.find_matching_products
     if !logged_in?
       @product.views = @product.views.nil? ? 1 : @product.views + 1
       @product.save
