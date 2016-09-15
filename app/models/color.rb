@@ -1,5 +1,5 @@
 class Color < ActiveRecord::Base
-	before_save :to_hsl
+	before_save :normalize_color, :to_hsl
 
 	has_many :shades
 	has_many :products, through: :shades
@@ -26,48 +26,65 @@ class Color < ActiveRecord::Base
 
 	private
 
-	def to_hsl
-		if !hex.nil?
-			rgb = {}
-			match = hex.match /(..)(..)(..)/
-			rgb[:r] = match[1].hex/255.0
-			rgb[:g] = match[2].hex/255.0
-			rgb[:b] = match[3].hex/255.0
+		def to_hsl
+			if !hex.nil?
+				rgb = {}
+				match = hex.match /(..)(..)(..)/
+				rgb[:r] = match[1].hex/255.0
+				rgb[:g] = match[2].hex/255.0
+				rgb[:b] = match[3].hex/255.0
 
-			lum = sat = hue = 0
-			rgb_max = rgb.values.max
-			rgb_min = rgb.values.min
-			#determine luminance
-			lum = (rgb_min + rgb_max)/2.0
-			if rgb_min != rgb_max
-				# determine saturation
-				d = rgb_max - rgb_min
-				if lum > 0.5
-					sat = d/(2.0 - rgb_max - rgb_min)
-				else
-					sat = d/(rgb_max + rgb_min)
+				lum = sat = hue = 0
+				rgb_max = rgb.values.max
+				rgb_min = rgb.values.min
+				#determine luminance
+				lum = (rgb_min + rgb_max)/2.0
+				if rgb_min != rgb_max
+					# determine saturation
+					d = rgb_max - rgb_min
+					if lum > 0.5
+						sat = d/(2.0 - rgb_max - rgb_min)
+					else
+						sat = d/(rgb_max + rgb_min)
+					end
+					# determine hue
+					case rgb.key(rgb_max)
+					when :r
+						hue = (rgb[:g] - rgb[:b])/d
+						# (rgb[:g] < rgb[:b] ? 6 : 0)
+					when :g
+						hue = (rgb[:b] - rgb[:r])/d + 2.0
+					when :b
+						hue = (rgb[:r] - rgb[:g])/d + 4.0
+					end
+					hue *= 60.0
+					if hue < 0
+						hue += 360.0
+					end
 				end
-				# determine hue
-				case rgb.key(rgb_max)
-				when :r
-					hue = (rgb[:g] - rgb[:b])/d
-					# (rgb[:g] < rgb[:b] ? 6 : 0)
-				when :g
-					hue = (rgb[:b] - rgb[:r])/d + 2.0
-				when :b
-					hue = (rgb[:r] - rgb[:g])/d + 4.0
-				end
-				hue *= 60.0
-				if hue < 0
-					hue += 360.0
-				end
+				self[:h] = hue.round
+				self[:s] = (sat*100).round
+				self[:l] = (lum*100).round
+			else
+				"hex is nil"
 			end
-			self[:h] = hue.round
-			self[:s] = (sat*100).round
-			self[:l] = (lum*100).round
-		else
-			"hex is nil"
 		end
-	end
+
+		def normalize_color
+			if hex.split(',').count == 3
+				hex_string = "";
+				rgb_array = hex.split(',').map { |e| e.to_i }
+				hex_string = "";
+				rgb_array.each do |n|
+					component = n.to_s(16)
+					if n < 10
+						hex_string << "0#{component}"
+					else
+						hex_string << component
+					end
+				end
+				self[:hex] = hex_string
+			end
+		end
 
 end

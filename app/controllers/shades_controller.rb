@@ -1,7 +1,7 @@
 class ShadesController < ApplicationController
   before_action :set_product
   before_action :set_shade, only: [:show, :destroy]
-
+  helper
   # GET /shades
   # GET /shades.json
   def index
@@ -29,15 +29,12 @@ class ShadesController < ApplicationController
   # POST /shades.json
   def create
     @shade = @product.shades.new(shade_params)
-    # @shade.normalize_color
-    # @color = Color.find_by(:hex => @shade.hex_color)
-    # if @color.nil?
-    #   @color = Color.new(:hex => @shade.hex_color)
-    # end
-    # could use find_or_create_by(:hex => shade_params[:hex_color])
-    # @color.shades << @shade
-    if @shade.save
-      @color = Color.find_or_create_by(:hex => @shade.hex_color)
+    @color = Color.find_by(:hex => shade_params[:hex_color])
+    if @color.nil?
+      @color = Color.new(:hex => shade_params[:hex_color])
+    end
+    @color.shades << @shade
+    if @shade.save && @color.save
       redirect_to @product, notice: 'Shade was successfully created.'
     else
       redirect_to @product, alert: "Shade couldn't be created."
