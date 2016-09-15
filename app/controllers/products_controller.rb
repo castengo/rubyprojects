@@ -8,12 +8,12 @@ class ProductsController < ApplicationController
   def index
     if params[:name]
       @products = Product.search(params[:name])
-    else 
+    else
       @products = Product.all.order(:views)
     end
 
     respond_to do |format|
-      format.html 
+      format.html
       format.js
     end
   end
@@ -23,7 +23,7 @@ class ProductsController < ApplicationController
   def show
     @brand = Brand.find(@product.brand)
     @shades = @product.shades.order(:position)
-    @matching_products = @product.find_matching_palettes 
+    @matching_products = @product.find_matching_palettes
     if !logged_in?
       @product.views = @product.views.nil? ? 1 : @product.views + 1
       @product.save
@@ -46,8 +46,8 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to @brand, notice: 'Product was successfully created.'
     else
-      redirect_to @brand, alert: 'Unable to add product.' 
-    end  
+      redirect_to @brand, alert: 'Unable to add product.'
+    end
   end
 
   # PATCH/PUT /products/1

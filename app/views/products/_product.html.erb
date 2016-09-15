@@ -1,9 +1,9 @@
 <div class="product-box">
   <%= link_to image_tag(product.photo_url, height: "150"), product %>
-  <% if !@brand %> 
+  <% if !@brand %>
 		<%= content_tag :p, product.brand.name %>
   <% end %>
   <%= content_tag :p, product.name %>
   <%= content_tag :p, format_price(product.price) %>
+  <%= link_to "Delete", product, method: :delete %>
 </div>
-
