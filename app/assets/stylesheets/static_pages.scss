@@ -6,7 +6,10 @@
 // Jumbotron Styling
 
 .jumbotron {
-  background: image-url("jumbotron.jpg") center fixed no-repeat;
+  background: image-url("jumbotron.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   height: 600px;
   text-align: center;
   padding-top: 178px;

@@ -3,15 +3,9 @@ class ColorsController < ApplicationController
 	#get colors
 	def index
 
-		case params[:product_type]
-		when "Eyes"
-	      @shades = Color.joins(:products).where(:products => { :product_type => ["Eye Shadow Palette", "Eye Shadow Single"]} ).order(:l)
-	    when "Lips"
-	    	@shades = Color.joins(:products).where(:products => { :product_type => "Lipstick" } ).order(:l)
-	      # Lipstick
-	    when "Face"
-				# Blushes
-			when nil
+		if !params[:product_type].nil?
+	      @shades = Color.joins(:products).where("lower(products.product_type) LIKE '%#{params[:product_type]}%'").order(:h)
+		else
     		@colors = Color.all.order(:l)
 				@red_yellow_colors = Color.where(h: 8..60).order(:l, :s, :h)
 				@green_colors = Color.where(h: 61..156).order(:l, :s, :h)
