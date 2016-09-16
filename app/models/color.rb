@@ -8,7 +8,7 @@ class Color < ActiveRecord::Base
 	#find matching colors to specified precision
 	def self.close_colors(color, hrange, srange, lrange)
 		close_colors = Color.where(h: get_h_range(color.h,hrange), s: get_sl_range(color.s,srange), l: get_sl_range(color.l,lrange))
-		close_colors.order("ABS(colors.h-h)")
+		close_colors.order("ABS('#{color.h}' - h)")
 	end
 
 
