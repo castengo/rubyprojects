@@ -133,21 +133,31 @@ ol.breadcrumb {
 	background-color: hsl(0,0%,97%);
 	border-radius: 10px;
 	width: 250px;
+	height: 285px;
 	text-align: center;
 	margin: 5px;
 
-	img {
-		padding: 10px;
+	.product-in-shade {
+		// border: solid 1px black;
 
-		&.product-in-shade {
-			padding: 10px 0 0 0;
-			width: 100px;
+		margin: auto;
+		margin-top: 10px;
+		margin-bottom: 5px;
+		height: 150px;
+
+		img {
+			margin: 0;
+			max-height: 125px;
 		}
 	}
 
+	img {
+		margin: 20px;
+	}
+
 	.product-shade {
-		height: 20px;
-		width: 100px;
+		height: 25px;
+		width: 180px;
 		margin: 0 auto 5px auto;
 	}
 }
