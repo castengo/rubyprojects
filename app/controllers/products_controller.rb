@@ -23,7 +23,7 @@ class ProductsController < ApplicationController
   def show
     @brand = Brand.find(@product.brand)
     @shades = @product.shades.order(:position)
-    @matching_products = @product.find_matching_products
+    # @matching_products = @product.find_matching_products
     if !logged_in?
       @product.views = @product.views.nil? ? 1 : @product.views + 1
       @product.save
@@ -85,6 +85,6 @@ class ProductsController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :description, :photo_url, :price, :brand_id, :direct_link, :application, :no_of_shades, :product_type, :shades_group, shades_attributes: [:id, :name, :finish, :product_id, :color_id, :hex_color, :position, :_destroy])
+      params.require(:product).permit(:name, :description, :photo_url, :price, :brand_id, :direct_link, :application, :no_of_shades, :product_type, :shades_group, :multiple_colors, shades_attributes: [:id, :name, :finish, :product_id, :color_id, :hex_color, :position, :_destroy, :h, :s, :l])
     end
 end

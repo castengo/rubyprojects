@@ -23,9 +23,10 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-collapse-1">
       <ul class="nav navbar-nav">
+        <li><%= link_to 'Home', root_path %></li>
         <li><%= link_to 'Brands', brands_path %></li>
         <li><%= link_to 'Products', products_path %></li>
-        <li><%= link_to 'Shades', colors_path %></li>
+        <li><%= link_to 'Shades', shades_path %></li>
       </ul>
       <% if logged_in? %>
        <ul class="nav navbar-nav navbar-right">
@@ -57,7 +58,7 @@
   <% else %>
 		<%= yield %>
   <% end %>
-  
+
 </body>
 <footer>
   <div class="footer">

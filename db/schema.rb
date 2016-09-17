@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160901163435) do
+ActiveRecord::Schema.define(version: 20160916205920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,29 +26,27 @@ ActiveRecord::Schema.define(version: 20160901163435) do
   end
 
   create_table "colors", force: :cascade do |t|
-    t.string   "hex"
-    t.integer  "h"
-    t.integer  "l"
-    t.integer  "s"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "views"
+    t.string   "color_group"
   end
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.string   "photo_url"
-    t.decimal  "price",        precision: 6, scale: 2
+    t.decimal  "price",           precision: 6, scale: 2
     t.integer  "brand_id"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.string   "direct_link"
     t.string   "application"
     t.integer  "no_of_shades"
     t.string   "product_type"
     t.integer  "views"
     t.string   "shades_group"
+    t.boolean  "multiple_colors"
   end
 
   add_index "products", ["brand_id"], name: "index_products_on_brand_id", using: :btree
@@ -63,6 +61,9 @@ ActiveRecord::Schema.define(version: 20160901163435) do
     t.string   "hex_color"
     t.integer  "views"
     t.integer  "position"
+    t.integer  "h"
+    t.integer  "s"
+    t.integer  "l"
   end
 
   add_index "shades", ["color_id"], name: "index_shades_on_color_id", using: :btree

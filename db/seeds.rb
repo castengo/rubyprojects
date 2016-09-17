@@ -22,10 +22,10 @@ shades = [{name:"Tempera", hex_color:"F5D2C3", finish:"Matte"}, {name:"Golden Oc
 
 shades.each do |shade|
 	save_shade = mr_palette.shades.new(shade)
-	color = Color.new(:hex=>shade[:hex_color])
-	color.shades << save_shade
+	# color = Color.new(:hex=>shade[:hex_color])
+	# color.shades << save_shade
 	save_shade.save
-	color.save
+	# color.save
 end
 
 tarte = Brand.find_by(name:"tarte")
@@ -36,10 +36,10 @@ shades2 = [{name:"Charmer", hex_color:"F5D6CD", finish:"Matte"}, {name:"Jetsette
 
 shades2.each do |shade|
 	save_shade = tarte_palette.shades.new(shade)
-	color = Color.new(:hex=>shade[:hex_color])
-	color.shades << save_shade
+	# color = Color.new(:hex=>shade[:hex_color])
+	# color.shades << save_shade
 	save_shade.save
-	color.save
+	# color.save
 end
 
 kyliecosmetics = Brand.find_by(name:"Kylie Cosmetics")
@@ -52,10 +52,10 @@ shades3 = [{name:"Jasper", hex_color:"f1ccac", finish:"Matte"},{name:"Quartz", f
 
 shades3.each do |shade|
 	save_shade = kylie_bronze.shades.new(shade)
-	color = Color.new(:hex=>shade[:hex_color])
-	color.shades << save_shade
+	# color = Color.new(:hex=>shade[:hex_color])
+	# color.shades << save_shade
 	save_shade.save
-	color.save
+	# color.save
 end
 
 User.create!(name:"admin", password:"admin")

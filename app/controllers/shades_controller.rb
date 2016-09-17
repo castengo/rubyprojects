@@ -1,19 +1,18 @@
 class ShadesController < ApplicationController
-  before_action :set_product
+  before_action :set_product, only: [:show, :create, :update, :destroy]
   before_action :set_shade, only: [:show, :destroy]
   helper
   # GET /shades
   # GET /shades.json
   def index
-    @shades = Shade.all
+    @shades = Shade.all.order(:l, :s, :h)
   end
 
   # GET /shades/1
   # GET /shades/1.json
   def show
-    spot_on_colors = Color.close_colors(@shade.color,10,5,2)
-    @spot_on_shades = Shade.where.not(:product_id => @shade.product).where(:color_id => spot_on_colors)
-    @close_call_colors = Color.close_colors(@shade.color,30,20,10).where.not(:id => spot_on_colors).limit(12)
+    @spot_on_shades = @shade.close_colors(10,5,2).where.not(:product_id => @shade.product).order("ABS('#{@shade.h}' - h)")
+    @close_call_colors = @shade.close_colors(20,10,4).where.not(:id => @spot_on_shades, :product_id => @shade.product).limit(12).order("ABS('#{@shade.h}' - h)")
   end
 
   # GET /shades/new
@@ -28,13 +27,8 @@ class ShadesController < ApplicationController
   # POST /shades
   # POST /shades.json
   def create
-    @shade = @product.shades.new(shade_params)
-    @color = Color.find_by(:hex => shade_params[:hex_color])
-    if @color.nil?
-      @color = Color.new(:hex => shade_params[:hex_color])
-    end
-    @color.shades << @shade
-    if @shade.save && @color.save
+    @shade = @product.shades.build(shade_params)
+    if @shade.save
       redirect_to @product, notice: 'Shade was successfully created.'
     else
       redirect_to @product, alert: "Shade couldn't be created."
@@ -50,10 +44,6 @@ class ShadesController < ApplicationController
   # DELETE /shades/1.json
   def destroy
     @shade.destroy
-    @color = Color.find(@shade.color_id)
-    if @color.shades.count == 0
-      @color.destroy
-    end
     redirect_to @product, notice: 'Shade was successfully destroyed.'
   end
 
@@ -69,7 +59,7 @@ class ShadesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def shade_params
-      params.require(:shade).permit(:name, :finish, :product_id, :color_id, :hex_color, :position)
+      params.require(:shade).permit(:name, :finish, :product_id, :color_id, :hex_color, :position, :h, :s, :l)
     end
 
 end

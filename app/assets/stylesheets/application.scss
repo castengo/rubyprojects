@@ -168,6 +168,11 @@ ol.breadcrumb {
 	margin-bottom: 15px;
 }
 
+.product-shades {
+	height: 550px;
+	overflow-y: auto;
+}
+
 .product-photo {
 	height: 360px;
 }
@@ -231,6 +236,14 @@ p.finish {
 		font-style: italic;
 		padding-top: 30px;
 	}
+}
+
+.not-found {
+	font-size: 18px;
+	font-style: italic;
+	background-color: hsl(0,0%,97%);
+	padding: 10px;
+	margin: 10px;
 }
 
 /* Footer */
@@ -304,5 +317,12 @@ footer {
 			display: block;
 		}
 	}
+}
 
+/* Small devices */
+
+@media (max-width: 991px) {
+	.product-shades {
+		height: auto;
+	}
 }

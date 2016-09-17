@@ -4,7 +4,7 @@
 		<div class="col-sm-6 text-center">
 			<h1>Shades in this Color :</h1>
 		</div>
-		<div class="col-sm-6" style="color: <%= @shade.color.l < 50 ? "white" : "black" %>;">
+		<div class="col-sm-6" style="color: <%= @shade.l < 50 ? "white" : "black" %>;">
 			<p class="mobile-center"><%= @shade.product.brand.name %>: <%= @shade.name %></p>
 		</div>
 	</div>
@@ -12,22 +12,20 @@
 
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-8 mobile-center">
-			<h2>Matching Products</h2>
-			<% if @spot_on_shades.count > 0 %>
+		<div class="col-md-12 mobile-center">
+			<h2>Matching Shades</h2>
+			<% if @spot_on_shades.any? %>
 				<%= render @spot_on_shades %>
 			<% else %>
-				<p>The shade you chose is unique! It can't be found in any other product!</p>
+				<p class="not-found">We couldn't find any other shades in this color! Take a look below for similar shades.</p>
 			<% end %>
 		</div>
-		<div class="col-md-4 mobile-center">
-			<h2>Similar Shades</h2>
-			<% @close_call_colors.each do |color| %>
-				<div style="display: inline-block;">
-					<%= link_to content_tag(:div, "", style: "height: 100px; width: 100px; background-color: ##{color.hex};"), color_path(color) %>
-					<%= color.shades.first.name %>
-				</div>
-			<% end %>
-		</div>
+		<% if @close_call_colors.any? %>
+			<hr class="hidden-md hidden-lg">
+			<div class="col-md-12 mobile-center">
+				<h2>Similar Shades</h2>
+				<%= render @close_call_colors %>
+			</div>
+		<% end %>
 	</div>
 </div>
