@@ -1,7 +1,6 @@
 class ShadesController < ApplicationController
   before_action :set_product, only: [:show, :create, :update, :destroy]
   before_action :set_shade, only: [:show, :destroy]
-  helper
   # GET /shades
   # GET /shades.json
   def index
@@ -11,8 +10,21 @@ class ShadesController < ApplicationController
   # GET /shades/1
   # GET /shades/1.json
   def show
-    @spot_on_shades = @shade.close_colors(10,5,2).where.not(:product_id => @shade.product).order("ABS('#{@shade.h}' - h)")
-    @close_call_colors = @shade.close_colors(20,10,4).where.not(:id => @spot_on_shades, :product_id => @shade.product).limit(12).order("ABS('#{@shade.h}' - h)")
+    @matching_shades = @shade.close_colors(10,5,2)
+    @short_product_type = short_product_type(@shade.product.product_type)
+    # matching color and product type
+    @spot_on_shades = @matching_shades.joins(:product).where("lower(product_type) LIKE '%#{@short_product_type}%'")
+    # matching color but not product_type
+    @close_call_colors = @matching_shades.joins(:product).where.not("lower(product_type) LIKE '%#{short_product_type(@shade.product.product_type)}%'")
+    # don't show product if coming from product page
+    @controller = Rails.application.routes.recognize_path(request.referrer)[:controller]
+    if @controller == "products"
+      @spot_on_shades = @spot_on_shades.where.not(:product_id => @shade.product)
+      @close_call_colors = @close_call_colors.where.not(:product_id => @shade.product)
+    end
+    # order results by closest to original shade color
+    @spot_on_shades = @spot_on_shades.order("ABS('#{@shade.h}' - h)")
+    @close_call_colors = @close_call_colors.order("ABS('#{@shade.h}' - h)")
   end
 
   # GET /shades/new

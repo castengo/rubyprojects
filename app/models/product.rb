@@ -17,7 +17,6 @@ class Product < ActiveRecord::Base
         query = prod
       end
     end
-
   	Product.where.not(:id => id).joins(:shades).where("lower(product_type) LIKE '%#{query}%'").where(:shades => {:color_id => matching_colors}).group(:product_id).order('count_product_id DESC').count('product_id')
   end
 

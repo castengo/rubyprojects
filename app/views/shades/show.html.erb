@@ -1,5 +1,5 @@
 
-<div class="container-fluid shade-header" style="background-color: #<%= @shade.hex_color %>;"">
+<div class="container-fluid shade-header" style="background-color: #<%= @shade.hex_color %>;">
 	<div class="row">
 		<div class="col-sm-6 text-center">
 			<h1>Shades in this Color :</h1>
@@ -13,17 +13,17 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12 mobile-center">
-			<h2>Matching Shades</h2>
+			<h2><%= @short_product_type.capitalize %> Products With Matching Shades</h2>
 			<% if @spot_on_shades.any? %>
 				<%= render @spot_on_shades %>
 			<% else %>
-				<p class="not-found">We couldn't find any other shades in this color! Take a look below for similar shades.</p>
+				<p class="not-found">We are sorry! We couldn't find any other <%= @short_product_type %> shades in this color.</p>
 			<% end %>
 		</div>
 		<% if @close_call_colors.any? %>
 			<hr class="hidden-md hidden-lg">
 			<div class="col-md-12 mobile-center">
-				<h2>Similar Shades</h2>
+				<h2>Other Products with Matching Shades</h2>
 				<%= render @close_call_colors %>
 			</div>
 		<% end %>

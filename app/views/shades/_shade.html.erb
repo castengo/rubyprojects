@@ -6,14 +6,6 @@
 	</div>
 	<p><%= shade.product.name %></p>
 	<p><%= shade.product.brand.name %></p>
-		<%= shade.name %>
-		<% if @color %>
-			<% if shade.hex_color == @color.hex %>
-				<span style="color: red;">Perfect Match!</span>
-			<% else %>
-				<span style="color:red;">Close Match!</span>
-			<% end %>
-		<% end %>
-	</p>
+	<p><%= shade.name %></p>
 	<p class="finish"><%= shade.finish %></p>
 </div>

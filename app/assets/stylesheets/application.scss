@@ -179,16 +179,21 @@ ol.breadcrumb {
 
 .shade-square {
 	height: 100px;
-	width: 80px;
-	box-shadow: inset 1px 1px 1px black;
+	box-shadow: inset 1px 1px 2px black;
 	border-radius: 5px;
 }
 
 .shades-index {
 	display: inline-block;
+	width: 85px;
+	height: 150px;
+	// border: solid 1px black;
+	margin: 2px;
+	vertical-align: top;
 
 	p {
 		font-size: 12px;
+		word-wrap: normal;
 		text-align: center;
 		margin-bottom: 0;
 	}

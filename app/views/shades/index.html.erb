@@ -4,10 +4,12 @@
 	<h1>Shades</h1>
 	<div class="line"></div>
 </div>
-<% @shades.each do |shade| %>
-  <div class="shades-index">
-    <%= link_to content_tag(:div, "", style: "background-color: ##{shade.hex_color};", class: "shade-square"), product_shade_path(shade.product,shade) %>
-    <p><%= shade.name %></p>
-    <p class="finish"><%= shade.finish %></p>
-  </div>
-<% end %>
+<div class="mobile-center">
+  <% @shades.each do |shade| %>
+    <div class="shades-index">
+      <%= link_to content_tag(:div, "", style: "background-color: ##{shade.hex_color};", class: "shade-square"), product_shade_path(shade.product,shade) %>
+      <p><%= shade.name %></p>
+      <p class="finish"><%= shade.finish %></p>
+    </div>
+  <% end %>
+</div>
