@@ -1,6 +1,5 @@
 class Shade < ActiveRecord::Base
   belongs_to :product
-  belongs_to :color
 
   before_save :to_hsl
 
@@ -19,6 +18,11 @@ class Shade < ActiveRecord::Base
     max_value = value + range > 100 ? 100 : value + range
     min_value = value - range < 0 ? 0 : value - range
     min_value..max_value
+  end
+
+  def self.search(query)
+      formatted_query= "%" + query.downcase + "%"
+      where("lower(name) LIKE ? OR lower(finish) LIKE ?", formatted_query, formatted_query)
   end
 
   private

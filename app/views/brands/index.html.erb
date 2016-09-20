@@ -4,16 +4,17 @@
 	<div class="line"></div>
 </div>
 
-
-<%= form_tag({controller: "brands", action: "index"}, method: "get", remote: true, class: "form-inline") do %>
-  <div class="form-group">
-	  <%= text_field_tag(:name,"", class: "form-control", placeholder: "Enter brand name") %>
-	  <%= submit_tag("Search",class: "btn btn-default") %>
-  </div>
-<% end %>
+<div class="search-form">
+	<%= form_tag({controller: "brands", action: "index"}, method: "get", remote: true) do %>
+		<div class="form-group">
+				<%= text_field_tag(:name,"", class: "form-control", placeholder: "Search...") %>
+			  <%= button_tag(type: 'submit', class: "btn btn-default") do %>
+					<span class="glyphicon glyphicon-search"></span>
+				<% end %>
+		</div>
+	<% end %>
+</div>
 
 <div id="brands-list">
   <%= render @brands %>
 </div>
-
-

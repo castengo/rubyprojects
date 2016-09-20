@@ -4,12 +4,20 @@
 	<h1>Shades</h1>
 	<div class="line"></div>
 </div>
-<div class="mobile-center">
-  <% @shades.each do |shade| %>
-    <div class="shades-index">
-      <%= link_to content_tag(:div, "", style: "background-color: ##{shade.hex_color};", class: "shade-square"), product_shade_path(shade.product,shade) %>
-      <p><%= shade.name %></p>
-      <p class="finish"><%= shade.finish %></p>
-    </div>
-  <% end %>
+
+<div class="search-form">
+	<%= form_tag({controller: "shades", action: "index"}, method: "get", remote: true) do %>
+		<div class="form-group">
+				<%= text_field_tag(:search,"", class: "form-control", placeholder: "Search...") %>
+			  <%= button_tag(type: 'submit', class: "btn btn-default") do %>
+					<span class="glyphicon glyphicon-search"></span>
+				<% end %>
+		</div>
+	<% end %>
+</div>
+
+<div class="container-fluid">
+	<div class="mobile-center" id="shades-list">
+	    <%= render partial: "shade_square", collection: @shades %>
+	</div>
 </div>

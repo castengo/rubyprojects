@@ -2,7 +2,6 @@ class Product < ActiveRecord::Base
   belongs_to :brand
 
   has_many :shades, dependent: :destroy
-  has_many :colors, through: :shades
 
   accepts_nested_attributes_for :shades, :reject_if => lambda { |a| a[:hex_color].blank? }, :allow_destroy => true
 

@@ -7,7 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Brand.destroy_all
-Color.destroy_all
 User.destroy_all
 
 Brand.create! [ {name: "Anastasia Beverly Hills", website_url:"http://www.anastasiabeverlyhills.com/", logo_url: "http://www.anastasiabeverlyhills.com/media/wysiwyg/magenthemes/mtghost/logo/abh-logo-black_3.png"}, {name: "Sephora", website_url: "http://www.sephora.com/", logo_url: "http://www.sephora.com/images/logo.svg"}, {name:"tarte",website_url:"http://tartecosmetics.com/", logo_url:"http://tarte-cdn2.s3.amazonaws.com/images/ninja/logo-new.png"}, {name:"Kylie Cosmetics", logo_url:"https://cdn.shopify.com/s/files/1/1133/5964/t/20/assets/logo.png?3306860011959784713",website_url:"https://www.kyliecosmetics.com/products/the-bronze-palette"}
@@ -57,5 +56,3 @@ shades3.each do |shade|
 	save_shade.save
 	# color.save
 end
-
-User.create!(name:"admin", password:"admin")

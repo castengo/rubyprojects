@@ -1,0 +1,5 @@
+<div class="shades-index">
+  <%= link_to content_tag(:div, "", style: "background-color: ##{shade_square.hex_color};", class: "shade-square"), product_shade_path(shade_square.product,shade_square) %>
+  <p><%= shade_square.name %></p>
+  <p class="finish"><%= shade_square.finish %></p>
+</div>

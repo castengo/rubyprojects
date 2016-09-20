@@ -4,27 +4,34 @@ class ShadesController < ApplicationController
   # GET /shades
   # GET /shades.json
   def index
-    @shades = Shade.all.order(:l, :s, :h)
+    if params[:search]
+      @shades = Shade.search(params[:search]).order(:h, :s, :l)
+    else
+      @shades = Shade.all.order(:h, :s, :l)
+    end
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+
   end
 
   # GET /shades/1
   # GET /shades/1.json
   def show
-    @matching_shades = @shade.close_colors(10,5,2)
     @short_product_type = short_product_type(@shade.product.product_type)
     # matching color and product type
-    @spot_on_shades = @matching_shades.joins(:product).where("lower(product_type) LIKE '%#{@short_product_type}%'")
+    @spot_on_shades = @shade.close_colors(10,5,2).joins(:product).where("lower(product_type) LIKE '%#{@short_product_type}%'").order("ABS('#{@shade.h}' - h)")
     # matching color but not product_type
-    @close_call_colors = @matching_shades.joins(:product).where.not("lower(product_type) LIKE '%#{short_product_type(@shade.product.product_type)}%'")
+    @close_call_colors = @shade.close_colors(10,5,2).joins(:product).where.not("lower(product_type) LIKE '%#{short_product_type(@shade.product.product_type)}%'").order("ABS('#{@shade.h}' - h)")
+
     # don't show product if coming from product page
     @controller = Rails.application.routes.recognize_path(request.referrer)[:controller]
     if @controller == "products"
-      @spot_on_shades = @spot_on_shades.where.not(:product_id => @shade.product)
-      @close_call_colors = @close_call_colors.where.not(:product_id => @shade.product)
+      @spot_on_shades = @spot_on_shades.where.not(:product_id => @shade.product).order("ABS('#{@shade.h}' - h)")
+      @close_call_colors = @close_call_colors.where.not(:product_id => @shade.product).order("ABS('#{@shade.h}' - h)")
     end
-    # order results by closest to original shade color
-    @spot_on_shades = @spot_on_shades.order("ABS('#{@shade.h}' - h)")
-    @close_call_colors = @close_call_colors.order("ABS('#{@shade.h}' - h)")
   end
 
   # GET /shades/new
@@ -71,7 +78,7 @@ class ShadesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def shade_params
-      params.require(:shade).permit(:name, :finish, :product_id, :color_id, :hex_color, :position, :h, :s, :l)
+      params.require(:shade).permit(:name, :finish, :product_id, :color_id, :hex_color, :position, :h, :s, :l, :colors_array)
     end
 
 end

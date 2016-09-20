@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
 
+  devise_for :users
+
   root 'static_pages#home'
   get 'static_pages/about'
   get 'static_pages/help'
 
-  resources :colors
 
   resources :brands do
     resources :products, only: [:new, :create]
@@ -14,14 +15,6 @@ Rails.application.routes.draw do
   end
 
   resources :shades, only: [:index]
-
-  resources :sessions, only: [:new, :create, :destroy]
-
-
-  get "admin/login" => "sessions#new", as: "login"
-  get "admin/dashboard" => "sessions#show", as: "dashboard"
-  delete "admin/logout" => "sessions#destroy", as: "logout"
-
 
 
   # The priority is based upon order of creation: first created -> highest priority.

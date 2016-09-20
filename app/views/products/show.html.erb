@@ -6,7 +6,7 @@
 <ol class="breadcrumb">
 	<li><%= link_to 'Back to All Products', products_path %></li>
 	<li><%= link_to "Back to #{@brand.name} Products", brand_path(@brand) %></li>
-		<% if logged_in? %>
+		<% if current_user.username == "admin" %>
 			<li><%= link_to "EDIT", edit_product_path(@product) %></li>
 			<li><%= link_to "DELETE", @product, method: :delete %></li>
 			<li>PRODUCT VIEWS: <%= @product.views %></li>
@@ -42,7 +42,7 @@
 							<%= link_to content_tag(:div, "", style: "background-color: ##{shade.hex_color};", class: "shade-square"), product_shade_path(@product,shade) %>
 							<p><%= shade.name %></p>
 							<p class="finish"><%= shade.finish %></p>
-							<% if logged_in? %>
+							<% if current_user.username == "admin" %>
 								<%= link_to "Delete", [@product, shade], method: :delete %>
 							<% end %>
 							<p></p>
@@ -55,7 +55,7 @@
 </div>
 
 
-<% if logged_in? %>
+<% if current_user.username == "admin" %>
 	<h2>Add Shades</h2>
 	<table>
     <thead>
@@ -63,6 +63,7 @@
       <th>Name</th>
       <th>Hex Color</th>
       <th>Finish</th>
+			<th>Colors</th>
       <th></th>
     </thead>
     <tbody>
@@ -72,6 +73,7 @@
 			<td><%= f.text_field :name %></td>
 			<td><%= f.text_field :hex_color %></td>
 			<td><%= f.text_field :finish %></td>
+			<td><%= f.text_field :colors_array %></td>
 			<td><%= f.submit %></td>
 		</tr>
 		<% end %>

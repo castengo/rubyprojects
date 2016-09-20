@@ -18,12 +18,12 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-# use Active Model has_secure_password
-gem 'bcrypt', '~> 3.1.2'
-#boostrap styling for app
+# boostrap styling for app
 gem 'bootstrap-sass', '~> 3.3.6'
-
+# postgres database
 gem 'pg', '~> 0.18.4'
+# manage users
+gem 'devise', '4.2.0'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
