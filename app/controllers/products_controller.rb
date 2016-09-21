@@ -23,7 +23,7 @@ class ProductsController < ApplicationController
     @brand = Brand.find(@product.brand)
     @shades = @product.shades.order(:position)
     # @matching_products = @product.find_matching_products
-    if current_user.username == "admin"
+    if user_signed_in? && current_user.username == "administrator"
       @product.views = @product.views.nil? ? 1 : @product.views + 1
       @product.save
     end
