@@ -22,7 +22,7 @@ class Shade < ActiveRecord::Base
 
   def self.search(query)
       formatted_query= "%" + query.downcase + "%"
-      where("lower(name) LIKE ? OR lower(finish) LIKE ?", formatted_query, formatted_query)
+      where("lower(shades.name) LIKE ? OR lower(finish) LIKE ? ", formatted_query, formatted_query)
   end
 
   private

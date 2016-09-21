@@ -35,7 +35,7 @@
 
 	&:hover {
 		color: black;
-		background-color: hsl(0,0%,50%);
+		background-color: hsl(0,0%,90%);
 	}
 }
 
@@ -218,6 +218,11 @@ ol.breadcrumb {
 	height: 100px;
 	box-shadow: inset 1px 1px 2px black;
 	border-radius: 5px;
+
+	&:hover {
+		box-shadow: inset 1px 1px 2px black, 1px 1px 1px hsl(0,0%,80%), -1px -1px 1px hsl(0,0%,80%);
+		border: solid 1px hsl(0,0%,0%);
+	}
 }
 
 .shades-index {
@@ -308,7 +313,7 @@ footer {
 @media (max-width: 767px) {
 
 	.body-container {
-		margin: 0;
+		margin: auto 5px;
 	}
 	#brand-logo {
 		display: none;
@@ -335,14 +340,10 @@ footer {
 	}
 
 	.search-form {
+		padding: 0 10px;
 
 		.form-control {
 			width: 100%;
-			border-radius: 0;
-		}
-
-		button {
-			border-radius: 0;
 		}
 	}
 
