@@ -53,8 +53,13 @@
     </div>
 	<% end %>
 
-
-  <%= yield %>
+  <% if @page %>
+     <%= yield %>
+  <% else %>
+    <div class="body-container">
+       <%= yield %>
+    </div>
+  <% end %>
 
 
 

@@ -1,6 +1,5 @@
 class BrandsController < ApplicationController
   before_action :set_brand, only: [:show, :edit, :update, :destroy]
-  before_action :ensure_login, only: [:new, :edit, :update, :destroy]
 
   # GET /brands
   # GET /brands.json

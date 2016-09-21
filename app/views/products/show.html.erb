@@ -1,83 +1,84 @@
-<div class="page-header">
-	<h1><%= link_to image_tag(@brand.logo_url), @brand %></h1>
-	<div class="line"></div>
-</div>
 
-<ol class="breadcrumb">
-	<li><%= link_to 'Back to All Products', products_path %></li>
-	<li><%= link_to "Back to #{@brand.name} Products", brand_path(@brand) %></li>
-		<% if current_user.username == "admin" %>
-			<li><%= link_to "EDIT", edit_product_path(@product) %></li>
-			<li><%= link_to "DELETE", @product, method: :delete %></li>
-			<li>PRODUCT VIEWS: <%= @product.views %></li>
-		<% end %>
-</ol>
+	<div class="page-header">
+		<h1><%= link_to image_tag(@brand.logo_url), @brand %></h1>
+		<div class="line"></div>
+	</div>
 
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-8">
-			<h2><%= @product.name %></h2>
-			<div class="product-description">
-				<p><%= @product.description %></p>
-				<p><strong>Application:</strong> <%= @product.application %></p>
+	<ol class="breadcrumb">
+		<li><%= link_to 'Back to All Products', products_path %></li>
+		<li><%= link_to "Back to #{@brand.name} Products", brand_path(@brand) %></li>
+			<% if current_user.username == "administrator" %>
+				<li><%= link_to "EDIT", edit_product_path(@product) %></li>
+				<li><%= link_to "DELETE", @product, method: :delete %></li>
+				<li>PRODUCT VIEWS: <%= @product.views %></li>
+			<% end %>
+	</ol>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-8">
+				<h2><%= @product.name %></h2>
+				<div class="product-description">
+					<p><%= @product.description %></p>
+					<p><strong>Application:</strong> <%= @product.application %></p>
+				</div>
+
+				<%= image_tag(@product.photo_url, class: "product-photo") %>
+
+				<p>
+				  <strong>Price:</strong>
+				  <%= format_price @product.price %>
+				</p>
+				<button class="btn btn-default btn-lg"><%= link_to "Buy Me", @product.direct_link, target: "_blank" %></button>
 			</div>
 
-			<%= image_tag(@product.photo_url, class: "product-photo") %>
+			<hr class="hidden-md hidden-lg">
 
-			<p>
-			  <strong>Price:</strong>
-			  <%= format_price @product.price %>
-			</p>
-			<button class="btn btn-default btn-lg"><%= link_to "Buy Me", @product.direct_link, target: "_blank" %></button>
-		</div>
-
-		<hr class="hidden-md hidden-lg">
-
-		<div class="mobile-center col-md-4">
-			<% if @product.shades.any? %>
-				<h3>Shades</h3>
-				<div class="product-shades">
-					<% @shades.each do |shade| %>
-						<div class="shades-index">
-							<%= link_to content_tag(:div, "", style: "background-color: ##{shade.hex_color};", class: "shade-square"), product_shade_path(@product,shade) %>
-							<p><%= shade.name %></p>
-							<p class="finish"><%= shade.finish %></p>
-							<% if current_user.username == "admin" %>
-								<%= link_to "Delete", [@product, shade], method: :delete %>
-							<% end %>
-							<p></p>
-						</div>
-					<% end %>
-				</div>
-			<% end %>
+			<div class="mobile-center col-md-4">
+				<% if @product.shades.any? %>
+					<h3>Shades</h3>
+					<div class="product-shades">
+						<% @shades.each do |shade| %>
+							<div class="shades-index">
+								<%= link_to content_tag(:div, "", style: "background-color: ##{shade.hex_color};", class: "shade-square"), product_shade_path(@product,shade) %>
+								<p><%= shade.name %></p>
+								<p class="finish"><%= shade.finish %></p>
+								<% if current_user.username == "administrator" %>
+									<%= link_to "Delete", [@product, shade], method: :delete %>
+								<% end %>
+								<p></p>
+							</div>
+						<% end %>
+					</div>
+				<% end %>
+			</div>
 		</div>
 	</div>
-</div>
 
 
-<% if current_user.username == "admin" %>
-	<h2>Add Shades</h2>
-	<table>
-    <thead>
-      <th>Position</th>
-      <th>Name</th>
-      <th>Hex Color</th>
-      <th>Finish</th>
-			<th>Colors</th>
-      <th></th>
-    </thead>
-    <tbody>
-    	<%= form_for([@product, @product.shades.new]) do |f| %>
-    	<tr>
-			<td><%= f.text_field :position %></td>
-			<td><%= f.text_field :name %></td>
-			<td><%= f.text_field :hex_color %></td>
-			<td><%= f.text_field :finish %></td>
-			<td><%= f.text_field :colors_array %></td>
-			<td><%= f.submit %></td>
-		</tr>
-		<% end %>
-	</tbody>
-	</table>
- <% end %>
-<br>
+	<% if current_user.username == "administrator" %>
+		<h2>Add Shades</h2>
+		<table>
+	    <thead>
+	      <th>Position</th>
+	      <th>Name</th>
+	      <th>Hex Color</th>
+	      <th>Finish</th>
+				<th>Colors</th>
+	      <th></th>
+	    </thead>
+	    <tbody>
+	    	<%= form_for([@product, @product.shades.new]) do |f| %>
+	    	<tr>
+				<td><%= f.text_field :position %></td>
+				<td><%= f.text_field :name %></td>
+				<td><%= f.text_field :hex_color %></td>
+				<td><%= f.text_field :finish %></td>
+				<td><%= f.text_field :colors_array %></td>
+				<td><%= f.submit %></td>
+			</tr>
+			<% end %>
+		</tbody>
+		</table>
+	 <% end %>
+	<br>

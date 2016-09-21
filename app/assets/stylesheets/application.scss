@@ -16,6 +16,10 @@
 @import "bootstrap";
 @import "static_pages";
 
+.body-container {
+	margin: auto 20px;
+}
+
 /* Navbar  */
 
 .navbar {
@@ -303,6 +307,9 @@ footer {
 /* Mobile devices */
 @media (max-width: 767px) {
 
+	.body-container {
+		margin: 0;
+	}
 	#brand-logo {
 		display: none;
 	}

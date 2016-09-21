@@ -1,7 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_brand, only: [:new, :create]
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  before_action :ensure_login, only: [:new, :edit, :update, :destroy]
 
   # GET /products
   # GET /products.json
