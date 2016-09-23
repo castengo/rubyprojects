@@ -6,7 +6,4 @@
   <% end %>
   <p><%= shade_square.name %></p>
   <p class="finish"><%= shade_square.finish %></p>
-  <% if user_signed_in? && current_user.username == "administrator" %>
-    <%= link_to "Delete", [shade_square.product, shade_square], method: :delete %>
-  <% end %>
 </div>

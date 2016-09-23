@@ -1,6 +1,7 @@
 class ShadesController < ApplicationController
   before_action :set_product, only: [:show, :create, :update, :destroy]
   before_action :set_shade, only: [:show, :destroy]
+
   # GET /shades
   # GET /shades.json
   def index

@@ -7,7 +7,7 @@
 <div class="search-form">
 	<%= form_tag({controller: "shades", action: "index"}, method: "get", remote: true) do %>
 		<div class="form-group">
-				<%= text_field_tag(:search,"", class: "form-control", placeholder: "Search...", autofocus: true) %>
+				<%= text_field_tag(:search,"", class: "form-control", placeholder: "e.g. metallic, matte, Red Ochre...") %>
 			  <%= button_tag(type: 'submit', class: "btn btn-default") do %>
 					<span class="glyphicon glyphicon-search"></span>
 				<% end %>
@@ -16,10 +16,10 @@
 </div>
 
 <div class="container-fluid">
-	<div class="mobile-center" id="shades-list">
-			<div class="spinner text-center">
-				<%= image_tag "ajax-loader.gif" %>
-			</div>
+	<div class="spinner text-center">
+		<%= image_tag "ajax-loader.gif" %>
+	</div>
+	<div class="mobile-center text-center hidden" id="shades-list">
 	    <%= render partial: "shade_square", collection: @shades %>
 	</div>
 </div>

@@ -19,8 +19,8 @@
 
 $venetian-red: #A81D42;
 $light-gray: hsl(0,0%,97%);
-$headings: 'Playfair Display', serif;
-$special-italic: 'Lato', sans-serif;
+// $headings: 'Playfair Display', serif;
+// $special-italic: 'Lato', sans-serif;
 $all: 'Pavanam', sans-serif;
 
 
@@ -34,6 +34,22 @@ $all: 'Pavanam', sans-serif;
 	transition:         background-color 0.3s ease-out;
 }
 
+@mixin font-headings {
+	font: {
+		family: 'Playfair Display', serif;
+		weight: 900;
+		style: italic;
+	}
+}
+
+@mixin font-italic {
+	font: {
+		family: 'Lato', sans-serif;
+		weight: 300;
+		style: italic;
+	}
+}
+
 // Main
 
 body {
@@ -42,12 +58,13 @@ body {
 }
 
 h1, h2, h3 {
-		font-family: $headings;
+	@include font-headings;
+		// font-family: $headings;
 }
 
 .body-container {
 	margin: auto 20px;
-	min-height: 300px;
+	min-height: 400px;
 }
 
 /* Navbar  */
@@ -101,6 +118,7 @@ h1, h2, h3 {
 		height: 40px;
 		width: 300px;
 		font-size: 16px;
+		@include font-italic;
 	}
 
 	button {
@@ -294,7 +312,7 @@ ol.breadcrumb {
 .shades-index {
 	display: inline-block;
 	width: 85px;
-	height: 150px;
+	height: 165px;
 	margin: 2px;
 	vertical-align: top;
 
@@ -313,7 +331,7 @@ ol.breadcrumb {
 }
 
 p.finish {
-	font-family: $special-italic;
+	@include font-italic;
 }
 
 /* Footer */

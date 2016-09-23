@@ -16,20 +16,19 @@
 //= require_tree .
 //= require bootstrap-sprockets
 
-var app = function() {
+( function() {
 
 	$(document).ajaxStart(function() {
-		$(".spinner").show();
 	});
 
 	$(document).ajaxStop(function() {
-		$(".spinner").hide();
 		shimmeryShades();
 	});
 
 	shimmeryShades();
 
 	function shimmeryShades() {
+		$(".spinner").show();
 		$(".shade-square").each(function() {
 			if ($(this).data('finish') != "Matte") {
 				var h = $(this).data('h');
@@ -46,6 +45,8 @@ var app = function() {
 				};
 			};
 		});
+		$(".spinner").hide();
+		$("#shades-list").removeClass("hidden");
 	};
 
 	function makeThreeColors(h, s, l) {
@@ -69,6 +70,4 @@ var app = function() {
 		var string = "hsl(";
 		return string.concat(h, ",", s, "%,", l, "%)")
 	};
-};
-
-$(document).ready(app);
+})();
