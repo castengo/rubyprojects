@@ -16,7 +16,59 @@
 //= require_tree .
 //= require bootstrap-sprockets
 
-function remove_fields (link) {
-	$(link).previous("input[type=hidden").value = "1";
-	$(link).up(".fields").hide();
-}
+var app = function() {
+
+	$(document).ajaxStart(function() {
+		$(".spinner").show();
+	});
+
+	$(document).ajaxStop(function() {
+		$(".spinner").hide();
+		shimmeryShades();
+	});
+
+	shimmeryShades();
+
+	function shimmeryShades() {
+		$(".shade-square").each(function() {
+			if ($(this).data('finish') != "Matte") {
+				var h = $(this).data('h');
+				var s = $(this).data('s');
+				var l = $(this).data('l');
+				var canvas = $(this).find("canvas");
+				var ctx = canvas[0].getContext("2d");
+				var colorArray = makeThreeColors(h,s,l);
+				for (var i = 0; i < 300; i++) {
+					for (var j = 0; j < 200; j++) {
+						ctx.fillStyle = colorArray[Math.floor(Math.random()*colorArray.length)];
+						ctx.fillRect(i,j,1,1);
+					};
+				};
+			};
+		});
+	};
+
+	function makeThreeColors(h, s, l) {
+		var low = 25;
+		var high = 75;
+		if (l <= 25) {
+			low = 0;
+			high= l + 25;
+		} else if (l >=75) {
+			high = 100;
+			low = l - 25;
+		} else {
+			low = l - 25;
+			high = l + 25;
+		}
+		// Two times original color for better view
+		return [makeHSLString(h,s,low), makeHSLString(h,s,l), makeHSLString(h,s,l),makeHSLString(h,s,l), makeHSLString(h,s,high)]
+	};
+
+	function makeHSLString(h, s, l) {
+		var string = "hsl(";
+		return string.concat(h, ",", s, "%,", l, "%)")
+	};
+};
+
+$(document).ready(app);

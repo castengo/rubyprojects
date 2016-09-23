@@ -15,9 +15,39 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "static_pages";
+@import 'https://fonts.googleapis.com/css?family=Lato:300i|Playfair+Display:900i|Pavanam';
+
+$venetian-red: #A81D42;
+$light-gray: hsl(0,0%,97%);
+$headings: 'Playfair Display', serif;
+$special-italic: 'Lato', sans-serif;
+$all: 'Pavanam', sans-serif;
+
+
+// Mixins
+
+@mixin turn-red-slowly {
+	-webkit-transition: background-color 0.3s ease-out;
+	-moz-transition:    background-color 0.3s ease-out;
+	-ms-transition:     background-color 0.3s ease-out;
+	-o-transition: 			background-color 0.3s ease-out;
+	transition:         background-color 0.3s ease-out;
+}
+
+// Main
+
+body {
+	font-family: $all;
+	font-size: 16px;
+}
+
+h1, h2, h3 {
+		font-family: $headings;
+}
 
 .body-container {
 	margin: auto 20px;
+	min-height: 300px;
 }
 
 /* Navbar  */
@@ -34,8 +64,8 @@
 	text-align: center;
 
 	&:hover {
-		color: black;
-		background-color: hsl(0,0%,90%);
+		background-color: $venetian-red;
+		@include turn-red-slowly;
 	}
 }
 
@@ -51,7 +81,6 @@
 .form-control {
 	width: 250px;
 }
-
 
 .search-form {
 	text-align: right;
@@ -84,6 +113,7 @@
 
 	span.glyphicon-search {
 		font-size: 16px;
+		color: white;
 	}
 }
 
@@ -92,7 +122,7 @@
 
 
 h1 {
-	text-transform: uppercase;
+	// text-transform: uppercase;
 	background-color: white;
 	padding-left: 15px;
 	padding-right: 15px;
@@ -122,11 +152,7 @@ h1 {
 ol.breadcrumb {
 	clear: both;
 	background-color: transparent;
-}
-
-.btn {
-	background-color: black;
-	color: white;
+	margin-bottom: 10px;
 }
 
 #brand-logo {
@@ -134,6 +160,9 @@ ol.breadcrumb {
  	height: 85px;
 }
 
+.list {
+	margin-bottom: 15px;
+}
 /* Brand */
 
 .brand-index {
@@ -146,6 +175,9 @@ ol.breadcrumb {
 }
 
 .btn-default {
+	background-color: black;
+	color: white;
+	@include turn-red-slowly;
 
 	a {
 		color: white;
@@ -155,19 +187,20 @@ ol.breadcrumb {
 	}
 
 	&:hover {
-
-		a {
-			color: black;
-		}
+		background-color: $venetian-red;
 	}
 }
 
+.spinner {
+	padding: 50px;
+	display: none;
+}
 
 /* Product */
 
 .product-box {
 	display: inline-block;
-	background-color: hsl(0,0%,97%);
+	background-color: $light-gray;
 	border-radius: 10px;
 	width: 250px;
 	height: 285px;
@@ -214,58 +247,15 @@ ol.breadcrumb {
 	height: 360px;
 }
 
-.shade-square {
-	height: 100px;
-	box-shadow: inset 1px 1px 2px black;
-	border-radius: 5px;
-
-	&:hover {
-		box-shadow: inset 1px 1px 2px black, 1px 1px 1px hsl(0,0%,80%), -1px -1px 1px hsl(0,0%,80%);
-		border: solid 1px hsl(0,0%,0%);
-	}
-}
-
-.shades-index {
-	display: inline-block;
-	width: 85px;
-	height: 150px;
-	margin: 2px;
-	vertical-align: top;
-
-	p {
-		font-size: 12px;
-		word-wrap: normal;
-		text-align: center;
-		margin-bottom: 0;
-	}
-}
-
-p.finish {
-	font-style: italic;
-}
-
 .order {
 	text-align: right;
 }
-
-/* Colors */
-
-#colors-list {
-	margin-top: 20px;
-}
-
-.color-show {
-	// display: inline-block;
-	margin: 3px;
-	height: 100px;
-	width: 100px;
-}
-
 
 /* Shades */
 
 .shade-header {
 	margin-top: 30px;
+	margin-bottom: 10px;
 	h1 {
 		display: inline-block;
 		margin-bottom: 20px;
@@ -283,9 +273,47 @@ p.finish {
 .not-found {
 	font-size: 18px;
 	font-style: italic;
-	background-color: hsl(0,0%,97%);
+	background-color: $light-gray;
 	padding: 10px;
 	margin: 10px;
+}
+
+.shade-square {
+	height: 100px;
+	// box-shadow: inset 1px 1px 2px black;
+	box-shadow: -1px -1px 2px black;
+	border-radius: 5px;
+
+	&:hover {
+		// box-shadow: inset 1px 1px 2px black, 1px 1px 1px hsl(0,0%,80%), -1px -1px 1px hsl(0,0%,80%);
+		box-shadow: 1px 1px 2px black, -1px -1px 2px black;
+		border: solid 1px #fff;
+	}
+}
+
+.shades-index {
+	display: inline-block;
+	width: 85px;
+	height: 150px;
+	margin: 2px;
+	vertical-align: top;
+
+	p {
+		font-size: 14px;
+		word-wrap: normal;
+		text-align: center;
+		margin-bottom: 0;
+	}
+}
+
+.shade-canvas {
+	height: 100px;
+	width: 85px;
+	border-radius: 5px;
+}
+
+p.finish {
+	font-family: $special-italic;
 }
 
 /* Footer */
@@ -297,12 +325,10 @@ footer {
 		background-color: black;
 		color: white;
 		margin-top: 20px;
-		// height: 100px;
-		// width: 100%;
-		// position: absolute;
-		// bottom: 0px;
 	}
 }
+
+
 
 /* MEDIA QUERIES */
 
@@ -344,6 +370,11 @@ footer {
 
 		.form-control {
 			width: 100%;
+
+			// &:focus {
+			// 	border-color: $venetian-red;
+			// 	box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px opacify($venetian-red, 0.6);
+			// }
 		}
 	}
 

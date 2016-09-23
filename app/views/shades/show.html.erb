@@ -10,6 +10,16 @@
 	</div>
 </div>
 
+<ol class="breadcrumb">
+	<li><%= link_to "Back to Shades", shades_path %></li>
+	<% if @controller == "products" %>
+		<li><%= link_to "Back to #{@shade.product.name}", product_path(@shade.product) %></li>
+	<% end %>
+	<% if user_signed_in? && current_user.username == "administrator" %>
+		<li>SHADE VIEWS: <%= @shade.views %></li>
+	<% end %>
+</ol>
+
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12 mobile-center">

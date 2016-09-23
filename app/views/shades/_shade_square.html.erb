@@ -1,5 +1,12 @@
 <div class="shades-index">
-  <%= link_to content_tag(:div, "", style: "background-color: ##{shade_square.hex_color};", class: "shade-square"), product_shade_path(shade_square.product,shade_square) %>
+  <%= link_to (product_shade_path(shade_square.product,shade_square)) do %>
+    <%= content_tag(:div, "", style: "background-color: ##{shade_square.hex_color};", class: "shade-square", data: {finish: shade_square.finish, h: shade_square.h, s: shade_square.s, l: shade_square.l}) do %>
+      <canvas class="shade-canvas"></canvas>
+    <% end %>
+  <% end %>
   <p><%= shade_square.name %></p>
   <p class="finish"><%= shade_square.finish %></p>
+  <% if user_signed_in? && current_user.username == "administrator" %>
+    <%= link_to "Delete", [shade.product, shade], method: :delete %>
+  <% end %>
 </div>

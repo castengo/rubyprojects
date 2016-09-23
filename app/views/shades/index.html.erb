@@ -17,6 +17,9 @@
 
 <div class="container-fluid">
 	<div class="mobile-center" id="shades-list">
+			<div class="spinner text-center">
+				<%= image_tag "ajax-loader.gif" %>
+			</div>
 	    <%= render partial: "shade_square", collection: @shades %>
 	</div>
 </div>
