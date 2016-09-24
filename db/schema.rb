@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160920204159) do
+ActiveRecord::Schema.define(version: 20160924210624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,23 @@ ActiveRecord::Schema.define(version: 20160920204159) do
     t.datetime "updated_at",  null: false
     t.integer  "views"
   end
+
+  create_table "looks", force: :cascade do |t|
+    t.string   "name"
+    t.string   "image_url"
+    t.string   "tags"
+    t.string   "artist"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "looks_shades", id: false, force: :cascade do |t|
+    t.integer "looks_id"
+    t.integer "shades_id"
+  end
+
+  add_index "looks_shades", ["looks_id"], name: "index_looks_shades_on_looks_id", using: :btree
+  add_index "looks_shades", ["shades_id"], name: "index_looks_shades_on_shades_id", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.string   "name"

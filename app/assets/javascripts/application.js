@@ -30,41 +30,43 @@
 	shimmeryShades();
 
 	function shimmeryShades() {
-
-		$(".shade-square").each(function() {
-			if ($(this).data('finish') != "Matte") {
-				var h = $(this).data('h');
-				var s = $(this).data('s');
-				var l = $(this).data('l');
-				var canvas = $(this).find("canvas");
-				var ctx = canvas[0].getContext("2d");
-				var colorArray = makeThreeColors(h,s,l);
-				for (var i = 0; i < 300; i++) {
-					for (var j = 0; j < 200; j++) {
-						ctx.fillStyle = colorArray[Math.floor(Math.random()*colorArray.length)];
-						ctx.fillRect(i,j,1,1);
-					};
-				};
-			};
-		});
+		$(".shade-square").each(shimmer);
+		$(".product-shade").each(shimmer);
 		$("#shades-list").removeClass("hidden");
 	};
 
+	function shimmer() {
+		if ($(this).data('finish') != "Matte") {
+			var h = $(this).data('h');
+			var s = $(this).data('s');
+			var l = $(this).data('l');
+			var canvas = $(this).find("canvas");
+			var ctx = canvas[0].getContext("2d");
+			var colorArray = makeThreeColors(h,s,l);
+			for (var y = 0; y < 300; y++) {
+				for (var x = 0; x < 300; x++) {
+					ctx.fillStyle = colorArray[Math.floor(Math.random()*colorArray.length)];
+					ctx.fillRect(x,y,1,1);
+				};
+			};
+		};
+	};
+
 	function makeThreeColors(h, s, l) {
-		var low = 25;
-		var high = 75;
-		if (l <= 25) {
+		var low = 15;
+		var high = 85;
+		if (l <= 15) {
 			low = 5;
 			high = l + 15;
-		} else if (l >=75) {
+		} else if (l >= 85) {
 			high = 95;
 			low = l - 15;
 		} else {
-			low = l - 25;
-			high = l + 25;
+			low = l - 15;
+			high = l + 15;
 		}
-		// Two times original color for better view
-		return [makeHSLString(h,s,low), makeHSLString(h,s,l), makeHSLString(h,s,l),makeHSLString(h,s,l), makeHSLString(h,s,high)]
+		// Four times original color for better view
+		return [makeHSLString(h,s,low), makeHSLString(h,s,l), makeHSLString(h,s,l), makeHSLString(h,s,l), makeHSLString(h,s,l), makeHSLString(h,s,high)]
 	};
 
 	function makeHSLString(h, s, l) {

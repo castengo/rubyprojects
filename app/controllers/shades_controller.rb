@@ -78,12 +78,12 @@ class ShadesController < ApplicationController
   private
 
     def set_shades
-      if params[:search]
+      if !params[:search].nil?
         @shades = Shade.search(params[:search]).order(:h, :s, :l)
       else
         @shades = Shade.all.order(:h, :s, :l)
       end
-      @results_limit = 9
+      @results_limit = 18
       @shades_count = @shades.count
     end
     # Use callbacks to share common setup or constraints between actions.

@@ -40,7 +40,7 @@
   </nav>
 </header>
 <body>
-  <% unless @page %>
+  <% unless @home_page %>
     <%= link_to root_path do %>
     	<%= image_tag "verbena_logo.png", class: "center-block", id: "brand-logo" %>
     <% end %>
@@ -52,7 +52,7 @@
     </div>
 	<% end %>
 
-  <% if @page %>
+  <% if @home_page %>
      <%= yield %>
   <% else %>
     <div class="body-container">
