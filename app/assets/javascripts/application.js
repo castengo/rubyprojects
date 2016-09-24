@@ -19,16 +19,18 @@
 ( function() {
 
 	$(document).ajaxStart(function() {
+		$(".spinner").show();
 	});
 
 	$(document).ajaxStop(function() {
 		shimmeryShades();
+		$(".spinner").hide();
 	});
 
 	shimmeryShades();
 
 	function shimmeryShades() {
-		$(".spinner").show();
+
 		$(".shade-square").each(function() {
 			if ($(this).data('finish') != "Matte") {
 				var h = $(this).data('h');
@@ -45,7 +47,6 @@
 				};
 			};
 		});
-		$(".spinner").hide();
 		$("#shades-list").removeClass("hidden");
 	};
 
@@ -53,11 +54,11 @@
 		var low = 25;
 		var high = 75;
 		if (l <= 25) {
-			low = 0;
-			high= l + 25;
+			low = 5;
+			high = l + 15;
 		} else if (l >=75) {
-			high = 100;
-			low = l - 25;
+			high = 95;
+			low = l - 15;
 		} else {
 			low = l - 25;
 			high = l + 25;

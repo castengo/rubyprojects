@@ -5,7 +5,7 @@
 </div>
 
 <div class="search-form">
-	<%= form_tag({controller: "shades", action: "index"}, method: "get", remote: true) do %>
+	<%= form_tag(shades_search_path, method: :get, remote: true) do %>
 		<div class="form-group">
 				<%= text_field_tag(:search,"", class: "form-control", placeholder: "e.g. metallic, matte, Red Ochre...") %>
 			  <%= button_tag(type: 'submit', class: "btn btn-default") do %>
@@ -16,10 +16,13 @@
 </div>
 
 <div class="container-fluid">
+	<div class="mobile-center text-center hidden" id="shades-list">
+	    <%= render partial: "shade_square", collection: @shades %>
+	</div>
 	<div class="spinner text-center">
 		<%= image_tag "ajax-loader.gif" %>
 	</div>
-	<div class="mobile-center text-center hidden" id="shades-list">
-	    <%= render partial: "shade_square", collection: @shades %>
+	<div id="show-more" class="text-center ">
+		<%= render partial: 'paginate' %>
 	</div>
 </div>

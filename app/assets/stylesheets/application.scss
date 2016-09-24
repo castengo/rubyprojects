@@ -26,12 +26,12 @@ $all: 'Pavanam', sans-serif;
 
 // Mixins
 
-@mixin turn-red-slowly {
-	-webkit-transition: background-color 0.3s ease-out;
-	-moz-transition:    background-color 0.3s ease-out;
-	-ms-transition:     background-color 0.3s ease-out;
-	-o-transition: 			background-color 0.3s ease-out;
-	transition:         background-color 0.3s ease-out;
+@mixin change-color-slowly($property) {
+	-webkit-transition: $property 0.3s ease-out;
+	-moz-transition:    $property 0.3s ease-out;
+	-ms-transition:     $property 0.3s ease-out;
+	-o-transition: 			$property 0.3s ease-out;
+	transition:         $property 0.3s ease-out;
 }
 
 @mixin font-headings {
@@ -50,7 +50,21 @@ $all: 'Pavanam', sans-serif;
 	}
 }
 
+@mixin gradient($color1, $color2) {
+	background: $color2;
+	background: -webkit-linear-gradient($color1, $color2);
+	background: -moz-linear-gradient($color1, $color2);
+	background: -ms-linear-gradient($color1, $color2);
+	background: -o-linear-gradient($color1, $color2);
+	background: linear-gradient($color1, $color2);
+}
+
 // Main
+
+html {
+	max-width: 1280px;
+	margin: auto;
+}
 
 body {
 	font-family: $all;
@@ -59,7 +73,6 @@ body {
 
 h1, h2, h3 {
 	@include font-headings;
-		// font-family: $headings;
 }
 
 .body-container {
@@ -82,7 +95,7 @@ h1, h2, h3 {
 
 	&:hover {
 		background-color: $venetian-red;
-		@include turn-red-slowly;
+		@include change-color-slowly(background-color);
 	}
 }
 
@@ -195,7 +208,7 @@ ol.breadcrumb {
 .btn-default {
 	background-color: black;
 	color: white;
-	@include turn-red-slowly;
+	@include change-color-slowly(background-color);
 
 	a {
 		color: white;
@@ -332,6 +345,25 @@ ol.breadcrumb {
 
 p.finish {
 	@include font-italic;
+}
+
+#shades-list {
+	max-width: 900px;
+	margin: auto;
+}
+
+#show-more {
+	padding-bottom: 10px;
+	a {
+		color: black;
+		text-transform: uppercase;
+
+		&:hover {
+			color: $venetian-red;
+			text-decoration: none;
+			@include change-color-slowly(color);
+		}
+	}
 }
 
 /* Footer */

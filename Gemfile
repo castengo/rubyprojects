@@ -24,6 +24,8 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'pg', '~> 0.18.4'
 # manage users
 gem 'devise', '4.2.0'
+# paginating
+gem 'will_paginate', '~> 3.1.0'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

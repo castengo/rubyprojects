@@ -1,3 +1,0 @@
-
-$("#shades-list").html("<%= j (render partial: 'shade_square', collection: @shades)%>")
-$("#shades-list").append("<% if @shades.empty? %><p class='not-found'>We're sorry! We couldn't find any shades that matched your search.</p><% end %>")

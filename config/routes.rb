@@ -16,6 +16,9 @@ Rails.application.routes.draw do
 
   resources :shades, only: [:index]
 
+  get "/shades/search" => "shades#search"
+  get "/shades/paginate" => "shades#paginate"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

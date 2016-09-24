@@ -1,0 +1,9 @@
+<% if @empty_shades %>
+  <p class='not-found'>We're sorry! We couldn't find any shades that match your search.</p>
+<% end %>
+<% if @more_shades %>
+  <%= link_to shades_paginate_path(page: @page, search: params[:search]), method: :get, remote: true do %>
+    <p> Show More </p>
+    <span class="glyphicon glyphicon-menu-down center-block"></span>
+  <% end %>
+<% end %>

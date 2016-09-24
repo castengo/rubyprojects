@@ -1,21 +1,29 @@
 class ShadesController < ApplicationController
   before_action :set_product, only: [:show, :create, :update, :destroy]
   before_action :set_shade, only: [:show, :destroy]
+  before_action :set_shades, only: [:index, :paginate, :search]
+  respond_to :html, :js
 
   # GET /shades
   # GET /shades.json
   def index
-    if params[:search]
-      @shades = Shade.search(params[:search]).order(:h, :s, :l)
-    else
-      @shades = Shade.all.order(:h, :s, :l)
-    end
+    @shades = @shades.limit(@results_limit)
+    @page = 1
+    @more_shades = @shades_count > @results_limit
+  end
 
-    respond_to do |format|
-      format.html
-      format.js
-    end
+  def paginate
+    offset = params[:page].to_i * @results_limit
+    @page = params[:page].to_i + 1
+    @shades = @shades.limit(@results_limit).offset(offset)
+    @more_shades = @page * @results_limit < @shades_count
+  end
 
+  def search
+    @shades = @shades.limit(@results_limit)
+    @page = 1
+    @empty_shades = @shades.empty?
+    @more_shades = @shades_count > @results_limit
   end
 
   # GET /shades/1
@@ -68,6 +76,16 @@ class ShadesController < ApplicationController
   end
 
   private
+
+    def set_shades
+      if params[:search]
+        @shades = Shade.search(params[:search]).order(:h, :s, :l)
+      else
+        @shades = Shade.all.order(:h, :s, :l)
+      end
+      @results_limit = 9
+      @shades_count = @shades.count
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_shade
       @shade = @product.shades.find(params[:id])
