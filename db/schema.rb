@@ -16,6 +16,38 @@ ActiveRecord::Schema.define(version: 20160924210624) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "accounts", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "accounts", ["user_id"], name: "index_accounts_on_user_id", using: :btree
+
+  create_table "accounts_looks", id: false, force: :cascade do |t|
+    t.integer "account_id"
+    t.integer "look_id"
+  end
+
+  add_index "accounts_looks", ["account_id"], name: "index_accounts_looks_on_account_id", using: :btree
+  add_index "accounts_looks", ["look_id"], name: "index_accounts_looks_on_look_id", using: :btree
+
+  create_table "accounts_products", id: false, force: :cascade do |t|
+    t.integer "account_id"
+    t.integer "product_id"
+  end
+
+  add_index "accounts_products", ["account_id"], name: "index_accounts_products_on_account_id", using: :btree
+  add_index "accounts_products", ["product_id"], name: "index_accounts_products_on_product_id", using: :btree
+
+  create_table "accounts_shades", id: false, force: :cascade do |t|
+    t.integer "account_id"
+    t.integer "shade_id"
+  end
+
+  add_index "accounts_shades", ["account_id"], name: "index_accounts_shades_on_account_id", using: :btree
+  add_index "accounts_shades", ["shade_id"], name: "index_accounts_shades_on_shade_id", using: :btree
+
   create_table "brands", force: :cascade do |t|
     t.string   "name"
     t.string   "website_url"
@@ -27,20 +59,23 @@ ActiveRecord::Schema.define(version: 20160924210624) do
 
   create_table "looks", force: :cascade do |t|
     t.string   "name"
+    t.string   "caption"
     t.string   "image_url"
     t.string   "tags"
-    t.string   "artist"
+    t.integer  "profile_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_index "looks", ["profile_id"], name: "index_looks_on_profile_id", using: :btree
+
   create_table "looks_shades", id: false, force: :cascade do |t|
-    t.integer "looks_id"
-    t.integer "shades_id"
+    t.integer "look_id"
+    t.integer "shade_id"
   end
 
-  add_index "looks_shades", ["looks_id"], name: "index_looks_shades_on_looks_id", using: :btree
-  add_index "looks_shades", ["shades_id"], name: "index_looks_shades_on_shades_id", using: :btree
+  add_index "looks_shades", ["look_id"], name: "index_looks_shades_on_look_id", using: :btree
+  add_index "looks_shades", ["shade_id"], name: "index_looks_shades_on_shade_id", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
@@ -60,6 +95,21 @@ ActiveRecord::Schema.define(version: 20160924210624) do
   end
 
   add_index "products", ["brand_id"], name: "index_products_on_brand_id", using: :btree
+
+  create_table "profiles", force: :cascade do |t|
+    t.string   "about"
+    t.string   "avatar_url"
+    t.string   "website_url"
+    t.string   "instagram_url"
+    t.string   "youtube_url"
+    t.string   "facebook_url"
+    t.string   "twitter_url"
+    t.integer  "account_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "profiles", ["account_id"], name: "index_profiles_on_account_id", using: :btree
 
   create_table "shades", force: :cascade do |t|
     t.string   "name"
@@ -102,6 +152,9 @@ ActiveRecord::Schema.define(version: 20160924210624) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "accounts", "users"
+  add_foreign_key "looks", "profiles"
   add_foreign_key "products", "brands"
+  add_foreign_key "profiles", "accounts"
   add_foreign_key "shades", "products"
 end

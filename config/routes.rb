@@ -1,6 +1,19 @@
 Rails.application.routes.draw do
 
-  resources :looks
+
+  resources :accounts, only: [:show] do
+    resources :profiles, only: [:new, :create, :update, :edit, :destroy]
+  end
+
+  resources :profiles, only: [:show] do
+    # resources :looks, only: [:new, :create, :edit, :update, :destroy]
+    resources :looks, shallow: true
+  end
+
+  get 'looks' => "looks#index"
+  put 'looks/:id/add_shade' => "looks#add_shade", as: "add_shade"
+  # resources :looks, only: [:index]
+
   devise_for :users
 
   root 'static_pages#home'

@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
-    @home_page = true
+    @home_page = "home"
   end
 
   def about

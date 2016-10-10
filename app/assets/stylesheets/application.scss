@@ -104,6 +104,16 @@ h1, h2, h3 {
 	}
 }
 
+.navbar-nav {
+	img {
+		height: 18px;
+	}
+}
+
+.navbar-text {
+	@include font-italic;
+	color: $light-gray;
+}
 // Search box
 
 .form-control {
@@ -186,7 +196,7 @@ ol.breadcrumb {
 
 #brand-logo {
 	margin-top: 30px;
- 	height: 85px;
+ 	height: 150px;
 }
 
 .list {

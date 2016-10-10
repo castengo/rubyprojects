@@ -1,0 +1,21 @@
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h1><%= @username %> </h1>
+      <%= image_tag @test %>
+      <div class="container">
+        </p>
+        <p><%= @profile.about %></p>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <h2><%= @username %>'s Looks</h2>
+      <% if @profile_owner %>
+        <%= link_to "Create new look", new_profile_look_path(@profile) %>
+      <% end %>
+      <hr>
+      <%= render partial: "looks/look", collection: @my_looks, locals: {:profile_owner => @profile_owner} %>
+    </div>
+  </div>
+</div>

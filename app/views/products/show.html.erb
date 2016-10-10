@@ -7,7 +7,7 @@
 	<ol class="breadcrumb">
 		<li><%= link_to 'Back to All Products', products_path %></li>
 		<li><%= link_to "Back to #{@brand.name} Products", brand_path(@brand) %></li>
-			<% if user_signed_in? && current_user.username == "administrator" %>
+			<% if user_administrator? %>
 				<li><%= link_to "EDIT", edit_product_path(@product) %></li>
 				<li><%= link_to "DELETE", @product, method: :delete %></li>
 				<li>PRODUCT VIEWS: <%= @product.views %></li>
@@ -46,7 +46,7 @@
 	</div>
 
 
-	<% if user_signed_in? && current_user.username == "administrator" %>
+	<% if user_administrator? %>
 		<h2>Add Shades</h2>
 		<table>
 	    <thead>

@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-5">
+      <%= raw get_embedded_instagram(look.image_url) %>
+    </div>
+    <div class="col-md-7">
+      <p>
+        <strong>Name:</strong>
+        <%= look.name %>
+      </p>
+
+      <p>
+        <strong>Caption:</strong>
+        <%= look.caption  %>
+      </p>
+
+      <p>
+        <strong>Tags:</strong>
+        <%= look.tags %>
+      </p>
+      <p><strong>Shades used for my look:</strong></p>
+      <%= render partial: 'shades/shade_square', collection: look.shades %>
+    </div>
+    <div class="col-md-12 text-center">
+      <% if @home_page == "profile" && @profile_owner %>
+        <%= link_to "Add Shades", look %> |
+        <%= link_to "Edit", edit_look_path(look) %>  |
+        <%= link_to "Delete", look_path(look), method: :delete %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<hr>

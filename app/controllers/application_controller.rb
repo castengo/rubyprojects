@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_filter :store_current_location, :unless => :devise_controller?
 
-  helper_method :short_product_type
+  helper_method :user_administrator?, :short_product_type
 
   def short_product_type(product_type)
     query = ""
@@ -21,6 +21,10 @@ class ApplicationController < ActionController::Base
 
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
+    end
+
+    def user_administrator?
+      user_signed_in? && current_user.username == "administrator"
     end
 
   private

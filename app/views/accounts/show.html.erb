@@ -1,0 +1,25 @@
+
+<h1>My Account</h1>
+<h2>Your Profile</h2>
+<% if !@account.profile %>
+  <p>Create a profile to share your make up looks!</p>
+  <%= link_to "Create Profile", new_account_profile_path(@account), class: "btn btn-default" %>
+<% else %>
+  <%= link_to 'Create new look', new_profile_look_path(@account.profile) %> |
+  <%= link_to 'View your profile', profile_path(@account.profile) %> |
+  <%= link_to 'Edit your profile', edit_account_profile_path(@account, @account.profile) %>  |
+  <%= link_to 'Delete profile', current_user.account.profile, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+
+<h2>Favorite Looks</h2>
+<h2>Favotire Products </h2>
+<h2>Favorite Shades</h2>
+<% if user_administrator? %>
+  <h2>Users</h2>
+  <hr>
+  <% @users.each do |user| %>
+    <%= user.username %> <br>
+    <%= user.email %>
+    <hr>
+  <% end %>
+<% end %>

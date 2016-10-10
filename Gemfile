@@ -26,6 +26,10 @@ gem 'pg', '~> 0.18.4'
 gem 'devise', '4.2.0'
 # paginating
 gem 'will_paginate', '~> 3.1.0'
+# get instagram posts
+gem 'httparty', '0.14.0'
+# extract profile picture
+gem 'nokogiri'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

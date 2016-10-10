@@ -15,8 +15,11 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap-sprockets
+//platform.instagram.com/en_US/embeds.js
 
 ( function() {
+
+	console.log(this);
 
 	$(document).ajaxStart(function() {
 		$(".spinner").show();
@@ -28,6 +31,7 @@
 	});
 
 	shimmeryShades();
+	instgrm.Embeds.process();
 
 	function shimmeryShades() {
 		$(".shade-square").each(shimmer);
