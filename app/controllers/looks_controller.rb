@@ -12,10 +12,6 @@ class LooksController < ApplicationController
   # GET /looks/1
   # GET /looks/1.json
   def show
-    if params[:search]
-      @found_shades = Shade.search(params[:search]).where.not(:id => @look.shades).order(:name)
-    end
-    @shades = @look.shades
   end
 
   # GET /looks/new
@@ -40,19 +36,6 @@ class LooksController < ApplicationController
         format.json { render json: @look.errors, status: :unprocessable_entity }
       end
     end
-  end
-
-  # PUT
-  def add_shade
-    @shade = Shade.find(params[:look_shade])
-    if @shade
-      @look.shades.push(@shade)
-      @look.save
-    else
-      @error = "Shade could not be added"
-    end
-    @shades = @look.shades
-    @remaining_shades = Shade.search(params[:search]).where.not(:id => @shades).order(:name)
   end
 
   # PATCH/PUT /looks/1

@@ -15,11 +15,11 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap-sprockets
-//platform.instagram.com/en_US/embeds.js
+
 
 ( function() {
 
-	console.log(this);
+	// this = window
 
 	$(document).ajaxStart(function() {
 		$(".spinner").show();
@@ -34,10 +34,14 @@
 	instgrm.Embeds.process();
 
 	function shimmeryShades() {
-		$(".shade-square").each(shimmer);
-		$(".product-shade").each(shimmer);
+		$(".look-shades .shade-square").each(shimmer);
+		$(".product-shades .shade-square").each(shimmer);
+		$("#shades-list span:last-child .shade-square").each(shimmer);
+		$("#shades-list span:last-child .product-shade").each(shimmer);
 		$("#shades-list").removeClass("hidden");
+		$(".spinner").hide();
 	};
+
 
 	function shimmer() {
 		if ($(this).data('finish') != "Matte") {

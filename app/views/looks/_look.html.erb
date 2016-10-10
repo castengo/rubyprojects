@@ -4,27 +4,27 @@
       <%= raw get_embedded_instagram(look.image_url) %>
     </div>
     <div class="col-md-7">
-      <p>
-        <strong>Name:</strong>
+      <h3>
         <%= look.name %>
-      </p>
+      </h3>
 
-      <p>
-        <strong>Caption:</strong>
+      <p style="font-style: italic;">
         <%= look.caption  %>
       </p>
 
       <p>
-        <strong>Tags:</strong>
         <%= look.tags %>
       </p>
-      <p><strong>Shades used for my look:</strong></p>
-      <%= render partial: 'shades/shade_square', collection: look.shades %>
+      <br>
+      <p><strong>Shades used for this look:</strong></p>
+      <span class="look-shades">
+        <%= render partial: 'shades/shade_square', collection: look.shades, :locals => { look_id: look } %>
+      </span>
     </div>
     <div class="col-md-12 text-center">
       <% if @home_page == "profile" && @profile_owner %>
-        <%= link_to "Add Shades", look %> |
-        <%= link_to "Edit", edit_look_path(look) %>  |
+        <%= link_to "Edit Shades", looks_shade_path(:look_id => look) %> |
+        <%= link_to "Edit Look", edit_look_path(look) %>  |
         <%= link_to "Delete", look_path(look), method: :delete %>
       <% end %>
     </div>

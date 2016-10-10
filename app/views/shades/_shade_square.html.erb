@@ -6,4 +6,7 @@
   <% end %>
   <p><%= shade_square.name %></p>
   <p class="finish"><%= shade_square.finish %></p>
+  <% if @home_page == "look-shades" && @profile_owner %>
+    <p><%= link_to "Delete", unlink_shade_path( :look_id => look_id, :shade_id => shade_square), method: :delete, remote: true %></p>
+  <% end %>
 </div>
