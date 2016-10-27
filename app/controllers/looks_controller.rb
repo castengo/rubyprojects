@@ -6,7 +6,7 @@ class LooksController < ApplicationController
   # GET /looks.json
   def index
     @home_page = "looks"
-    @looks = Look.all
+    @looks = Look.all.order(created_at: :desc)
   end
 
   # GET /looks/1
