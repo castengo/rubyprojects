@@ -12,7 +12,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/1.json
   def show
     @home_page = "profile"
-    @username = @profile.account.user.username
+    @username = @profile.username
     @profile_owner = current_user && @username == current_user.username
     @my_looks = @profile.looks.order(created_at: :desc)
     @test = Profile.get_profile_picture("chileanqween")

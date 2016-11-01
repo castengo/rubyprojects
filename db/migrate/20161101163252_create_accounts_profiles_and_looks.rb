@@ -1,25 +1,10 @@
-class CreateLooks < ActiveRecord::Migration
-
+class CreateAccountsProfilesAndLooks < ActiveRecord::Migration
   def change
+
     create_table :accounts do |t|
       t.references :user, index: true, foreign_key: true
 
       t.timestamps null: false
-    end
-
-    create_table :accounts_products, id:false do |t|
-      t.belongs_to :account, index: true
-      t.belongs_to :product, index: true
-    end
-
-    create_table :accounts_shades, id:false do |t|
-      t.belongs_to :account, index: true
-      t.belongs_to :shade, index: true
-    end
-
-    create_table :accounts_looks, id:false do |t|
-      t.belongs_to :account, index: true
-      t.belongs_to :look, index: true
     end
 
     create_table :profiles do |t|
@@ -45,11 +30,10 @@ class CreateLooks < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :looks_shades, id:false do |t|
-      t.belongs_to :look, index: true
-      t.belongs_to :shade, index: true
+    create_table :tutorials do |t|
+      t.integer :shade_id, index: true
+      t.integer :look_id, index: true
     end
 
   end
-
 end

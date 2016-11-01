@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160924210624) do
+ActiveRecord::Schema.define(version: 20161101163252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,30 +23,6 @@ ActiveRecord::Schema.define(version: 20160924210624) do
   end
 
   add_index "accounts", ["user_id"], name: "index_accounts_on_user_id", using: :btree
-
-  create_table "accounts_looks", id: false, force: :cascade do |t|
-    t.integer "account_id"
-    t.integer "look_id"
-  end
-
-  add_index "accounts_looks", ["account_id"], name: "index_accounts_looks_on_account_id", using: :btree
-  add_index "accounts_looks", ["look_id"], name: "index_accounts_looks_on_look_id", using: :btree
-
-  create_table "accounts_products", id: false, force: :cascade do |t|
-    t.integer "account_id"
-    t.integer "product_id"
-  end
-
-  add_index "accounts_products", ["account_id"], name: "index_accounts_products_on_account_id", using: :btree
-  add_index "accounts_products", ["product_id"], name: "index_accounts_products_on_product_id", using: :btree
-
-  create_table "accounts_shades", id: false, force: :cascade do |t|
-    t.integer "account_id"
-    t.integer "shade_id"
-  end
-
-  add_index "accounts_shades", ["account_id"], name: "index_accounts_shades_on_account_id", using: :btree
-  add_index "accounts_shades", ["shade_id"], name: "index_accounts_shades_on_shade_id", using: :btree
 
   create_table "brands", force: :cascade do |t|
     t.string   "name"
@@ -68,14 +44,6 @@ ActiveRecord::Schema.define(version: 20160924210624) do
   end
 
   add_index "looks", ["profile_id"], name: "index_looks_on_profile_id", using: :btree
-
-  create_table "looks_shades", id: false, force: :cascade do |t|
-    t.integer "look_id"
-    t.integer "shade_id"
-  end
-
-  add_index "looks_shades", ["look_id"], name: "index_looks_shades_on_look_id", using: :btree
-  add_index "looks_shades", ["shade_id"], name: "index_looks_shades_on_shade_id", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
@@ -128,6 +96,14 @@ ActiveRecord::Schema.define(version: 20160924210624) do
   end
 
   add_index "shades", ["product_id"], name: "index_shades_on_product_id", using: :btree
+
+  create_table "tutorials", force: :cascade do |t|
+    t.integer "shade_id"
+    t.integer "look_id"
+  end
+
+  add_index "tutorials", ["look_id"], name: "index_tutorials_on_look_id", using: :btree
+  add_index "tutorials", ["shade_id"], name: "index_tutorials_on_shade_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at",                          null: false

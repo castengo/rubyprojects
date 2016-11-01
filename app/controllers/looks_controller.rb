@@ -6,13 +6,14 @@ class LooksController < ApplicationController
   # GET /looks.json
   def index
     @home_page = "looks"
-    @looks = Look.all.order(created_at: :desc)
+    @looks = Look.all.order(created_at: :desc).paginate(:page => params[:page], :per_page => 3)
   end
 
   # GET /looks/1
   # GET /looks/1.json
   def show
   end
+
 
   # GET /looks/new
   def new

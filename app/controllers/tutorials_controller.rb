@@ -1,4 +1,4 @@
-class LooksShadesController < ApplicationController
+class TutorialsController < ApplicationController
   before_action :set_look, only: [:new, :show, :create, :destroy]
   before_action :set_shade, only: [:new, :destroy]
   before_action :profile_owner

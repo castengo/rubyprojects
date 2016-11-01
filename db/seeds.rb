@@ -10,7 +10,18 @@ Brand.destroy_all
 User.destroy_all
 Shade.destroy_all
 
-User.create! [{username:"administrator", email: "castengo23@gmail.com", password: "password1"}, {username:"gibby", email: "gibbs@doggyland.com", password: "password1"}]
+User.create! [{username:"administrator", email: "castengo23@gmail.com", password: "ravilet7"}, {username:"gibby", email: "gibbs@doggyland.com", password: "password1"}]
+
+administrator = User.find_by(username: "administrator").account;
+administrator.create_profile!
+administrator.profile.looks.create!(name: "My Look", image_url: "https://www.instagram.com/p/BMRqQ4aBJwI/?taken-by=anastasiabeverlyhills")
+administrator.profile.looks.create!(name: "Another Look", image_url: "https://www.instagram.com/p/BMQQukQBqDd/?taken-by=anastasiabeverlyhills")
+
+iggy = User.find_by(username: "gibby").account;
+iggy.create_profile!
+iggy.profile.looks.create!(name: "Me", image_url: "https://www.instagram.com/p/BMQGdgghTZF/?taken-by=anastasiabeverlyhills")
+iggy.profile.looks.create!(name: "Another Me", image_url: "https://www.instagram.com/p/BMPxZe1BV-X/?taken-by=anastasiabeverlyhills")
+
 
 Brand.create! [ {name: "Anastasia Beverly Hills", website_url:"http://www.anastasiabeverlyhills.com/", logo_url: "http://www.anastasiabeverlyhills.com/media/wysiwyg/magenthemes/mtghost/logo/abh-logo-black_3.png"}, {name: "Sephora", website_url: "http://www.sephora.com/", logo_url: "http://www.sephora.com/images/logo.svg"}, {name:"tarte",website_url:"http://tartecosmetics.com/", logo_url:"http://tarte-cdn2.s3.amazonaws.com/images/ninja/logo-new.png"}, {name:"Kylie Cosmetics", logo_url:"https://cdn.shopify.com/s/files/1/1133/5964/t/20/assets/logo.png?3306860011959784713",website_url:"https://www.kyliecosmetics.com/products/the-bronze-palette"}
 ]
