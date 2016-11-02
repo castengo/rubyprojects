@@ -16,12 +16,35 @@
         <%= look.tags %>
       </p>
       <br>
-      <p><strong>Shades used for this look:</strong></p>
-      <div id="look-shades">
-        <%= render partial: 'shades/shade_square', collection: look.shades , locals: { look_id: look } %>
+      <div class="row">
+        <% if !look.eye_shades.empty? %>
+          <div class="type-shades col-xs-6">
+            <p><strong>Eye Shades:</strong></p>
+            <%= render partial: 'shades/shade_square_small', as: "shade_square", collection: look.eye_shades , locals: { look_id: look } %>
+          </div>
+        <% end %>
+        <% if !look.eye_shades.empty? %>
+          <div class="type-shades col-xs-6">
+            <p><strong>Eye Shades:</strong></p>
+            <%= render partial: 'shades/shade_square_small', as: "shade_square", collection: look.eye_shades , locals: { look_id: look } %>
+          </div>
+        <% end %>
+        <% if !look.eye_shades.empty? %>
+          <div class="type-shades col-xs-6">
+            <p><strong>Eye Shades:</strong></p>
+            <%= render partial: 'shades/shade_square_small', as: "shade_square", collection: look.eye_shades , locals: { look_id: look } %>
+          </div>
+        <% end %>
+        <% if !look.eye_shades.empty? %>
+          <div class="type-shades col-xs-6">
+            <p><strong>Eye Shades:</strong></p>
+            <%= render partial: 'shades/shade_square_small', as: "shade_square", collection: look.eye_shades , locals: { look_id: look } %>
+          </div>
+        <% end %>
+        </div>
       </div>
-
     </div>
+
     <div class="col-md-12 text-center">
       <% if @home_page == "profile" && @profile_owner %>
         <%= link_to "Edit Shades", look_path(look) %> |

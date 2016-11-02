@@ -328,6 +328,20 @@ ol.breadcrumb {
 	}
 }
 
+.shade-square-small {
+	height: 50px;
+	// box-shadow: inset 1px 1px 2px black;
+	box-shadow: -1px -1px 2px black;
+	border-radius: 5px;
+
+	&:hover {
+		// box-shadow: inset 1px 1px 2px black, 1px 1px 1px hsl(0,0%,80%), -1px -1px 1px hsl(0,0%,80%);
+		box-shadow: 1px 1px 2px black, -1px -1px 2px black;
+		border: solid 1px #fff;
+	}
+}
+
+
 .shades-index {
 	display: inline-block;
 	width: 85px;
@@ -376,6 +390,31 @@ p.finish {
 		}
 	}
 }
+
+// Looks
+
+.look-shades {
+	display: inline-block;
+	width: 85px;
+	margin: 2px;
+	vertical-align: top;
+	text-align: center;
+
+	p {
+		font-size: 14px;
+		word-wrap: normal;
+		text-align: center;
+		margin-bottom: 0;
+	}
+
+}
+
+.type-shades {
+  // display: inline-block;
+	height: auto;
+	padding: 10px;
+}
+
 
 /* Footer */
 

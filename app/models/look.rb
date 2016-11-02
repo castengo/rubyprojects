@@ -1,7 +1,11 @@
 class Look < ActiveRecord::Base
+  belongs_to :profile
   has_many :tutorials
   has_many :shades, -> { distinct }, through: :tutorials
-  belongs_to :profile
+  has_many :eye_shades, -> { filter_by_type("eye") }, through: :tutorials, source: :shade
+  has_many :lip_shades, -> { filter_by_type("lip") }, through: :tutorials, source: :shade
+  has_many :face_shades, -> { filter_by_type("face") }, through: :tutorials, source: :shade
+  has_many :brow_shades, -> { filter_by_type("face") }, through: :tutorials, source: :shade
 
   before_save :short_insta
 

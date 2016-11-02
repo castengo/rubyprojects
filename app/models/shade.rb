@@ -22,9 +22,16 @@ class Shade < ActiveRecord::Base
     min_value..max_value
   end
 
+  # Filters shade search by product type
+  def self.filter_by_type(type)
+    formatted_query = "%" + type.downcase + "%"
+    joins(:product).where("lower(products.product_type) LIKE ?", formatted_query).uniq
+  end
+
+  # Search matches by product name, shade name, or shade finish
   def self.search(query)
-      formatted_query= "%" + query.downcase + "%"
-      where("lower(shades.name) LIKE ? OR lower(finish) LIKE ? ", formatted_query, formatted_query)
+    formatted_query= "%" + query.downcase + "%"
+    joins(:product).where("lower(products.name) LIKE ? OR lower(shades.name) LIKE ? OR lower(finish) LIKE ? ", formatted_query, formatted_query, formatted_query)
   end
 
   private

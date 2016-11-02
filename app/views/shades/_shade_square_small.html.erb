@@ -1,0 +1,9 @@
+<div class="look-shades">
+  <%= link_to (product_shade_path(shade_square.product, shade_square)) do %>
+    <%= content_tag(:div, "", style: "background-color: ##{shade_square.hex_color};", class: "shade-square-small", data: {finish: shade_square.finish, h: shade_square.h, s: shade_square.s, l: shade_square.l}) do %>
+      <canvas class="shade-canvas" width=60 height=80></canvas>
+    <% end %>
+  <% end %>
+  <p><%= shade_square.name %></p>
+  <p class="finish"><%= shade_square.finish %></p>
+</div>

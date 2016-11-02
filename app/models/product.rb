@@ -10,7 +10,7 @@ class Product < ActiveRecord::Base
 
   def find_matching_products
     query = ""
-    products = ["eye", "lip", "face"]
+    products = ["eye", "lip", "face", "brow"]
     products.each do |prod|
       if product_type.downcase.include?(prod)
         query = prod
@@ -22,7 +22,7 @@ class Product < ActiveRecord::Base
   #in construction
   def available_product_types
     query = ""
-    products = ["eye", "lip", "face"]
+    products = ["eye", "lip", "face", "brow"]
     products.each do |prod|
       if product_type.downcase.include?(prod)
         query = prod
@@ -45,9 +45,9 @@ class Product < ActiveRecord::Base
     matching_colors
   end
 
-  def self.search(name)
-      search_name = "%" + name.downcase + "%"
-      @products = Product.where("lower(name) LIKE ? ", search_name)
+  def self.search(query)
+    formatted_query= "%" + query.downcase + "%"
+    joins(:brand).where("lower(brands.name) LIKE ? OR lower(products.name) LIKE ? OR lower(products.product_type) LIKE ? ", formatted_query, formatted_query, formatted_query)
   end
 
 end
