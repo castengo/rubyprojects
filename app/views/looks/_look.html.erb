@@ -17,10 +17,10 @@
       </p>
       <br>
       <div class="row">
-        <% if !look.eye_shades.empty? %>
+        <% if !look.brow_shades.empty? %>
           <div class="type-shades col-xs-6">
-            <p><strong>Eye Shades:</strong></p>
-            <%= render partial: 'shades/shade_square_small', as: "shade_square", collection: look.eye_shades , locals: { look_id: look } %>
+            <p><strong>Brow Shades:</strong></p>
+            <%= render partial: 'shades/shade_square_small', as: "shade_square", collection: look.brow_shades , locals: { look_id: look } %>
           </div>
         <% end %>
         <% if !look.eye_shades.empty? %>
@@ -29,16 +29,16 @@
             <%= render partial: 'shades/shade_square_small', as: "shade_square", collection: look.eye_shades , locals: { look_id: look } %>
           </div>
         <% end %>
-        <% if !look.eye_shades.empty? %>
+        <% if !look.lip_shades.empty? %>
           <div class="type-shades col-xs-6">
-            <p><strong>Eye Shades:</strong></p>
-            <%= render partial: 'shades/shade_square_small', as: "shade_square", collection: look.eye_shades , locals: { look_id: look } %>
+            <p><strong>Lip Shades:</strong></p>
+            <%= render partial: 'shades/shade_square_small', as: "shade_square", collection: look.lip_shades , locals: { look_id: look } %>
           </div>
         <% end %>
-        <% if !look.eye_shades.empty? %>
+        <% if !look.face_shades.empty? %>
           <div class="type-shades col-xs-6">
-            <p><strong>Eye Shades:</strong></p>
-            <%= render partial: 'shades/shade_square_small', as: "shade_square", collection: look.eye_shades , locals: { look_id: look } %>
+            <p><strong>Face Shades:</strong></p>
+            <%= render partial: 'shades/shade_square_small', as: "shade_square", collection: look.face_shades , locals: { look_id: look } %>
           </div>
         <% end %>
         </div>
