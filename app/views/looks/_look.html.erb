@@ -1,48 +1,45 @@
 <div class="container-fluid">
   <div class="row">
+
     <div class="col-md-5">
       <%= raw get_embedded_instagram(look.image_url) %>
     </div>
     <div class="col-md-7">
-      <h3>
-        <%= look.name %>
-      </h3>
-
-      <p style="font-style: italic;">
-        <%= look.caption  %>
-      </p>
-
-      <p>
-        <%= look.tags %>
-      </p>
-      <br>
-      <div class="row">
-        <% if !look.brow_shades.empty? %>
-          <div class="type-shades col-xs-6">
-            <p><strong>Brow Shades:</strong></p>
-            <%= render partial: 'shades/shade_square_small', as: "shade_square", collection: look.brow_shades , locals: { look_id: look } %>
-          </div>
-        <% end %>
-        <% if !look.eye_shades.empty? %>
-          <div class="type-shades col-xs-6">
-            <p><strong>Eye Shades:</strong></p>
-            <%= render partial: 'shades/shade_square_small', as: "shade_square", collection: look.eye_shades , locals: { look_id: look } %>
-          </div>
-        <% end %>
-        <% if !look.lip_shades.empty? %>
-          <div class="type-shades col-xs-6">
-            <p><strong>Lip Shades:</strong></p>
-            <%= render partial: 'shades/shade_square_small', as: "shade_square", collection: look.lip_shades , locals: { look_id: look } %>
-          </div>
-        <% end %>
-        <% if !look.face_shades.empty? %>
-          <div class="type-shades col-xs-6">
-            <p><strong>Face Shades:</strong></p>
-            <%= render partial: 'shades/shade_square_small', as: "shade_square", collection: look.face_shades , locals: { look_id: look } %>
-          </div>
-        <% end %>
-        </div>
+      <div class="col-md-12">
+        <h3>
+          <%= look.name %>
+        </h3>
+        <p style="font-style: italic;">
+          <%= look.caption  %>
+        </p>
+        <p>
+          <%= look.tags %>
+        </p>
       </div>
+      <% if !look.brow_shades.empty? %>
+        <div class="type-shades col-md-6 col-xs-12">
+          <p><strong>Brow Shades:</strong></p>
+          <%= render partial: 'shades/shade_square_small', as: "shade_square", collection: look.brow_shades , locals: { look_id: look } %>
+        </div>
+      <% end %>
+      <% if !look.eye_shades.empty? %>
+        <div class="type-shades col-md-6 col-xs-12">
+          <p><strong>Eye Shades:</strong></p>
+          <%= render partial: 'shades/shade_square_small', as: "shade_square", collection: look.eye_shades , locals: { look_id: look } %>
+        </div>
+      <% end %>
+      <% if !look.lip_shades.empty? %>
+        <div class="type-shades col-md-6 col-xs-12">
+          <p><strong>Lip Shades:</strong></p>
+          <%= render partial: 'shades/shade_square_small', as: "shade_square", collection: look.lip_shades , locals: { look_id: look } %>
+        </div>
+      <% end %>
+      <% if !look.face_shades.empty? %>
+        <div class="type-shades col-md-6 col-xs-12">
+          <p><strong>Face Shades:</strong></p>
+          <%= render partial: 'shades/shade_square_small', as: "shade_square", collection: look.face_shades , locals: { look_id: look } %>
+        </div>
+      <% end %>
     </div>
 
     <div class="col-md-12 text-center">
@@ -52,6 +49,7 @@
         <%= link_to "Delete", look_path(look), method: :delete %>
       <% end %>
     </div>
+
   </div>
 </div>
 <hr>
