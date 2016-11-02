@@ -24,7 +24,7 @@
         <%= @look.tags %>
       </p>
       <div id="look-shades">
-        <%= render partial: 'shades/shade_square_edit', collection: @look.shades, locals: { look_id: @look } %>
+        <%= render partial: 'shades/shade_square_edit', as: 'shade_square', collection: @look.shades, locals: { look_id: @look } %>
       </div>
       <div class="col-md-12">
         <div class="search-form">
