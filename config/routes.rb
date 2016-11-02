@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
-
-  # resources :tutorials, only: [:show, :new]
-  # delete 'unlink_shade' => 'tutorials#destroy'
+  resources :tutorials, only: [:create, :destroy]
 
   resources :accounts, only: [:show] do
     resources :profiles, only: [:new, :create, :update, :edit, :destroy]

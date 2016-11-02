@@ -31,8 +31,8 @@ class CreateAccountsProfilesAndLooks < ActiveRecord::Migration
     end
 
     create_table :tutorials do |t|
-      t.integer :shade_id, index: true
-      t.integer :look_id, index: true
+      t.references :shade, index: true
+      t.references :look, index: true
     end
 
   end

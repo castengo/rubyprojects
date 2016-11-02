@@ -2,5 +2,5 @@
 	<%= content_tag :td, "", style: "background-color: ##{shade.hex_color}; width: 100px;"%>
 	<td><%= shade.name %></td>
 	<td><%= shade.product.name %></td>
-	<td><%= link_to "Add shade to look", new_looks_shade_path(:look_id => look_id, :shade_id => shade, search: params[:search]), remote: true %></td>
+	<td><%= link_to "Add shade to look", tutorials_path(:look_id => look_id, :shade_id => shade.id, search: params[:search]), method: :post, remote: true %></td>
 </tr>

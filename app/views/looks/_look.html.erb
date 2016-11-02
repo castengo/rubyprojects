@@ -17,10 +17,14 @@
       </p>
       <br>
       <p><strong>Shades used for this look:</strong></p>
+      <div id="look-shades">
+        <%= render partial: 'shades/shade_square', collection: look.shades , locals: { look_id: look, edit_mode: false } %>
+      </div>
 
     </div>
     <div class="col-md-12 text-center">
       <% if @home_page == "profile" && @profile_owner %>
+        <%= link_to "Edit Shades", look_path(look) %> |
         <%= link_to "Edit Look", edit_look_path(look) %>  |
         <%= link_to "Delete", look_path(look), method: :delete %>
       <% end %>

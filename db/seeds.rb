@@ -17,6 +17,7 @@ administrator.create_profile!
 administrator.profile.looks.create!(name: "My Look", image_url: "https://www.instagram.com/p/BMRqQ4aBJwI/?taken-by=anastasiabeverlyhills")
 administrator.profile.looks.create!(name: "Another Look", image_url: "https://www.instagram.com/p/BMQQukQBqDd/?taken-by=anastasiabeverlyhills")
 
+
 iggy = User.find_by(username: "gibby").account;
 iggy.create_profile!
 iggy.profile.looks.create!(name: "Me", image_url: "https://www.instagram.com/p/BMQGdgghTZF/?taken-by=anastasiabeverlyhills")
@@ -70,3 +71,5 @@ shades3.each do |shade|
 	save_shade.save
 	# color.save
 end
+
+administrator.profile.looks.first.tutorials.create!(shade_id: Shade.first.id)

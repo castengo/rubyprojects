@@ -1,5 +1,6 @@
 class Look < ActiveRecord::Base
-  has_many :shades, through: :tutorials
+  has_many :tutorials
+  has_many :shades, -> { distinct }, through: :tutorials
   belongs_to :profile
 
   before_save :short_insta

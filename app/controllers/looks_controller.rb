@@ -1,6 +1,7 @@
 class LooksController < ApplicationController
-  before_action :set_look, only: [:show, :edit, :update, :add_shade, :destroy]
+  before_action :set_look, only: [:edit, :show, :update, :add_shade, :destroy]
   before_action :set_profile, only: [:new, :create]
+  respond_to :html, :js
 
   # GET /looks
   # GET /looks.json
@@ -12,6 +13,14 @@ class LooksController < ApplicationController
   # GET /looks/1
   # GET /looks/1.json
   def show
+    if current_user && current_user.username == @look.profile.username
+      if params[:search]
+        @found_shades = Shade.search(params[:search]).where.not(:id => @look.shades).order(:name)
+      end
+      @shades = @look.shades
+    else
+      redirect_to profile_path(@look.profile)
+    end
   end
 
 
@@ -73,6 +82,7 @@ class LooksController < ApplicationController
     def set_profile
       @profile = Profile.find(params[:profile_id])
     end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def look_params
       params.require(:look).permit(:name, :caption, :image_url, :tags)

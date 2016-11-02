@@ -1,34 +1,23 @@
 class TutorialsController < ApplicationController
-  before_action :set_look, only: [:new, :show, :create, :destroy]
-  before_action :set_shade, only: [:new, :destroy]
-  before_action :profile_owner
+  # before_action :set_look
+  # after_action :set_shades
   respond_to :html, :js
 
-  def show
+  def create
+    @look = Look.find(params[:look_id])
+    @look.tutorials.create(shade_id: params[:shade_id])
     if params[:search]
       @found_shades = Shade.search(params[:search]).where.not(:id => @look.shades).order(:name)
     end
     @shades = @look.shades
   end
 
-  def new
-    if @shade
-      @look.shades.push(@shade)
-      @look.save
-    end
-    @shades = @look.shades
-    @remaining_shades = Shade.search(params[:search]).where.not(:id => @shades).order(:name)
-  end
-
-  # def create
-  #   if @look.save
-  #     redirect_to profile_path(@look.profile)
-  #   else
-  #   end
-  # end
-
   def destroy
-    @look.shades.destroy(@shade)
+    @look = Look.find(params[:id])
+    @look.tutorials.find_by(shade_id: params[:shade_id]).destroy
+    if params[:search]
+      @found_shades = Shade.search(params[:search]).where.not(:id => @look.shades).order(:name)
+    end
     @shades = @look.shades
   end
 
@@ -38,15 +27,11 @@ class TutorialsController < ApplicationController
       @look = Look.find(params[:look_id])
     end
 
-    def set_shade
-      @shade = Shade.find(params[:shade_id])
+    def set_shades
+      if params[:search]
+        @found_shades = Shade.search(params[:search]).where.not(:id => @look.shades).order(:name)
+      end
+      @shades = @look.shades
     end
 
-    def profile_owner
-      @profile_owner = @look.profile.account.user == current_user
-      if !@profile_owner
-        redirect_to root_path
-      end
-      @home_page ="look-shades"
-    end
 end
