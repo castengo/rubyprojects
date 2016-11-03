@@ -2,9 +2,13 @@ Rails.application.routes.draw do
 
   resources :tutorials, only: [:create, :destroy]
 
-  resources :accounts, only: [:show] do
-    resources :profiles, only: [:new, :create, :update, :edit, :destroy]
-  end
+  # resources :accounts, only: [:show] do
+  #   resources :profiles, only: [:new, :create, :update, :edit, :destroy]
+  # end
+
+  get 'account' => "accounts#show"
+  resources :profiles, only: [:new, :create, :update, :edit, :destroy], path: 'account/profiles/', as: 'account_profile'
+
 
   resources :profiles, only: [:show] do
     # resources :looks, only: [:new, :create, :edit, :update, :destroy]

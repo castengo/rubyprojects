@@ -1,6 +1,11 @@
 class AccountsController < ApplicationController
+  before_action :authenticate_user!
+
   def show
-    @users = User.all
     @account = current_user.account
+    if user_administrator?
+      @users = User.all
+    end
   end
+
 end

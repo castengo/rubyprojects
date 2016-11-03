@@ -9,6 +9,10 @@
         <h3>
           <%= look.name %>
         </h3>
+        <div class="posted-at">
+          <i>Posted <%= distance_of_time_in_words(Time.now, look.created_at) %> ago by
+          <%= link_to "#{look.profile.username}", profile_path(look.profile) %></i>
+        </div>
         <p style="font-style: italic;">
           <%= look.caption  %>
         </p>

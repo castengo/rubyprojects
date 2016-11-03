@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: [:show, :edit, :update, :destroy]
-  before_action :set_account, only: [:new, :create, :edit]
+  before_action :set_profile, only: [:show]
+  before_action :set_private_profile, only: [:new, :create, :update, :edit, :destroy]
 
   # GET /profiles
   # GET /profiles.json
@@ -75,8 +75,8 @@ class ProfilesController < ApplicationController
       @profile = Profile.find(params[:id])
     end
 
-    def set_account
-      @account = current_user.account
+    def set_private_profile
+      @profile = current_user.account.profile
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

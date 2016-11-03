@@ -1,7 +1,7 @@
 class Shade < ActiveRecord::Base
   belongs_to :product
   has_many :tutorials
-  has_many :looks, through: :tutorials
+  has_many :looks, -> { distinct }, through: :tutorials
 
   before_save :to_hsl
 

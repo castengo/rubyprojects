@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   def short_product_type(product_type)
     query = ""
-    products = ["eye", "lip"]
+    products = ["eye", "lip", "brow", "face"]
     products.each do |prod|
       if product_type.downcase.include?(prod)
         return query = prod

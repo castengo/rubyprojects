@@ -39,3 +39,10 @@
 		<% end %>
 	</div>
 </div>
+
+<div class="container-fluid">
+	<h2>Looks that use this shade</h2>
+	<div class="row">
+		<%= render partial: 'looks/look_square', as: "look", collection: @shade.looks %>
+	</div>
+</div>
