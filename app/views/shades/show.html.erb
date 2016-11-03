@@ -40,9 +40,11 @@
 	</div>
 </div>
 
-<div class="container-fluid">
-	<h2>Looks that use this shade</h2>
-	<div class="row">
-		<%= render partial: 'looks/look_square', as: "look", collection: @shade.looks %>
+<% if !@shade.looks.empty? %>
+	<div class="container-fluid">
+		<h2>Looks that use <%= @shade.product.brand.name %>'s "<%= @shade.name %>"</h2>
+		<div class="row">
+			<%= render partial: 'looks/look_square', as: "look", collection: @shade.looks %>
+		</div>
 	</div>
-</div>
+<% end %>
