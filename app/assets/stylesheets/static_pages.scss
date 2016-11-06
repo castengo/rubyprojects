@@ -124,8 +124,18 @@ a {
 // Media Queries
 
 @media (max-width: 767px) {
-  .jumbotron .container {
-    margin-left: 0;
+  .jumbotron {
+    background-size: cover;
+    background-position: right;
+    background-attachment: scroll;
+
+    .container {
+      margin-left: 0;
+    }
+
+    h1 {
+      font-size: 70px;
+    }
   }
 
 }
