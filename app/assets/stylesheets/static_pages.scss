@@ -123,13 +123,27 @@ a {
 
 // Media Queries
 
+@media (max-width: 991px) {
+  .jumbotron {
+    background: image-url("jumbotron_mobile.jpg");
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+  }
+
+  .container {
+    position: relative;
+    left: -100px;
+  }
+}
+
 @media (max-width: 767px) {
   .jumbotron {
-    background-size: cover;
-    background-position: right;
-    background-attachment: scroll;
 
     .container {
+      position: relative;
+      left: 0;
       margin-left: 0;
     }
 
