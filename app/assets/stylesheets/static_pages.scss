@@ -5,6 +5,16 @@
 
 // Jumbotron Styling
 
+$lavender: rgb(141,118,180);
+
+@mixin radial-gradient($color1, $color2) {
+  background: $color1;
+  background: -webkit-radial-gradient($color1 30%, $color2 70%);
+  background: -o-radial-gradient($color1 30%, $color2 70%);
+  background: -moz-radial-gradient($color1 30%, $color2 70%);
+  background: radial-gradient($color1 30%, $color2 70%);
+}
+
 .jumbotron {
   background: image-url("jumbotron.jpg");
   background-position: top;
@@ -12,27 +22,44 @@
   background-attachment: fixed;
   background-size: cover;
   height: 600px;
-  // text-align: center;
   text-align: left;
-  padding-top: 178px;
+  // padding-top: 178px;
+  padding: 0;
   box-shadow: inset 1px 1px 3px black;
 
   .container {
-    width: 100%;
-    background-color: rgba(0,0,0,0.5);
+    padding: 0;
+    position: relative;
+    top: 130px;
+    margin-left: 20px;
+    width: 600px;
+    height: 300px;
+    border-radius: 50%;
+    @include radial-gradient(transparentize($lavender, 0.8), transparentize($lavender, 1));
     padding: 30px 0;
   }
 
+  .jumbotron-title {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+  }
+
   h1 {
+    margin: 0;
     background-color: transparent;
     color: white;
-    font-size: 80px;
-    margin-left: 100px;
+    font-size: 90px;
+    text-shadow: 2px 2px 2px black;
   }
 
   p {
+    margin: 0;
     color: white;
-    margin-left: 130px;
+    text-transform: uppercase;
+    font-size: 22px;
+    text-shadow: 1px 1px 2px black;
   }
 }
 
@@ -40,6 +67,7 @@
 
 .home-content {
   h2 {
+    margin-top: 5px;
     text-align: center;
     font-style: italic;
   }
@@ -50,12 +78,40 @@
   }
 }
 
+.home-tile {
+  margin-bottom: 30px;
+}
+
+
+#product-tile {
+  height: 200px;
+  background: image-url("product_tile.jpg");
+  background-size: 300px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#look-tile {
+  height: 200px;
+  background: image-url("look_tile.jpg");
+  background-size: 300px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#shade-tile {
+  height: 200px;
+  background: image-url("shade_tile.jpg");
+  background-size: 300px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 // Media Queries
 
 @media (max-width: 767px) {
-  .jumbotron {
-    h1 {
-      font-size: 15vw;
-    }
+  .jumbotron .container {
+    margin-left: 0;
   }
+
 }

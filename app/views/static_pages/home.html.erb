@@ -1,28 +1,26 @@
 
 <div class="jumbotron">
   <div class="container">
-    <h1>Verbena</h1>
-    <p>Your #1 make up shade resource.</p>
-    <p>SITE UNDER CONSTRUCTION...</p>
+    <div class="jumbotron-title">
+      <h1>Verbena</h1>
+      <p>Your #1 make up shade resource.</p>
+    </div>
   </div>
 </div>
 
 <div class="container-fluid home-content">
   <div class="row">
-    <div class="col-md-12">
-      <h2>Our Goal</h2>
-        <p>
-          Have you ever spent hours at the store looking for the right color of make up? Do you want a lighter or darker shade of a product you already know? Do you want to explore all make up brands and shades out there? Then this is the right place for you. Our extensive make up library will give you millions of options in make up shades, so you won't feel lost anymore. Don't know how to use the make up? No worries, we also link looks and tutorials with shades so you can learn. The possibilities are endless.
-        </p>
+    <div class="home-tile col-sm-4">
+      <%= content_tag(:div, "", id: "product-tile") %>
+      <h2> Checkout Products </h2>
     </div>
-    <div class="col-sm-6">
-      <h2>Checkout Products</h2>
+    <div class="home-tile col-sm-4">
+      <%= content_tag(:div, "", id: "look-tile") %>
+      <h2>Find Looks</h2>
     </div>
-    <div class="col-sm-6">
-      <h2>Find Your Favorite Looks</h2>
-    </div>
-    <div class="col-sm-12">
-      <h2>Explore Makeup Shades</h2>
+    <div class="home-tile col-sm-4">
+      <%= content_tag(:div, "", id: "shade-tile") %>
+      <h2>Explore Shades</h2>
     </div>
   </div>
 </div>
