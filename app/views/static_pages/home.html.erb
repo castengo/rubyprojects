@@ -10,17 +10,23 @@
 
 <div class="container-fluid home-content">
   <div class="row">
-    <div class="home-tile col-sm-4">
-      <%= content_tag(:div, "", id: "product-tile") %>
-      <h2> Checkout Products </h2>
-    </div>
-    <div class="home-tile col-sm-4">
-      <%= content_tag(:div, "", id: "look-tile") %>
-      <h2>Find Looks</h2>
-    </div>
-    <div class="home-tile col-sm-4">
-      <%= content_tag(:div, "", id: "shade-tile") %>
-      <h2>Explore Shades</h2>
-    </div>
+    <%= link_to products_path do %>
+      <div class="home-tile col-sm-4">
+        <%= content_tag(:div, "", id: "product-tile") %>
+        <h2> Checkout Products </h2>
+      </div>
+    <% end %>
+    <%= link_to looks_path do %>
+      <div class="home-tile col-sm-4">
+        <%= content_tag(:div, "", id: "look-tile") %>
+        <h2>Find Looks</h2>
+      </div>
+    <% end %>
+    <%= link_to shades_path do %>
+      <div class="home-tile col-sm-4">
+        <%= content_tag(:div, "", id: "shade-tile") %>
+        <h2>Explore Shades</h2>
+      </div>
+    <% end %>
   </div>
 </div>

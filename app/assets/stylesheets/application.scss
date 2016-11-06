@@ -195,7 +195,7 @@ ol.breadcrumb {
 
 #brand-logo {
 	margin-top: 30px;
- 	height: 150px;
+ 	height: 120px;
 }
 
 .list {
@@ -428,11 +428,24 @@ p.finish {
 
 footer {
 	position: relative;
-
 	.footer {
 		background-color: black;
 		color: white;
 		margin-top: 20px;
+
+		.col-md-4 {
+			margin-top: 20px;
+		}
+
+		p {
+			padding: 20px;
+			font-style: italic;
+			margin-bottom: 0;
+		}
+	}
+
+	li {
+		list-style: none;
 	}
 }
 
