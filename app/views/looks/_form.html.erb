@@ -1,4 +1,4 @@
-<%= form_for([@profile, @look]) do |f| %>
+<%= form_for(@look) do |f| %>
   <% if @look.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@look.errors.count, "error") %> prohibited this look from being saved:</h2>

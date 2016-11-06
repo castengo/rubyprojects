@@ -13,14 +13,7 @@ class LooksController < ApplicationController
   # GET /looks/1
   # GET /looks/1.json
   def show
-    if user_logged_in? && current_user.username == @look.profile.username
-      if params[:search]
-        @found_shades = Shade.search(params[:search]).where.not(:id => @look.shades).order(:name)
-      end
-      @shades = @look.shades
-    else
-      redirect_to profile_path(@look.profile)
-    end
+    @products = Product.where(:id => @look.shades.pluck(:product_id).uniq)
   end
 
 

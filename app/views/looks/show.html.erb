@@ -1,46 +1,8 @@
-<ol class="breadcrumb">
-  <li><%= link_to 'Back to Profile', profile_path(@look.profile) %></li>
-</ol>
-
 <hr>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-5">
-      <%= raw get_embedded_instagram(@look.image_url) %>
-    </div>
-    <div class="col-md-7">
-      <p>
-        <strong>Name:</strong>
-        <%= @look.name %>
-      </p>
-
-      <p>
-        <strong>Caption:</strong>
-        <%= @look.caption  %>
-      </p>
-
-      <p>
-        <strong>Tags:</strong>
-        <%= @look.tags %>
-      </p>
-      <div id="look-shades">
-        <%= render partial: 'shades/shade_square_edit', as: 'shade_square', collection: @look.shades, locals: { look_id: @look } %>
-      </div>
-      <div class="col-md-12">
-        <div class="search-form">
-          <%= form_tag({controller: "looks", action: "show"}, method: "get", remote: true) do %>
-            <div class="form-group">
-                <%= hidden_field_tag :look_id, @look.id %>
-                <%= text_field_tag(:search,"", class: "form-control", placeholder: "Search...") %>
-                <%= button_tag(type: 'submit', class: "btn btn-default") do %>
-                  <span class="glyphicon glyphicon-search"></span>
-                <% end %>
-            </div>
-          <% end %>
-        </div>
-        <div id="found-shades">
-        </div>
-      </div>
-    </div>
+<%= render @look %>
+<% if !@look.shades.empty? %>
+  <div class="container-fluid">
+    <h2>Products</h2>
+    <%= render @products %>
   </div>
-</div>
+<% end %>

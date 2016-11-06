@@ -22,22 +22,26 @@
 	// this = window
 
 	$(document).ajaxStart(function() {
+		$("#show-more").hide();
 		$(".spinner").show();
 	});
 
 	$(document).ajaxStop(function() {
 		shimmeryShades();
 		$(".spinner").hide();
+		$("#show-more").show();
 	});
 
 	shimmeryShades();
 	instgrm.Embeds.process();
 
 	function shimmeryShades() {
-		$(".look-shades .shade-square").each(shimmer);
+		$(".look-shades .shade-square-small").each(shimmer);
 		$(".product-shades .shade-square").each(shimmer);
+		// Shade index
 		$("#shades-list span:last-child .shade-square").each(shimmer);
-		$("#shades-list span:last-child .product-shade").each(shimmer);
+		// Matching shades
+		$(".product-shade").each(shimmer);
 		$("#shades-list").removeClass("hidden");
 		$(".spinner").hide();
 	};
