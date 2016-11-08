@@ -29,11 +29,10 @@ class ShadesController < ApplicationController
   # GET /shades/1
   # GET /shades/1.json
   def show
-    @short_product_type = short_product_type(@shade.product.product_type)
     # matching color and product type
-    @spot_on_shades = @shade.close_colors(10,5,2).joins(:product).where("lower(product_type) LIKE '%#{@short_product_type}%'").order("ABS('#{@shade.h}' - h)")
+    @spot_on_shades = @shade.close_colors(10,5,2).joins(:product).where("lower(short_type) LIKE ?", @shade.product.short_type).order("ABS('#{@shade.h}' - h)")
     # matching color but not product_type
-    @close_call_colors = @shade.close_colors(10,5,2).joins(:product).where.not("lower(product_type) LIKE '%#{short_product_type(@shade.product.product_type)}%'").order("ABS('#{@shade.h}' - h)")
+    @close_call_colors = @shade.close_colors(10,5,2).joins(:product).where.not("lower(short_type) LIKE ?", @shade.product.short_type).order("ABS('#{@shade.h}' - h)")
 
     # don't show product if coming from product page
     @controller = Rails.application.routes.recognize_path(request.referrer)[:controller]

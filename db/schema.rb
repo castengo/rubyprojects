@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161101163252) do
+ActiveRecord::Schema.define(version: 20161108003104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20161101163252) do
     t.integer  "views"
     t.string   "shades_group"
     t.boolean  "multiple_colors"
+    t.string   "short_type"
   end
 
   add_index "products", ["brand_id"], name: "index_products_on_brand_id", using: :btree

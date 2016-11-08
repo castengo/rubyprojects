@@ -72,4 +72,14 @@ shades3.each do |shade|
 	# color.save
 end
 
+Product.all.each do |product|
+	if product.short_type.nil?
+		if product.product_type.downcase.include?("eye")
+			product.short_type = "eye"
+		elsif product.product_type.downcase.include?("lip")
+			product.short_type  = "lip"
+		end
+		product.save
+	end
+
 administrator.profile.looks.first.tutorials.create!(shade_id: Shade.first.id)

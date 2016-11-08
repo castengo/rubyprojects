@@ -23,7 +23,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12 mobile-center">
-			<h2><%= @short_product_type.capitalize %> Products With Matching Shades</h2>
+			<h2><%= @shade.product.short_type.capitalize %> Products With Matching Shades</h2>
 			<% if @spot_on_shades.any? %>
 				<%= render @spot_on_shades %>
 			<% else %>

@@ -25,8 +25,12 @@
     <%= f.text_field :multiple_colors %>
   </div>
   <div class="field">
-  <%= f.label :product_type %><br>
+    <%= f.label :product_type %><br>
     <%= f.text_field :product_type %>
+  </div>
+  <div class="field">
+    <%= f.label :short_type %><br>
+    <%= f.select :short_type, @short_types %>
   </div>
   <div class="field">
     <%= f.label :description %><br>
