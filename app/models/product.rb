@@ -7,7 +7,7 @@ class Product < ActiveRecord::Base
 
   # scope :by_price, -> { order(:price) }
 
-
+  # not using I think
   def find_matching_products
     query = ""
     products = ["eye", "lip", "face", "brow"]

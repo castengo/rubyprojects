@@ -33,6 +33,12 @@ class ApplicationController < ActionController::Base
       store_location_for(:user, request.url)
     end
 
+    def set_cache_headers
+      response.headers["Cache-Control"] = "no-cache, no-store"
+      response.headers["Pragma"] = "no-cache"
+      response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
+    end
+
     def after_sign_out_path_for(resource)
       request.referrer || root_path
     end

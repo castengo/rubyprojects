@@ -3,6 +3,7 @@
 <head>
   <title>Verbena Makeup</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width initial-scale=1"/>
   <meta property="og:site_name" content="Verbena Makeup"/>
@@ -49,7 +50,7 @@
     </div><!-- /.container-fluid -->
   </nav>
 </header>
-<body>
+<body data-no-turbolink>
   <% unless @home_page == "home" || @home_page == "profile" %>
     <%= link_to root_path do %>
     	<%= image_tag "verbena_logo.png", class: "center-block", id: "brand-logo" %>
@@ -70,9 +71,10 @@
     </div>
   <% end %>
 
-
+  <script src="//platform.instagram.com/en_US/embeds.js"></script>
 
 </body>
+
 <footer>
   <div class="footer">
     <div class="container-fluid text-center">
@@ -103,7 +105,6 @@
       </div>
     </div>
   </div>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <script src="//platform.instagram.com/en_US/embeds.js"></script>
 </footer>
+
 </html>

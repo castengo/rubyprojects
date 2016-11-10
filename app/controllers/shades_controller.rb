@@ -2,6 +2,7 @@ class ShadesController < ApplicationController
   before_action :set_product, only: [:show, :create, :update, :destroy]
   before_action :set_shade, only: [:show, :destroy]
   before_action :set_shades, only: [:index, :paginate, :search]
+  before_filter :set_cache_headers
   respond_to :html, :js
 
   # GET /shades
@@ -16,6 +17,7 @@ class ShadesController < ApplicationController
     offset = params[:page].to_i * @results_limit
     @page = params[:page].to_i + 1
     @shades = @shades.limit(@results_limit).offset(offset)
+    # test if there's more shades
     @more_shades = @page * @results_limit < @shades_count
   end
 
@@ -30,9 +32,9 @@ class ShadesController < ApplicationController
   # GET /shades/1.json
   def show
     # matching color and product type
-    @spot_on_shades = @shade.close_colors(10,5,2).joins(:product).where("lower(short_type) LIKE ?", @shade.product.short_type).order("ABS('#{@shade.h}' - h)")
+    @spot_on_shades = @shade.close_colors(10,5,2).where("lower(short_type) LIKE ?", @shade.product.short_type).order("ABS('#{@shade.h}' - h)")
     # matching color but not product_type
-    @close_call_colors = @shade.close_colors(10,5,2).joins(:product).where.not("lower(short_type) LIKE ?", @shade.product.short_type).order("ABS('#{@shade.h}' - h)")
+    @close_call_colors = @shade.close_colors(10,5,2).where.not("lower(short_type) LIKE ?", @shade.product.short_type).order("ABS('#{@shade.h}' - h)")
 
     # don't show product if coming from product page
     @controller = Rails.application.routes.recognize_path(request.referrer)[:controller]

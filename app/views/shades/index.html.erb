@@ -16,13 +16,13 @@
 </div>
 
 <div class="container-fluid">
-	<div class="mobile-center text-center hidden" id="shades-list">
+	<div class="mobile-center text-center" id="shades-list">
 		<span><%= render partial: "shade_square", collection: @shades %></span>
 	</div>
 	<div class="spinner text-center">
 		<%= image_tag "ajax-loader.gif" %>
 	</div>
-	<div id="show-more" class="text-center ">
+	<div id="show-more" class="text-center">
 		<%= render partial: 'paginate' %>
 	</div>
 </div>

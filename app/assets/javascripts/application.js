@@ -17,9 +17,11 @@
 //= require bootstrap-sprockets
 
 
-( function() {
+var myFunc = function() {
 
 	// this = window
+	shimmeryShades();
+	instgrm.Embeds.process();
 
 	$(document).ajaxStart(function() {
 		$("#show-more").hide();
@@ -32,9 +34,6 @@
 		$("#show-more").show();
 	});
 
-	shimmeryShades();
-	instgrm.Embeds.process();
-
 	function shimmeryShades() {
 		$(".look-shades .shade-square-small").each(shimmer);
 		$(".product-shades .shade-square").each(shimmer);
@@ -42,8 +41,6 @@
 		$("#shades-list span:last-child .shade-square").each(shimmer);
 		// Matching shades
 		$(".product-shade").each(shimmer);
-		$("#shades-list").removeClass("hidden");
-		$(".spinner").hide();
 	};
 
 
@@ -85,4 +82,8 @@
 		var string = "hsl(";
 		return string.concat(h, ",", s, "%,", l, "%)")
 	};
-})();
+};
+
+$(document).ready(myFunc);
+$(document).on('page:load', myFunc);
+$(document).on('turbolinks:load', myFunc);

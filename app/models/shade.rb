@@ -7,7 +7,7 @@ class Shade < ActiveRecord::Base
 
   #find matching colors to specified precision
   def close_colors(hrange, srange, lrange)
-    close_colors = Shade.where(h: get_h_range(h,hrange), s: get_sl_range(s,srange), l: get_sl_range(l,lrange))
+    close_colors = Shade.joins(:product).where(h: get_h_range(h,hrange), s: get_sl_range(s,srange), l: get_sl_range(l,lrange))
   end
 
   def get_h_range(value,range)
