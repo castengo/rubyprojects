@@ -5,11 +5,15 @@ class Look < ActiveRecord::Base
   has_many :eye_shades, -> { filter_by_type("eye") }, through: :tutorials, source: :shade
   has_many :lip_shades, -> { filter_by_type("lip") }, through: :tutorials, source: :shade
   has_many :face_shades, -> { filter_by_type("face") }, through: :tutorials, source: :shade
-  has_many :brow_shades, -> { filter_by_type("face") }, through: :tutorials, source: :shade
+  has_many :brow_shades, -> { filter_by_type("brow") }, through: :tutorials, source: :shade
 
   before_save :short_insta
 
   validates :image_url, presence: true, uniqueness: true
+
+  def instagram_embed
+    HTTParty.get("https://api.instagram.com/oembed?url=http://instagr.am/p/#{image_url}/&hidecaption=true&omitscript=true")
+  end
 
   private
 
@@ -18,6 +22,15 @@ class Look < ActiveRecord::Base
       short = full_instagram.split('/')[4]
       if !short.nil?
         self[:image_url] = short
+        caption = HTTParty.get("https://api.instagram.com/oembed?url=http://instagr.am/p/#{image_url}/&hidecaption=true&omitscript=true")['title']
+        found_tags = ""
+        caption.split(' ').each do |tag|
+          match = tag.match /#(\w*)/
+          if !match.nil?
+            found_tags << " " + match[0].to_s
+          end
+          self[:tags] = found_tags
+        end
       end
     end
 end

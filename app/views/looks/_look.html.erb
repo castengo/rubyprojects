@@ -2,7 +2,7 @@
   <div class="row">
 
     <div class="col-md-5">
-      <%= raw get_embedded_instagram(look.image_url) %>
+      <%= raw look.instagram_embed['html'] %>
     </div>
     <div class="col-md-7">
       <div class="col-md-12">
@@ -10,14 +10,16 @@
           <%= look.name %>
         </h3>
         <div class="posted-at">
-          <i>Posted <%= distance_of_time_in_words(Time.now, look.created_at) %> ago by
+          <i>Shared <%= distance_of_time_in_words(Time.now, look.created_at) %> ago by
           <%= link_to "#{look.profile.username}", profile_path(look.profile) %></i>
         </div>
         <p style="font-style: italic;">
           <%= look.caption  %>
         </p>
         <p>
-          <%= look.tags %>
+          <% look.tags.split(' ').each do |tag| %>
+            <%= tag %>
+          <% end %>
         </p>
       </div>
       <% if !look.brow_shades.empty? %>

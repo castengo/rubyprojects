@@ -1,5 +1,6 @@
 
-  <div class="col-md-2 text-center">
-    <%= raw get_embedded_instagram(look.image_url) %>
-    <%= link_to "View Look", look_path(look), class: "btn btn-default" %>
+  <div class="text-center">
+    <%= link_to look_path(look) do %>
+      <%= image_tag look.instagram_embed['thumbnail_url'], size: "200" %>
+    <% end %>
   </div>

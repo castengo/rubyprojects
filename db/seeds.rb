@@ -81,5 +81,6 @@ Product.all.each do |product|
 		end
 		product.save
 	end
+end
 
 administrator.profile.looks.first.tutorials.create!(shade_id: Shade.first.id)
