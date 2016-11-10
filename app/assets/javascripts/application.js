@@ -39,6 +39,8 @@ var myFunc = function() {
 		$(".product-shades .shade-square").each(shimmer);
 		// Shade index
 		$("#shades-list span:last-child .shade-square").each(shimmer);
+		$('#shades-list').removeClass('hidden');
+		$('#show-more').removeClass('hidden');
 		// Matching shades
 		$(".product-shade").each(shimmer);
 	};
