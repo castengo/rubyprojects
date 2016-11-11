@@ -1,2 +1,2 @@
-$("#look-shades").html("<%= j(render partial: 'shades/shade_square', collection: @shades, locals: { :look_id => @look }) %>")
+$("#look-shades").html("<%= j(render partial: 'shades/shade_square_edit', as: 'shade_square', collection: @shades, locals: { :look_id => @look }) %>")
 $("#found-shades").html("<%= j (render partial: 'shades/shade_list', collection: @found_shades, as: 'shade', locals: {:look_id => @look}) %>")
