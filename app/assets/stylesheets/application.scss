@@ -80,33 +80,58 @@ h1, h2, h3 {
 
 /* Navbar  */
 
-.navbar {
+.nav {
+	.open {
+		text-align: left;
+		> a {
+			background-color: $venetian-red;
+
+			&:hover, &:focus {
+				background-color: $venetian-red;
+			}
+		}
+	}
+}
+
+.dropdown-menu {
 	background-color: black;
 	border-radius: 0px;
 	margin-bottom: 0px;
 }
 
-.navbar-nav > li > a {
-	color: white;
-	text-transform: uppercase;
-	text-align: center;
+.navbar {
+	background-color: black;
+	border-radius: 0px;
+	margin-bottom: 0px;
 
-	&:hover {
-		background-color: $venetian-red;
-		@include change-color-slowly(background-color);
-	}
-}
-
-.navbar .navbar-toggle {
-	border-color: #fff;
-	.icon-bar {
-		background-color: #fff;
-	}
-}
-
-.navbar-nav {
 	img {
 		height: 18px;
+	}
+
+	.navbar-toggle {
+		border-color: #fff;
+		.icon-bar {
+			background-color: #fff;
+		}
+	}
+
+	li {
+
+		&.active {
+			background-color: $venetian-red;
+		}
+
+		a {
+			color: white;
+			text-transform: uppercase;
+			text-align: center;
+
+			&:hover {
+				background-color: $venetian-red;
+				color: white;
+				@include change-color-slowly(background-color);
+			}
+		}
 	}
 }
 
@@ -114,6 +139,8 @@ h1, h2, h3 {
 	@include font-italic;
 	color: $light-gray;
 }
+
+
 // Search box
 
 .form-control {
