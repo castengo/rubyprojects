@@ -24,8 +24,7 @@ class Shade < ActiveRecord::Base
 
   # Filters shade search by product type
   def self.filter_by_type(type)
-    formatted_query = "%" + type.downcase + "%"
-    joins(:product).where("lower(products.product_type) LIKE ?", formatted_query).uniq
+    joins(:product).where('products.short_type' => type).uniq
   end
 
   # Search matches by product name, shade name, or shade finish
