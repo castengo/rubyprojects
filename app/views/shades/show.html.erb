@@ -27,7 +27,7 @@
 			<% if @spot_on_shades.any? %>
 				<%= render @spot_on_shades %>
 			<% else %>
-				<p class="not-found">We are sorry! We couldn't find any other <%= @short_product_type %> shades in this color.</p>
+				<p class="not-found">We are sorry! We couldn't find any other <%= @shade.product.short_type %> shades in this color.</p>
 			<% end %>
 		</div>
 		<% if @close_call_colors.any? %>

@@ -7,16 +7,6 @@ class ApplicationController < ActionController::Base
 
   helper_method :user_administrator?, :short_product_type
 
-  def short_product_type(product_type)
-    query = ""
-    products = ["eye", "lip", "brow", "face"]
-    products.each do |prod|
-      if product_type.downcase.include?(prod)
-        return query = prod
-      end
-    end
-  end
-
   protected
 
     def configure_permitted_parameters

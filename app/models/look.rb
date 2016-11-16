@@ -11,10 +11,6 @@ class Look < ActiveRecord::Base
 
   validates :image_url, presence: true, uniqueness: true
 
-  def instagram_embed
-    HTTParty.get("https://api.instagram.com/oembed?url=http://instagr.am/p/#{image_url}/&hidecaption=true&omitscript=true")
-  end
-
   private
 
     def short_insta

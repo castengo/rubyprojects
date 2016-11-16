@@ -1,6 +1,6 @@
 
   <div class="text-center">
     <%= link_to look_path(look) do %>
-      <%= image_tag look.instagram_embed['thumbnail_url'], size: "200" %>
+      <%= image_tag instagram_thumbnail(look.image_url), size: "200" %>
     <% end %>
   </div>
