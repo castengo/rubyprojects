@@ -6,8 +6,18 @@ class LooksController < ApplicationController
   # GET /looks
   # GET /looks.json
   def index
-    @home_page = "looks"
-    @looks = Look.all.order(created_at: :desc).paginate(:page => params[:page], :per_page => 3)
+    if params[:search]
+      @looks = Look.search(params[:search])
+    else
+      @looks = Look.all.order(created_at: :desc)
+    end
+
+    @looks = @looks.paginate(:page => params[:page], :per_page => 18)
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /looks/1

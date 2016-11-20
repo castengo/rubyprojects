@@ -1,10 +1,9 @@
 <div class="container-fluid">
   <div class="row">
-
-    <div class="col-md-5">
+    <div class="col-sm-5">
       <%= raw instagram_html(look.image_url) %>
     </div>
-    <div class="col-md-7">
+    <div class="col-sm-7">
       <div class="col-md-12">
         <h3>
           <%= look.name %>
@@ -18,7 +17,7 @@
         </p>
         <p>
           <% look.tags.split(' ').each do |tag| %>
-            <%= tag %>
+            <%= link_to tag, looks_path(search: tag), class: "tag" %>
           <% end %>
         </p>
       </div>
@@ -48,7 +47,7 @@
       <% end %>
     </div>
 
-    <div class="col-md-12 text-center">
+    <div class="col-sm-12 text-center">
       <% if @home_page == "profile" && @profile_owner %>
         <%= link_to "Edit Shades", tutorial_path(look) %> |
         <%= link_to "View Look", look_path(look) %> |

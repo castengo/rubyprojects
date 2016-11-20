@@ -1,3 +1,15 @@
 // Place all the styles related to the looks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$gray: hsl(0,0%,20%);
+
+.tag {
+  background-color: $light-gray;
+  padding: 4px 7px;
+  border-radius: 5px;
+  color: black;
+
+  &:hover {
+    text-decoration: none;
+  }
+}

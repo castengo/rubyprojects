@@ -11,6 +11,12 @@ class Look < ActiveRecord::Base
 
   validates :image_url, presence: true, uniqueness: true
 
+  def self.search(query)
+    formatted_query= "%" + query.downcase + "%"
+    #need to add lookup by username
+    where("lower(name) LIKE ? OR lower(tags) LIKE ?", formatted_query, formatted_query)
+  end
+
   private
 
     def short_insta

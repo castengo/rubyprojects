@@ -1,5 +1,12 @@
+
+<ol class="breadcrumb">
+  <li><%= link_to 'Back to Looks', looks_path %></li>
+</ol>
+
 <hr>
+
 <%= render @look %>
+
 <% if !@look.shades.empty? %>
   <div class="container-fluid mobile-center">
     <h2>Products</h2>
