@@ -15,10 +15,15 @@
 	<% end %>
 </div>
 
-<div class="shade-looks container-fluid text-center" id="ajax-target">
-	<%= render partial: 'looks/look_square', as: 'look', collection: @looks %>
+<div id="ajax-target">
+	<div class="shade-looks container-fluid text-center">
+		<%= render partial: 'looks/look_square', as: 'look', collection: @looks %>
+	</div>
+	<div class="text-center">
+		<%= will_paginate(@looks, :params => {:search => params[:search]}) %>
+	</div>
 </div>
+
 <div class="spinner text-center">
 	<%= image_tag "ajax-loader.gif" %>
 </div>
-<%= will_paginate @looks %>

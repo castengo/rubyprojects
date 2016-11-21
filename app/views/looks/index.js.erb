@@ -1,5 +1,7 @@
+
 <% if @looks.empty? %>
-  $("#ajax-target").html("<p class='not-found'>We're sorry! We couldn't find any looks that match your search.</p>");
+  $("#ajax-target").html("<p class='not-found text-center'>We're sorry! We couldn't find any looks that match your search.</p>")
 <% else %>
-  $("#ajax-target").html("<%= j render partial: 'looks/look_square', as: 'look', collection: @looks %>");
+  $("#ajax-target").html("<div class='shade-looks container-fluid text-center'><%= j (render partial: 'looks/look_square', as: 'look', collection: @looks) %></div>")
+  $("#ajax-target").append("<div class='text-center'><%= j (will_paginate(@looks, :params => {:search => params[:search]})) %></div>")
 <% end %>
