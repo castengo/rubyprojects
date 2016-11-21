@@ -9,10 +9,8 @@ class LooksController < ApplicationController
     if params[:search]
       @looks = Look.search(params[:search])
     else
-      @looks = Look.all.order(created_at: :desc)
+      @looks = Look.all.order(created_at: :desc).paginate(:page => params[:page], :per_page => 8)
     end
-
-    @looks = @looks.paginate(:page => params[:page], :per_page => 18)
 
     respond_to do |format|
       format.html

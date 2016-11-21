@@ -25,12 +25,14 @@ var myFunc = function() {
 
 	$(document).ajaxStart(function() {
 		$("#show-more").hide();
+		$("#ajax-target").hide();
 		$(".spinner").show();
 	});
 
 	$(document).ajaxStop(function() {
 		shimmeryShades();
 		$(".spinner").hide();
+		$("#ajax-target").show();
 		$("#show-more").show();
 	});
 

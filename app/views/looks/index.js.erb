@@ -1,1 +1,5 @@
-$("#ajax-target").html("<%= j render partial: 'looks/look_square', as: 'look', collection: @looks %>")
+<% if @looks.empty? %>
+  $("#ajax-target").html("<p class='not-found'>We're sorry! We couldn't find any looks that match your search.</p>");
+<% else %>
+  $("#ajax-target").html("<%= j render partial: 'looks/look_square', as: 'look', collection: @looks %>");
+<% end %>

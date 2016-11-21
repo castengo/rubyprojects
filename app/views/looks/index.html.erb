@@ -18,5 +18,7 @@
 <div class="shade-looks container-fluid text-center" id="ajax-target">
 	<%= render partial: 'looks/look_square', as: 'look', collection: @looks %>
 </div>
-
+<div class="spinner text-center">
+	<%= image_tag "ajax-loader.gif" %>
+</div>
 <%= will_paginate @looks %>
