@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_filter :store_current_location, :unless => :devise_controller?
 
-  helper_method :user_administrator?, :short_product_type
+  helper_method :user_administrator?
 
   protected
 
@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
     end
 
     def after_sign_out_path_for(resource)
-      request.referrer || root_path
+      new_user_session_path
     end
 
 end
