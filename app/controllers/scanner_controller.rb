@@ -1,6 +1,7 @@
 class ScannerController < ApplicationController
 
   def scan
+    # TODO extract logic, also price not working
     if params[:scan_url]
       @brand = Brand.find(params[:brand_id])
       @product = @brand.products.new
@@ -23,7 +24,7 @@ class ScannerController < ApplicationController
       # @shades_names = []
       # response.css("a.swatchanchor img").each do |color|
       #   @shades_names.push(color['alt'])
-      # end
+      # ends
       # @product_shades_count = @shades_names.count
     end
 
@@ -31,7 +32,5 @@ class ScannerController < ApplicationController
       format.html
       format.js
     end
-
   end
-
 end

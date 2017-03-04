@@ -5,9 +5,29 @@ class Shade < ActiveRecord::Base
 
   before_save :to_hsl
 
+  # Filters shade search by product type
+  def self.filter_by_type(type)
+    joins(:product).where('products.short_type' => type).uniq
+  end
+
+  # Search matches by product name, shade name, or shade finish
+  def self.search(query)
+    formatted_query= "%" + query.downcase + "%"
+    self.joins(:product).where(
+      "lower(products.name) LIKE ? OR lower(shades.name) LIKE ? OR lower(finish) LIKE ? ",
+      formatted_query,
+      formatted_query,
+      formatted_query
+    )
+  end
+
   #find matching colors to specified precision
   def close_colors(hrange, srange, lrange)
-    close_colors = Shade.joins(:product).where(h: get_h_range(h,hrange), s: get_sl_range(s,srange), l: get_sl_range(l,lrange))
+    Shade.joins(:product).where(
+      h: get_h_range(h,hrange),
+      s: get_sl_range(s,srange),
+      l: get_sl_range(l,lrange)
+    )
   end
 
   def get_h_range(value,range)
@@ -22,19 +42,9 @@ class Shade < ActiveRecord::Base
     min_value..max_value
   end
 
-  # Filters shade search by product type
-  def self.filter_by_type(type)
-    joins(:product).where('products.short_type' => type).uniq
-  end
-
-  # Search matches by product name, shade name, or shade finish
-  def self.search(query)
-    formatted_query= "%" + query.downcase + "%"
-    joins(:product).where("lower(products.name) LIKE ? OR lower(shades.name) LIKE ? OR lower(finish) LIKE ? ", formatted_query, formatted_query, formatted_query)
-  end
-
   private
 
+    # accepts hex colors
     def to_hsl
       if !hex_color.nil?
         normalize_color
@@ -80,6 +90,7 @@ class Shade < ActiveRecord::Base
       end
     end
 
+    # accepts rgb array
     def normalize_color
       if hex_color.split(',').count == 3
         hex_string = "";
@@ -96,5 +107,4 @@ class Shade < ActiveRecord::Base
         self[:hex_color] = hex_string
       end
     end
-
 end

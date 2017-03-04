@@ -13,7 +13,7 @@ class Look < ActiveRecord::Base
 
   def self.search(query)
     formatted_query= "%" + query.downcase + "%"
-    #need to add lookup by username
+    # TODO need to add lookup by username
     where("lower(name) LIKE ? OR lower(tags) LIKE ?", formatted_query, formatted_query)
   end
 

@@ -14,5 +14,4 @@ class User < ActiveRecord::Base
     def create_account
       self.account = Account.new
     end
-
 end

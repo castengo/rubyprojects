@@ -13,6 +13,8 @@ class ShadesController < ApplicationController
     @more_shades = @shades_count > @results_limit
   end
 
+  # TODO can this be moved into application controller so it can be used by all
+  # controllers?
   def paginate
     offset = params[:page].to_i * @results_limit
     @page = params[:page].to_i + 1
@@ -111,5 +113,4 @@ class ShadesController < ApplicationController
         :colors_array
       )
     end
-
 end

@@ -15,6 +15,8 @@ class ProfilesController < ApplicationController
     @username = @profile.username
     @profile_owner = current_user && @username == current_user.username
     @my_looks = @profile.looks.order(created_at: :desc)
+
+    #TODO get instagram url and get picture from there
     @test = Profile.get_profile_picture("chileanqween")
     # @response = HTTParty.get('https://api.instagram.com/oembed?url=https://www.instagram.com/p/8mb17gSyyC/')
     # @looks = @profile.looks
