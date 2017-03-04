@@ -14,7 +14,7 @@
 
   <div class="field">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, value: scanner[:name] %>
   </div>
   <div class="field">
     <%= f.label :shades_group %><br>
@@ -34,19 +34,19 @@
   </div>
   <div class="field">
     <%= f.label :description %><br>
-    <%= f.text_area :description, rows: 10, class: "form-control" %>
+    <%= f.text_area :description, value: scanner[:description], rows: 10, class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :no_of_shades %><br>
-    <%= f.text_field :no_of_shades %>
+    <%= f.text_field :no_of_shades, value: scanner[:no_of_shades] %>
   </div>
   <div class="field">
     <%= f.label :photo_url %><br>
-    <%= f.text_field :photo_url %>
+    <%= f.text_field :photo_url, value: scanner[:image] %>
   </div>
   <div class="field">
     <%= f.label :direct_link %><br>
-    <%= f.text_field :direct_link %>
+    <%= f.text_field :direct_link, value: scanner[:link] %>
   </div>
   <div class="field">
     <%= f.label :application %><br>
@@ -54,7 +54,7 @@
   </div>
   <div class="field">
     <%= f.label :price %><br>
-    <%= f.text_field :price %>
+    <%= f.text_field :price, value: scanner[:price] %>
   </div>
 
 <% if f.object.persisted? %>

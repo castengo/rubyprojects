@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  # scanner test
+  get 'scanner' => 'scanner#scan'
+
   resources :tutorials, only: [:create, :destroy, :show]
 
   get 'account' => "accounts#show"

@@ -37,15 +37,16 @@ gem 'nokogiri'
 # gem 'capistrano-rails', group: :development
 
 group :development do
+  gem 'web-console', '~> 2.0'
+end
+
+group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem 'web-console', '~> 2.0'
   gem 'spring'
 end
 
 group :test do
-  gem 'byebug'
-  gem 'spring'
   gem 'minitest-reporters', '1.0.5'
   gem 'mini_backtrace',     '0.1.3'
   # gem 'guard-minitest',     '2.3.1'

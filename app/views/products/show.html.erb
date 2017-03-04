@@ -19,7 +19,7 @@
 			<div class="col-md-8">
 				<h2><%= @product.name %></h2>
 				<div class="product-description">
-					<p><%= @product.description %></p>
+					<p><%= raw @product.description %></p>
 					<p><strong>Application:</strong> <%= @product.application %></p>
 				</div>
 
