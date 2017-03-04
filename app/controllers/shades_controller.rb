@@ -98,7 +98,18 @@ class ShadesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def shade_params
-      params.require(:shade).permit(:name, :finish, :product_id, :color_id, :hex_color, :position, :h, :s, :l, :colors_array)
+      params.require(:shade).permit(
+        :name,
+        :finish,
+        :product_id,
+        :color_id,
+        :hex_color,
+        :position,
+        :h,
+        :s,
+        :l,
+        :colors_array
+      )
     end
 
 end

@@ -7,10 +7,12 @@
   <p>Create a profile to share your make up looks!</p>
   <%= link_to "Create Profile", new_account_profile_path(@account), class: "btn btn-default" %>
 <% else %>
-  <%= link_to 'Create new look', new_profile_look_path(@account.profile) %> |
-  <%= link_to 'View your profile', profile_path(@account.profile) %> |
-  <%= link_to 'Edit your profile', edit_account_profile_path(@account.profile) %>  |
-  <%= link_to 'Delete profile', @account.profile, method: :delete, data: { confirm: 'Are you sure?' } %>
+	<ul>
+		<li><%= link_to 'Create new look', new_profile_look_path(@account.profile) %></li>
+		<li><%= link_to 'View your profile', profile_path(@account.profile) %></li>
+		<li><%= link_to 'Edit your profile', edit_account_profile_path(@account.profile) %></li>
+		<li><%= link_to 'Delete profile', @account.profile, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+	</ul>
 <% end %>
 
 <h2>Favorite Looks</h2>

@@ -12,7 +12,14 @@ class ScannerController < ApplicationController
       product_description = response.css("div.long-description div.tab-content").inner_html
       product_price = response.css("div.product-detail span.price-sales").inner_html
       product_no_of_shades = response.css("a.swatchanchor img").count
-      @scanner_data = {:name => product_name, :image => product_image, :description => product_description, :price => product_price, :no_of_shades => product_no_of_shades, :link => params[:scan_url]}
+      @scanner_data = {
+        :name => product_name,
+        :image => product_image,
+        :description => product_description,
+        :price => product_price,
+        :no_of_shades => product_no_of_shades,
+        :link => params[:scan_url]
+      }
       # @shades_names = []
       # response.css("a.swatchanchor img").each do |color|
       #   @shades_names.push(color['alt'])

@@ -10,7 +10,7 @@ Brand.destroy_all
 User.destroy_all
 Shade.destroy_all
 
-User.create! [{username:"administrator", email: "castengo23@gmail.com", password: "ravilet7"}, {username:"gibby", email: "gibbs@doggyland.com", password: "password1"}]
+User.create! [{username:"administrator", email: "adminsitrator@test.com", password: "Verbena123!"}, {username:"gibby", email: "test@test.com", password: "Verbena123!"}]
 
 administrator = User.find_by(username: "administrator").account;
 administrator.create_profile!
