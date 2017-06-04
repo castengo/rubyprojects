@@ -57,4 +57,4 @@ group :production do
 	gem 'puma', '3.1.0'
 end
 
-ruby "2.4.1"
+ruby '2.4.1'
