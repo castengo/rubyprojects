@@ -1,4 +1,4 @@
-class Profile < ActiveRecord::Base
+class Profile < ApplicationRecord
   belongs_to :account, inverse_of: :profile
   has_many :looks, dependent: :destroy
 

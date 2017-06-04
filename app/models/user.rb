@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   has_one :account, dependent: :destroy, inverse_of: :user
 
   before_create :create_account

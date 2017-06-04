@@ -1,4 +1,4 @@
-class Look < ActiveRecord::Base
+class Look < ApplicationRecord
   belongs_to :profile
   has_many :tutorials
   has_many :shades, -> { distinct }, through: :tutorials

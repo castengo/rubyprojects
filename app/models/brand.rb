@@ -1,4 +1,4 @@
-class Brand < ActiveRecord::Base
+class Brand < ApplicationRecord
 	has_many :products, dependent: :destroy
 
 	def self.search(name)

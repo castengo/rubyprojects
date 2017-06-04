@@ -1,4 +1,4 @@
-class Shade < ActiveRecord::Base
+class Shade < ApplicationRecord
   belongs_to :product
   has_many :tutorials
   has_many :looks, -> { distinct }, through: :tutorials
@@ -7,7 +7,7 @@ class Shade < ActiveRecord::Base
 
   # Filters shade search by product type
   def self.filter_by_type(type)
-    joins(:product).where('products.short_type' => type).uniq
+    Shade.joins(:product).where('products.short_type' => type)
   end
 
   # Search matches by product name, shade name, or shade finish

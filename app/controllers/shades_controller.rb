@@ -2,7 +2,7 @@ class ShadesController < ApplicationController
   before_action :set_product, only: [:show, :create, :update, :destroy]
   before_action :set_shade, only: [:show, :destroy]
   before_action :set_shades, only: [:index, :paginate, :search]
-  before_filter :set_cache_headers
+  before_action :set_cache_headers
   respond_to :html, :js
 
   # GET /shades

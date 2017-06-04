@@ -22,7 +22,7 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
-    @brand = Brand.find(@product.brand)
+    @brand = Brand.find(@product.brand.id)
     @shades = @product.shades.order(:position)
     # @matching_products = @product.find_matching_products
     if !user_administrator?
